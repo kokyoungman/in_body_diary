@@ -3,55 +3,184 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" >
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css"
+    />
     <link rel="stylesheet" href="css/style.css" />
-    <title>Document</title>
+    <title>❤ 공주네 ❤</title>
   </head>
+
   <body>
     <div class="screen">
-      screen
-      <div class="status-bar">status-bar</div>
-      <header class="header">header</header>
-      <main class="main">
-        <select>
-          <option value="None">---사용자를 선택하세요---</option>
-          <option value="KR">공주</option>
-          <option value="US">남편</option>
-        </select>
-        <span class="js-base-data"></span>
-        <div class="datas">
-          <div class="data-column">
-            <span>A</span>
-            <input class="js-input-0" type="number" min="0.0" max="200.0" />
-            <span class="js-result-0">결과</span>
+      <div class="status-bar"></div>
+
+      <header></header>
+
+      <main>
+        <div class="middle">
+          <select>
+            <option value="None">---사용자를 선택하세요---</option>
+            <option value="KR">공주</option>
+            <option value="US">남편</option>
+          </select>
+          <div class="base-data js-base-data"></div>
+          <div class="datas">
+            <div class="data-column">
+              <div class="data-name">체중</div>
+              <input class="js-input-0" type="number" min="0.0" max="200.0" />
+            </div>
+            <div class="data-column">
+              <div class="data-name">지방</div>
+              <input class="js-input-1" type="number" min="0.0" max="200.0" />
+            </div>
+            <div class="data-column">
+              <div class="data-name">수분</div>
+              <input class="js-input-2" type="number" min="0.0" max="200.0" />
+            </div>
+            <div class="data-column">
+              <div class="data-name">근육</div>
+              <input class="js-input-3" type="number" min="0.0" max="200.0" />
+            </div>
+            <div class="data-column">
+              <div class="data-name">뼈</div>
+              <input class="js-input-4" type="number" min="0.0" max="200.0" />
+            </div>
+            <div class="data-column">
+              <div class="data-name">내장지방</div>
+              <input class="js-input-5" type="number" min="0.0" max="200.0" />
+            </div>
+            <div class="data-column">
+              <div class="data-name">칼로리</div>
+              <input class="js-input-6" type="number" min="0.0" max="200.0" />
+            </div>
           </div>
-          <div class="data-column">
-            <span>B</span>
-            <input class="js-input-1" type="number" min="0.0" max="200.0" />
-            <span class="js-result-1">결과</span>
-          </div>
-          <div class="data-column">
-            <span>C</span>
-            <input class="js-input-2" type="number" min="0.0" max="200.0" />
-            <span class="js-result-2">결과</span>
-          </div>
-          <div class="data-column">
-            <span>D</span>
-            <input class="js-input-3" type="number" min="0.0" max="200.0" />
-            <span class="js-result-3">결과</span>
-          </div>
-          <div class="data-column">
-            <span>E</span>
-            <input class="js-input-4" type="number" min="0.0" max="200.0" />
-            <span class="js-result-4">결과</span>
-          </div>
+          <input class="js-button" type="submit" value="계산" />
         </div>
-        <input class="js-button" type="submit" value="계산" />
-        <div></div>
+        <sidebar>
+          <div class="bars">
+            <div class="bar-column">
+              <div class="title">체중</div>
+              <div class="arrow js-arrow-0"></div>
+              <div class="numbers">
+                <div class="number js-number-0-0">19</div>
+                <div class="number js-number-0-1">23</div>
+                <div class="number js-number-0-2">25</div>
+                <div class="number js-number-0-3">29</div>
+                <div class="number js-number-0-4">35</div>
+              </div>
+              <div class="grades">
+                <div class="grade-row">건강</div>
+                <div class="grade-row">과체중</div>
+                <div class="grade-row">비만</div>
+                <div class="grade-row">고도비만</div>
+              </div>
+            </div>
+            <div class="bar-column">
+              <div class="title">지방</div>
+              <div class="arrow js-arrow-1"></div>
+              <div class="numbers">
+                <div class="number js-number-1-0">-</div>
+                <div class="number js-number-1-1">20</div>
+                <div class="number js-number-1-2">30</div>
+                <div class="number js-number-1-3">35</div>
+                <div class="number js-number-1-4">+</div>
+              </div>
+              <div class="grades">
+                <div class="grade-row">지방 미달</div>
+                <div class="grade-row">건강</div>
+                <div class="grade-row">과다 지방</div>
+                <div class="grade-row">비만</div>
+              </div>
+            </div>
+            <div class="bar-column">
+              <div class="title">수분</div>
+              <div class="arrow js-arrow-2"></div>
+              <div class="numbers">
+                <div class="number js-number-2-0">37.8</div>
+                <div class="number js-number-2-1">48.6</div>
+                <div class="number js-number-2-2">53.0</div>
+                <div class="number js-number-2-3">56.4</div>
+                <div class="number js-number-2-4">59.9</div>
+                <div class="number js-number-2-5">66.0</div>
+              </div>
+              <div class="grades">
+                <div class="grade-row">심한 탈수</div>
+                <div class="grade-row">탈수</div>
+                <div class="grade-row">중간 수화</div>
+                <div class="grade-row">약간의 수화</div>
+                <div class="grade-row">최적 수화</div>
+              </div>
+            </div>
+            <div class="bar-column">
+              <div class="title">근육</div>
+              <div class="arrow js-arrow-3"></div>
+              <div class="numbers">
+                <div class="number js-number-3-0">-</div>
+                <div class="number js-number-3-1">24.1</div>
+                <div class="number js-number-3-2">30.1</div>
+                <div class="number js-number-3-3">35.1</div>
+                <div class="number js-number-3-4">+</div>
+              </div>
+              <div class="grades">
+                <div class="grade-row">낮음</div>
+                <div class="grade-row">보통</div>
+                <div class="grade-row">높음</div>
+                <div class="grade-row">매우 높음</div>
+              </div>
+            </div>
+            <div class="bar-column">
+              <div class="title">뼈</div>
+              <div class="arrow js-arrow-4"></div>
+              <div class="numbers">
+                <div class="number js-number-4-0">-</div>
+                <div class="number js-number-4-1">2.2</div>
+                <div class="number js-number-4-2">+</div>
+              </div>
+              <div class="grades">
+                <div class="grade-row">미달</div>
+                <div class="grade-row">건강</div>
+              </div>
+            </div>
+            <div class="bar-column">
+              <div class="title">내장지방</div>
+              <div class="arrow js-arrow-5"></div>
+              <div class="numbers">
+                <div class="number js-number-5-0">1</div>
+                <div class="number js-number-5-1">9</div>
+                <div class="number js-number-5-2">14</div>
+                <div class="number js-number-5-3">30</div>
+              </div>
+              <div class="grades">
+                <div class="grade-row">표준</div>
+                <div class="grade-row">약간 비만</div>
+                <div class="grade-row">비만</div>
+              </div>
+            </div>
+            <div class="bar-column">
+              <div class="title">칼로리</div>
+              <div class="arrow js-arrow-6"></div>
+              <div class="numbers">
+                <div class="number js-number-6-0">-</div>
+                <div class="number js-number-6-1">1000</div>
+                <div class="number js-number-6-2">2200</div>
+                <div class="number js-number-6-3">+</div>
+              </div>
+              <div class="grades">
+                <div class="grade-row">미달</div>
+                <div class="grade-row">건강</div>
+                <div class="grade-row">과다</div>
+              </div>
+            </div>
+          </div>
+        </sidebar>
       </main>
-      <footer class="footer">footer</footer>
-      <nav class="nav">nav</nav>
+
+      <footer class="footer"></footer>
+
+      <nav class="nav"></nav>
+
+      <script src="index.js"></script>
     </div>
-    <script src="index.js"></script>
   </body>
 </html>
