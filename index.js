@@ -194,6 +194,22 @@ function showBase() {
 function addHistory() {
   if (select.selectedIndex == 0) return;
 
+  if (
+    inputs[0].value == "" ||
+    inputs[1].value == "" ||
+    inputs[2].value == "" ||
+    inputs[3].value == "" ||
+    inputs[4].value == "" ||
+    inputs[5].value == "" ||
+    inputs[6].value == "" ||
+    inputs[7].value == "" ||
+    inputs[8].value == "" ||
+    inputs[9].value == ""
+  ) {
+    alert("모든 값을 입력해주세요.");
+    return;
+  }
+
   let parsedSaveDatas = [];
 
   const saveDatas = localStorage.getItem(select.selectedIndex);
