@@ -210,6 +210,7 @@ function addHistory() {
     return;
   }
 
+  console.log(inputs[9].value);
   let parsedSaveDatas = [];
 
   const saveDatas = localStorage.getItem(select.selectedIndex);
