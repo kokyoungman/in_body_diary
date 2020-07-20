@@ -22,20 +22,20 @@ body {
 
 .screen {
   width: 1440px;
-  height: 720px;
+  height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
   overflow: hidden;
   border-radius: 20px;
-  padding: 10px 20px;
+  padding: 50px 20px;
   box-shadow: 0px 4px 6px rgba(50, 50, 93, 0.11),
     0px 1px 3px rgba(0, 0, 0, 0.08);
 }
 
 main {
-  width: 100%;
+  width: 95%;
   height: 100%;
   display: flex;
   flex-direction: row;
@@ -53,7 +53,6 @@ main .middle {
 }
 
 main .middle .base-data {
-  height: 50px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -82,7 +81,7 @@ main sidebar {
 }
 
 main sidebar .bars {
-  width: 100%;
+  width: 95%;
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -100,14 +99,26 @@ main sidebar .bars .bar-column {
   align-items: center;
 }
 
+main sidebar .bars .bar-column .title {
+  position: absolute;
+  top: 0px;
+  left: -5%;
+  font-size: 20px;
+  text-align: center;
+}
+
 main sidebar .bars .bar-column .arrow {
   position: absolute;
   top: 40px;
   left: 0%;
+  border-radius: 5px;
+  background-color: pink;
   color: red;
+  opacity: 50%;
   font-size: 20px;
   font-weight: 700;
   text-align: center;
+  white-space: nowrap;
 }
 
 main sidebar .bars .bar-column .numbers {
@@ -136,4 +147,20 @@ main sidebar .bars .bar-column .grades .grade-row {
   font-size: 20px;
   text-align: center;
   outline: 1px solid black;
+}
+
+main sidebar .bars .change-history {
+  width: 100%;
+  height: 5%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  margin-top: 50px;
+}
+
+main sidebar .bars .change-history .btn {
+  width: 70px;
+  height: 30px;
+  font-size: 20px;
 }

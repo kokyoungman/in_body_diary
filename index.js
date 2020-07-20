@@ -10,55 +10,54 @@ inputs.push(document.querySelector(".js-input-3"));
 inputs.push(document.querySelector(".js-input-4"));
 inputs.push(document.querySelector(".js-input-5"));
 inputs.push(document.querySelector(".js-input-6"));
+inputs.push(document.querySelector(".js-input-7"));
+inputs.push(document.querySelector(".js-input-8"));
+inputs.push(document.querySelector(".js-input-9"));
 let arrows = [];
 let partArrows = [];
-arrows.push(document.querySelector(".js-arrow-0-0"));
-arrows.push(document.querySelector(".js-arrow-0-1"));
-arrows.push(document.querySelector(".js-arrow-0-2"));
-arrows.push(document.querySelector(".js-arrow-0-3"));
-arrows.push(document.querySelector(".js-arrow-0-4"));
+partArrows.push(document.querySelector(".js-arrow-0-0"));
+partArrows.push(document.querySelector(".js-arrow-0-1"));
+partArrows.push(document.querySelector(".js-arrow-0-2"));
+partArrows.push(document.querySelector(".js-arrow-0-3"));
+partArrows.push(document.querySelector(".js-arrow-0-4"));
+partArrows.push(document.querySelector(".js-arrow-0-5"));
+partArrows.push(document.querySelector(".js-arrow-0-6"));
 arrows.push(partArrows);
-let partArrows = [];
-arrows.push(document.querySelector(".js-arrow-1-0"));
-arrows.push(document.querySelector(".js-arrow-1-1"));
-arrows.push(document.querySelector(".js-arrow-1-2"));
-arrows.push(document.querySelector(".js-arrow-1-3"));
-arrows.push(document.querySelector(".js-arrow-1-4"));
+partArrows = [];
+partArrows.push(document.querySelector(".js-arrow-1-0"));
+partArrows.push(document.querySelector(".js-arrow-1-1"));
+partArrows.push(document.querySelector(".js-arrow-1-2"));
+partArrows.push(document.querySelector(".js-arrow-1-3"));
+partArrows.push(document.querySelector(".js-arrow-1-4"));
+partArrows.push(document.querySelector(".js-arrow-1-5"));
+partArrows.push(document.querySelector(".js-arrow-1-6"));
 arrows.push(partArrows);
-let partArrows = [];
-arrows.push(document.querySelector(".js-arrow-2-0"));
-arrows.push(document.querySelector(".js-arrow-2-1"));
-arrows.push(document.querySelector(".js-arrow-2-2"));
-arrows.push(document.querySelector(".js-arrow-2-3"));
-arrows.push(document.querySelector(".js-arrow-2-4"));
+partArrows = [];
+partArrows.push(document.querySelector(".js-arrow-2-0"));
+partArrows.push(document.querySelector(".js-arrow-2-1"));
+partArrows.push(document.querySelector(".js-arrow-2-2"));
+partArrows.push(document.querySelector(".js-arrow-2-3"));
+partArrows.push(document.querySelector(".js-arrow-2-4"));
+partArrows.push(document.querySelector(".js-arrow-2-5"));
+partArrows.push(document.querySelector(".js-arrow-2-6"));
 arrows.push(partArrows);
-let partArrows = [];
-arrows.push(document.querySelector(".js-arrow-3-0"));
-arrows.push(document.querySelector(".js-arrow-3-1"));
-arrows.push(document.querySelector(".js-arrow-3-2"));
-arrows.push(document.querySelector(".js-arrow-3-3"));
-arrows.push(document.querySelector(".js-arrow-3-4"));
+partArrows = [];
+partArrows.push(document.querySelector(".js-arrow-3-0"));
+partArrows.push(document.querySelector(".js-arrow-3-1"));
+partArrows.push(document.querySelector(".js-arrow-3-2"));
+partArrows.push(document.querySelector(".js-arrow-3-3"));
+partArrows.push(document.querySelector(".js-arrow-3-4"));
+partArrows.push(document.querySelector(".js-arrow-3-5"));
+partArrows.push(document.querySelector(".js-arrow-3-6"));
 arrows.push(partArrows);
-let partArrows = [];
-arrows.push(document.querySelector(".js-arrow-4-0"));
-arrows.push(document.querySelector(".js-arrow-4-1"));
-arrows.push(document.querySelector(".js-arrow-4-2"));
-arrows.push(document.querySelector(".js-arrow-4-3"));
-arrows.push(document.querySelector(".js-arrow-4-4"));
-arrows.push(partArrows);
-let partArrows = [];
-arrows.push(document.querySelector(".js-arrow-5-0"));
-arrows.push(document.querySelector(".js-arrow-5-1"));
-arrows.push(document.querySelector(".js-arrow-5-2"));
-arrows.push(document.querySelector(".js-arrow-5-3"));
-arrows.push(document.querySelector(".js-arrow-5-4"));
-arrows.push(partArrows);
-let partArrows = [];
-arrows.push(document.querySelector(".js-arrow-6-0"));
-arrows.push(document.querySelector(".js-arrow-6-1"));
-arrows.push(document.querySelector(".js-arrow-6-2"));
-arrows.push(document.querySelector(".js-arrow-6-3"));
-arrows.push(document.querySelector(".js-arrow-6-4"));
+partArrows = [];
+partArrows.push(document.querySelector(".js-arrow-4-0"));
+partArrows.push(document.querySelector(".js-arrow-4-1"));
+partArrows.push(document.querySelector(".js-arrow-4-2"));
+partArrows.push(document.querySelector(".js-arrow-4-3"));
+partArrows.push(document.querySelector(".js-arrow-4-4"));
+partArrows.push(document.querySelector(".js-arrow-4-5"));
+partArrows.push(document.querySelector(".js-arrow-4-6"));
 arrows.push(partArrows);
 let numbers = [];
 let partNumbers = [];
@@ -107,9 +106,14 @@ partNumbers.push(document.querySelector(".js-number-6-1"));
 partNumbers.push(document.querySelector(".js-number-6-2"));
 partNumbers.push(document.querySelector(".js-number-6-3"));
 numbers.push(partNumbers);
-const button = document.querySelector(".js-button");
+const addBtn = document.querySelector(".js-add-btn");
+const beforeBtn = document.querySelector(".js-before-btn");
+const modeBtn = document.querySelector(".js-mode-btn");
+const nextBtn = document.querySelector(".js-next-btn");
 
-const values = [
+const MODE_LS = "mode";
+
+const gapValues = [
   {
     weight: [19, 23, 25, 29, 35],
     bodyFat: ["-", 20, 30, 35, "+"],
@@ -130,39 +134,61 @@ const values = [
   },
 ];
 
-const saveDataStartIndex = 3;
+const saveDataTotalCount = 5;
+let saveDataStartIndex = 0;
+let saveDataCount = saveDataTotalCount;
+
+const saveDataValueStartIndex = 3;
+
+function getRemainDay(startDate, endDate) {
+  const elapsed = new Date(endDate - startDate);
+  const secondsMs = Math.floor(elapsed / 1000);
+  const minutesMs = Math.floor(secondsMs / 60);
+  const hoursMs = Math.floor(minutesMs / 60);
+  return Math.floor(hoursMs / 24);
+}
 
 function showBase() {
+  const date = new Date();
+
+  inputs[0].value = date.getFullYear();
+  inputs[1].value = date.getMonth() + 1;
+  inputs[2].value = date.getDate();
+
   if (select.selectedIndex == 0) {
     numbers.forEach((partNumbers) => {
       partNumbers.forEach((number) => {
         number.textContent = "";
       });
     });
-    return;
+  } else {
+    numbers[0].forEach((number, index) => {
+      number.textContent = gapValues[select.selectedIndex - 1].weight[index];
+    });
+    numbers[1].forEach((number, index) => {
+      number.textContent = gapValues[select.selectedIndex - 1].bodyFat[index];
+    });
+    numbers[2].forEach((number, index) => {
+      number.textContent = gapValues[select.selectedIndex - 1].water[index];
+    });
+    numbers[3].forEach((number, index) => {
+      number.textContent = gapValues[select.selectedIndex - 1].muscle[index];
+    });
+    numbers[4].forEach((number, index) => {
+      number.textContent = gapValues[select.selectedIndex - 1].bone[index];
+    });
+    numbers[5].forEach((number, index) => {
+      number.textContent =
+        gapValues[select.selectedIndex - 1].visceralFat[index];
+    });
+    numbers[6].forEach((number, index) => {
+      number.textContent = gapValues[select.selectedIndex - 1].calorie[index];
+    });
   }
 
-  numbers[0].forEach((number, index) => {
-    number.textContent = values[select.selectedIndex - 1].weight[index];
-  });
-  numbers[1].forEach((number, index) => {
-    number.textContent = values[select.selectedIndex - 1].bodyFat[index];
-  });
-  numbers[2].forEach((number, index) => {
-    number.textContent = values[select.selectedIndex - 1].water[index];
-  });
-  numbers[3].forEach((number, index) => {
-    number.textContent = values[select.selectedIndex - 1].muscle[index];
-  });
-  numbers[4].forEach((number, index) => {
-    number.textContent = values[select.selectedIndex - 1].bone[index];
-  });
-  numbers[5].forEach((number, index) => {
-    number.textContent = values[select.selectedIndex - 1].visceralFat[index];
-  });
-  numbers[6].forEach((number, index) => {
-    number.textContent = values[select.selectedIndex - 1].calorie[index];
-  });
+  const saveMode = localStorage.getItem(MODE_LS);
+  if (saveMode !== null) saveDataCount = saveMode;
+  modeBtn.value = `${saveDataCount}개씩`;
 }
 
 function addHistory() {
@@ -172,29 +198,74 @@ function addHistory() {
 
   const saveDatas = localStorage.getItem(select.selectedIndex);
 
+  let isData = false;
+
   if (saveDatas !== null) {
     parsedSaveDatas = JSON.parse(saveDatas);
+
+    parsedSaveDatas.forEach((saveData) => {
+      if (
+        saveData[0] == inputs[0].value &&
+        saveData[1] == inputs[1].value &&
+        saveData[2] == inputs[2].value
+      )
+        isData = true;
+    });
   }
 
-  const date = new Date();
+  if (isData) {
+    if (confirm("이미 같은 날짜의 값이 있습니다. 변경하시겠습니까?"))
+      isData = false;
+  }
 
-  parsedSaveDatas.push([
-    date.getFullYear(),
-    date.getMonth() + 1,
-    date.getDate(),
-    inputs[0].value,
-    inputs[1].value,
-    inputs[2].value,
-    inputs[3].value,
-    inputs[4].value,
-    inputs[5].value,
-    inputs[6].value,
-  ]);
+  if (isData == false) {
+    for (let i = parsedSaveDatas.length - 1; i >= 0; i--) {
+      if (
+        parsedSaveDatas[i][0] == inputs[0].value &&
+        parsedSaveDatas[i][1] == inputs[1].value &&
+        parsedSaveDatas[i][2] == inputs[2].value
+      )
+        parsedSaveDatas.splice(i, 1);
+    }
+
+    parsedSaveDatas.push([
+      inputs[0].value,
+      inputs[1].value,
+      inputs[2].value,
+      inputs[3].value,
+      inputs[4].value,
+      inputs[5].value,
+      inputs[6].value,
+      inputs[7].value,
+      inputs[8].value,
+      inputs[9].value,
+    ]);
+  }
+
+  parsedSaveDatas.sort((a, b) => {
+    if (a[0] < b[0]) return -1;
+    else if (a[0] > b[0]) return 1;
+    else {
+      if (a[1] < b[1]) return -1;
+      else if (a[1] > b[1]) return 1;
+      else {
+        if (a[2] < b[2]) return -1;
+        else if (a[2] > b[2]) return 1;
+        else return 0;
+      }
+    }
+  });
 
   localStorage.setItem(select.selectedIndex, JSON.stringify(parsedSaveDatas));
 }
 
 function showHistory() {
+  arrows.forEach((partArrows) => {
+    partArrows.forEach((arrows) => {
+      arrows.textContent = "";
+    });
+  });
+
   if (select.selectedIndex == 0) return;
 
   let parsedSaveDatas = [];
@@ -203,64 +274,91 @@ function showHistory() {
 
   if (saveDatas !== null) {
     parsedSaveDatas = JSON.parse(saveDatas);
-    //parsedSaveDatas.reverse();    // arrow 추가할 것
-    console.log(parsedSaveDatas);
-    parsedSaveDatas.forEach((saveData) => {
-      saveData.forEach((data, index) => {
-        index = index - saveDataStartIndex;
 
-        if (index >= 0) {
-          let targetValues;
+    parsedSaveDatas.reverse();
 
-          if (index == 0)
-            targetValues = values[select.selectedIndex - 1].weight;
-          else if (index == 1)
-            targetValues = values[select.selectedIndex - 1].bodyFat;
-          else if (index == 2)
-            targetValues = values[select.selectedIndex - 1].water;
-          else if (index == 3)
-            targetValues = values[select.selectedIndex - 1].muscle;
-          else if (index == 4)
-            targetValues = values[select.selectedIndex - 1].bone;
-          else if (index == 5)
-            targetValues = values[select.selectedIndex - 1].visceralFat;
-          else if (index == 6)
-            targetValues = values[select.selectedIndex - 1].calorie;
+    const startDate = new Date(
+      parsedSaveDatas[0][0],
+      parsedSaveDatas[0][1],
+      parsedSaveDatas[0][2]
+    );
+
+    parsedSaveDatas.forEach((saveData, index1) => {
+      index1 -= saveDataStartIndex;
+
+      const endDate = new Date(saveData[0], saveData[1], saveData[2]);
+      const remainDay = getRemainDay(startDate, endDate);
+
+      saveData.forEach((saveDataValue, index2) => {
+        index2 -= saveDataValueStartIndex;
+
+        if (0 <= index1 && index1 < saveDataCount && 0 <= index2) {
+          let targetGapValues;
+
+          if (index2 == 0)
+            targetGapValues = gapValues[select.selectedIndex - 1].weight;
+          else if (index2 == 1)
+            targetGapValues = gapValues[select.selectedIndex - 1].bodyFat;
+          else if (index2 == 2)
+            targetGapValues = gapValues[select.selectedIndex - 1].water;
+          else if (index2 == 3)
+            targetGapValues = gapValues[select.selectedIndex - 1].muscle;
+          else if (index2 == 4)
+            targetGapValues = gapValues[select.selectedIndex - 1].bone;
+          else if (index2 == 5)
+            targetGapValues = gapValues[select.selectedIndex - 1].visceralFat;
+          else if (index2 == 6)
+            targetGapValues = gapValues[select.selectedIndex - 1].calorie;
 
           let minIndex = 0;
           let minValue = 0;
 
-          const maxValue = targetValues.find((value, index) => {
+          const maxValue = targetGapValues.find((value, index) => {
             if (index == 0) return false;
 
             minIndex = index - 1;
-            minValue = targetValues[minIndex];
+            minValue = targetGapValues[minIndex];
 
-            if (targetValues.length - 1 == index) return true;
+            if (targetGapValues.length - 1 == index) return true;
 
-            return data < value;
+            return saveDataValue < value;
           });
 
-          arrows[index].textContent = "🥕" + data;
+          arrows[index1][index2].textContent = "🥕" + saveDataValue;
+          if (remainDay != 0)
+            arrows[index1][index2].textContent += `(D${remainDay})`;
+          arrows[index1][index2].style.top = String(40 + index1 * 15) + "px";
+          arrows[index1][index2].style.opacity =
+            String(100 - index1 * 19) + "%";
+          arrows[index1][index2].style.fontSize =
+            String(20 - index1 * 4) + "px";
+          arrows[index1][index2].style.fontWeight = "30px";
 
-          const oneSize = 1 / (targetValues.length - 1);
+          const oneSize = 1 / (targetGapValues.length - 1);
 
           if (minValue == "-")
-            arrows[index].style.left = String(oneSize * 0.5 * 100) + "%";
+            //arrows[index1][index2].style.left = String(oneSize * 0.5 * 100) + "%";
+            arrows[index1][index2].style.left = "0%";
           else if (maxValue == "+")
-            arrows[index].style.left = String(100 - oneSize * 0.5 * 100) + "%";
+            //arrows[index1][index2].style.left = String(100 - oneSize * 0.5 * 100) + "%";
+            arrows[index1][index2].style.left = "100%";
           else {
             const startPoint = oneSize * minIndex;
 
-            const x = data - minValue;
+            const x = saveDataValue - minValue;
             const y = maxValue - minValue;
 
-            if (data <= minValue) arrows[index].style.left = "0%";
-            else if (data >= maxValue) arrows[index].style.left = "100%";
+            if (minIndex == 0 && saveDataValue <= minValue)
+              arrows[index1][index2].style.left = "0%";
+            else if (
+              minIndex == targetGapValues.length - 2 &&
+              saveDataValue >= maxValue
+            )
+              arrows[index1][index2].style.left = "100%";
             else {
               const result = oneSize * (x / y);
 
-              arrows[index].style.left =
+              arrows[index1][index2].style.left =
                 String((startPoint + result) * 100) + "%";
             }
           }
@@ -270,9 +368,7 @@ function showHistory() {
   }
 }
 
-function handleChange() {
-  index = 0;
-
+function handleChangeUser() {
   if (options[0].selected === true) {
     baseData.textContent = "";
   } else if (options[1].selected === true) {
@@ -285,18 +381,74 @@ function handleChange() {
   showHistory();
 }
 
-function handleSubmit(event) {
+function handleAddBtn(event) {
   event.preventDefault();
 
   addHistory();
   showHistory();
 }
 
+function handleBeforeBtn(event) {
+  event.preventDefault();
+
+  if (select.selectedIndex == 0) return;
+
+  const saveDatas = localStorage.getItem(select.selectedIndex);
+
+  if (saveDatas !== null) {
+    parsedSaveDatas = JSON.parse(saveDatas);
+
+    saveDataStartIndex++;
+
+    if (saveDataStartIndex == parsedSaveDatas.length) {
+      saveDataStartIndex = parsedSaveDatas.length - 1;
+    }
+    showHistory();
+  }
+}
+
+function handleModeBtn(event) {
+  event.preventDefault();
+
+  saveDataCount++;
+
+  if (saveDataTotalCount < saveDataCount) {
+    saveDataCount = 1;
+  }
+
+  localStorage.setItem(MODE_LS, saveDataCount);
+  modeBtn.value = `${saveDataCount}개씩`;
+
+  showHistory();
+}
+
+function handleNextBtn(event) {
+  event.preventDefault();
+
+  if (select.selectedIndex == 0) return;
+
+  const saveDatas = localStorage.getItem(select.selectedIndex);
+
+  if (saveDatas !== null) {
+    parsedSaveDatas = JSON.parse(saveDatas);
+
+    saveDataStartIndex--;
+
+    if (saveDataStartIndex < 0) {
+      saveDataStartIndex = 0;
+    }
+    showHistory();
+  }
+}
+
 function init() {
   showBase();
 
-  select.addEventListener("change", handleChange);
-  button.addEventListener("click", handleSubmit);
+  select.addEventListener("change", handleChangeUser);
+  addBtn.addEventListener("click", handleAddBtn);
+  beforeBtn.addEventListener("click", handleBeforeBtn);
+  modeBtn.addEventListener("click", handleModeBtn);
+  nextBtn.addEventListener("click", handleNextBtn);
 }
 
 init();
