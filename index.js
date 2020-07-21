@@ -115,7 +115,7 @@ const MODE_LS = "mode";
 
 const gapValues = [
   {
-    weight: [19, 23, 25, 29, 35],
+    weight: [45, 58, 62, 72, 84],
     bodyFat: ["-", 20, 30, 35, "+"],
     water: [37.8, 48.6, 53.0, 56.4, 59.9, 66.0],
     muscle: ["-", 24.2, 30.3, 35.3, "+"],
@@ -124,7 +124,7 @@ const gapValues = [
     calorie: ["-", 1000, 2200, "+"],
   },
   {
-    weight: [19, 23, 25, 29, 35],
+    weight: [62, 78, 84, 98, 113],
     bodyFat: ["-", 17, 23, 28, "+"],
     water: [37.8, 44.7, 48.1, 51.6, 55.0, 66.0],
     muscle: ["-", 33.3, 39.3, 43.8, "+"],
@@ -134,9 +134,9 @@ const gapValues = [
   },
 ];
 
-const saveDataTotalCount = 5;
-let saveDataStartIndex = 0;
-let saveDataCount = saveDataTotalCount;
+const VIEW_DATA_TOTAL_COUNT = 5;
+let viewDataStartIndex = 0;
+let viewDataCount = VIEW_DATA_TOTAL_COUNT;
 
 const saveDataValueStartIndex = 3;
 
@@ -186,9 +186,9 @@ function showBase() {
     });
   }
 
-  const saveMode = localStorage.getItem(MODE_LS);
-  if (saveMode !== null) saveDataCount = saveMode;
-  modeBtn.value = `${saveDataCount}개씩`;
+  const viewMode = localStorage.getItem(MODE_LS);
+  if (viewMode !== null) viewDataCount = viewMode;
+  modeBtn.value = `${viewDataCount}개씩`;
 }
 
 function addHistory() {
@@ -210,7 +210,6 @@ function addHistory() {
     return;
   }
 
-  console.log(inputs[9].value);
   let parsedSaveDatas = [];
 
   const saveDatas = localStorage.getItem(select.selectedIndex);
@@ -276,6 +275,13 @@ function addHistory() {
   localStorage.setItem(select.selectedIndex, JSON.stringify(parsedSaveDatas));
 }
 
+function getViewCount(dataLength) {
+  const result = dataLength - viewDataStartIndex;
+
+  if (viewDataCount <= result) return viewDataCount;
+  else return result;
+}
+
 function showHistory() {
   arrows.forEach((partArrows) => {
     partArrows.forEach((arrows) => {
@@ -301,7 +307,7 @@ function showHistory() {
     );
 
     parsedSaveDatas.forEach((saveData, index1) => {
-      index1 -= saveDataStartIndex;
+      index1 -= viewDataStartIndex;
 
       const endDate = new Date(saveData[0], saveData[1], saveData[2]);
       const remainDay = getRemainDay(startDate, endDate);
@@ -309,7 +315,10 @@ function showHistory() {
       saveData.forEach((saveDataValue, index2) => {
         index2 -= saveDataValueStartIndex;
 
-        if (0 <= index1 && index1 < saveDataCount && 0 <= index2) {
+        const viewCount = getViewCount(parsedSaveDatas.length);
+        console.log(viewCount);
+
+        if (0 <= index1 && index1 < viewDataCount && 0 <= index2) {
           let targetGapValues;
 
           if (index2 == 0)
@@ -344,7 +353,11 @@ function showHistory() {
           arrows[index1][index2].textContent = "🥕" + saveDataValue;
           if (remainDay != 0)
             arrows[index1][index2].textContent += `(D${remainDay})`;
-          arrows[index1][index2].style.top = String(40 + index1 * 15) + "px";
+          arrows[index1][index2].style.top =
+            String(40 + (viewCount - 1 - index1) * 15) + "px";
+          if (remainDay == 0)
+            arrows[index1][index2].style.backgroundColor = "pink";
+          else arrows[index1][index2].style.backgroundColor = "#F1FE2D";
           arrows[index1][index2].style.opacity =
             String(100 - index1 * 19) + "%";
           arrows[index1][index2].style.fontSize =
@@ -415,10 +428,10 @@ function handleBeforeBtn(event) {
   if (saveDatas !== null) {
     parsedSaveDatas = JSON.parse(saveDatas);
 
-    saveDataStartIndex++;
+    viewDataStartIndex++;
 
-    if (saveDataStartIndex == parsedSaveDatas.length) {
-      saveDataStartIndex = parsedSaveDatas.length - 1;
+    if (viewDataStartIndex == parsedSaveDatas.length) {
+      viewDataStartIndex = parsedSaveDatas.length - 1;
     }
     showHistory();
   }
@@ -427,14 +440,14 @@ function handleBeforeBtn(event) {
 function handleModeBtn(event) {
   event.preventDefault();
 
-  saveDataCount++;
+  viewDataCount++;
 
-  if (saveDataTotalCount < saveDataCount) {
-    saveDataCount = 1;
+  if (VIEW_DATA_TOTAL_COUNT < viewDataCount) {
+    viewDataCount = 1;
   }
 
-  localStorage.setItem(MODE_LS, saveDataCount);
-  modeBtn.value = `${saveDataCount}개씩`;
+  localStorage.setItem(MODE_LS, viewDataCount);
+  modeBtn.value = `${viewDataCount}개씩`;
 
   showHistory();
 }
@@ -449,10 +462,10 @@ function handleNextBtn(event) {
   if (saveDatas !== null) {
     parsedSaveDatas = JSON.parse(saveDatas);
 
-    saveDataStartIndex--;
+    viewDataStartIndex--;
 
-    if (saveDataStartIndex < 0) {
-      saveDataStartIndex = 0;
+    if (viewDataStartIndex < 0) {
+      viewDataStartIndex = 0;
     }
     showHistory();
   }

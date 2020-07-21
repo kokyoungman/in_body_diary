@@ -1,11 +1,11 @@
-@import url("https://fonts.googleapis.com/css2?family=Nanum+Brush+Script&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Hi+Melody&display=swap");
 
 @import "reset.css";
 
 * {
   box-sizing: border-box;
   color: #020202;
-  font-family: "Nanum Brush Script", cursive;
+  font-family: "Hi Melody", cursive;
   font-size: 30px;
 }
 
@@ -112,7 +112,6 @@ main sidebar .bars .bar-column .arrow {
   top: 40px;
   left: 0%;
   border-radius: 5px;
-  background-color: pink;
   color: red;
   opacity: 50%;
   font-size: 20px;
