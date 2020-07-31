@@ -121,7 +121,11 @@ main sidebar .bars .bar-column .arrow {
 }
 
 main sidebar .bars .bar-column .arrow:hover {
-  font-size: 30px;
+  transform: scale(3, 3);
+}
+
+main sidebar .bars .bar-column .arrow:hover ~ .arrow {
+  transform: scale(0, 0);
 }
 
 main sidebar .bars .bar-column .numbers {
