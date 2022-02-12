@@ -1,3 +1,5 @@
+<!-- 자바스크립트 프로젝트 구현 - 인바디 다이어리 (index.html) -->
+
 <!DOCTYPE html>
 <html lang="ko">
   <head>
@@ -12,19 +14,29 @@
   </head>
 
   <body>
+    <!-- 화면 -->
     <div class="screen">
+      <!-- 상태 표시줄 -->
       <div class="status-bar"></div>
 
+      <!-- 화면 상단 -->
       <header></header>
 
+      <!-- 화면 메인 -->
       <main>
+        <!-- 화면 메인 (중간) -->
         <div class="middle">
+          <!-- 사용자 선택 -->
           <select>
             <option value="None">---사용자를 선택하세요---</option>
             <option value="User1">공주</option>
             <option value="User2">남편</option>
           </select>
+
+          <!-- 기본 정보 (나이, 키) -->
           <div class="base-data js-base-data"></div>
+
+          <!-- 정보들 -->
           <div class="datas">
             <div class="data-column">
               <div class="data-name">년도</div>
@@ -119,6 +131,8 @@
           </div>
           <input class="js-add-btn" type="submit" value="추가" />
         </div>
+
+        <!-- 화면 메인 (사이드바) -->
         <sidebar>
           <div class="bars">
             <div class="bar-column">
@@ -264,17 +278,20 @@
             </div>
             <div class="change-history">
               <input class="btn js-before-btn" type="submit" value="이전" />
-              <input class="btn js-mode-btn" type="submit" value="" />
+              <input class="btn js-mode-change-btn" type="submit" value="" />
               <input class="btn js-next-btn" type="submit" value="다음" />
             </div>
           </div>
         </sidebar>
       </main>
 
+      <!-- 화면 하단 -->
       <footer class="footer"></footer>
 
+      <!-- 네비게이션 -->
       <nav class="nav"></nav>
 
+      <!-- 스크립트 -->
       <script src="index.js"></script>
     </div>
   </body>

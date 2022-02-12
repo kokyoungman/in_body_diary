@@ -1,7 +1,10 @@
-const select = document.querySelector("select");
-const options = document.querySelectorAll("option");
-const baseData = document.querySelector(".js-base-data");
+// 자바스크립트 프로젝트 구현 - 인바디 다이어리 (index.js)
 
+const userSelect = document.querySelector("select");
+const userSelectOptions = document.querySelectorAll("option");
+const userBaseData = document.querySelector(".js-base-data");
+
+// 입력하는 칸들
 let inputs = [];
 inputs.push(document.querySelector(".js-input-0"));
 inputs.push(document.querySelector(".js-input-1"));
@@ -13,6 +16,8 @@ inputs.push(document.querySelector(".js-input-6"));
 inputs.push(document.querySelector(".js-input-7"));
 inputs.push(document.querySelector(".js-input-8"));
 inputs.push(document.querySelector(".js-input-9"));
+
+// 화살표들
 let arrows = [];
 let partArrows = [];
 partArrows.push(document.querySelector(".js-arrow-0-0"));
@@ -59,6 +64,8 @@ partArrows.push(document.querySelector(".js-arrow-4-4"));
 partArrows.push(document.querySelector(".js-arrow-4-5"));
 partArrows.push(document.querySelector(".js-arrow-4-6"));
 arrows.push(partArrows);
+
+// 숫자들
 let numbers = [];
 let partNumbers = [];
 partNumbers.push(document.querySelector(".js-number-0-0"));
@@ -106,11 +113,20 @@ partNumbers.push(document.querySelector(".js-number-6-1"));
 partNumbers.push(document.querySelector(".js-number-6-2"));
 partNumbers.push(document.querySelector(".js-number-6-3"));
 numbers.push(partNumbers);
+
+// 추가 버튼
 const addBtn = document.querySelector(".js-add-btn");
+
+// 이전 버튼
 const beforeBtn = document.querySelector(".js-before-btn");
-const modeBtn = document.querySelector(".js-mode-btn");
+
+// 모드 변경 버튼
+const modeChangeBtn = document.querySelector(".js-mode-change-btn");
+
+// 다음 버튼
 const nextBtn = document.querySelector(".js-next-btn");
 
+// 모드 Local Storage
 const MODE_LS = "mode";
 
 const gapValues = [
@@ -140,22 +156,26 @@ let viewDataCount = VIEW_DATA_TOTAL_COUNT;
 
 const saveDataValueStartIndex = 3;
 
-function getRemainDay(startDate, endDate) {
+const getRemainDay = (startDate, endDate) => {
   const elapsed = new Date(endDate - startDate);
   const secondsMs = Math.floor(elapsed / 1000);
   const minutesMs = Math.floor(secondsMs / 60);
   const hoursMs = Math.floor(minutesMs / 60);
   return Math.floor(hoursMs / 24);
-}
+};
 
-function showBase() {
+const showBase = () => {
   const date = new Date();
+
+  inputs.forEach((input, index) => {
+    input.value = "";
+  });
 
   inputs[0].value = date.getFullYear();
   inputs[1].value = date.getMonth() + 1;
   inputs[2].value = date.getDate();
 
-  if (select.selectedIndex == 0) {
+  if (userSelect.selectedIndex == 0) {
     numbers.forEach((partNumbers) => {
       partNumbers.forEach((number) => {
         number.textContent = "";
@@ -163,36 +183,40 @@ function showBase() {
     });
   } else {
     numbers[0].forEach((number, index) => {
-      number.textContent = gapValues[select.selectedIndex - 1].weight[index];
+      number.textContent =
+        gapValues[userSelect.selectedIndex - 1].weight[index];
     });
     numbers[1].forEach((number, index) => {
-      number.textContent = gapValues[select.selectedIndex - 1].bodyFat[index];
+      number.textContent =
+        gapValues[userSelect.selectedIndex - 1].bodyFat[index];
     });
     numbers[2].forEach((number, index) => {
-      number.textContent = gapValues[select.selectedIndex - 1].water[index];
+      number.textContent = gapValues[userSelect.selectedIndex - 1].water[index];
     });
     numbers[3].forEach((number, index) => {
-      number.textContent = gapValues[select.selectedIndex - 1].muscle[index];
+      number.textContent =
+        gapValues[userSelect.selectedIndex - 1].muscle[index];
     });
     numbers[4].forEach((number, index) => {
-      number.textContent = gapValues[select.selectedIndex - 1].bone[index];
+      number.textContent = gapValues[userSelect.selectedIndex - 1].bone[index];
     });
     numbers[5].forEach((number, index) => {
       number.textContent =
-        gapValues[select.selectedIndex - 1].visceralFat[index];
+        gapValues[userSelect.selectedIndex - 1].visceralFat[index];
     });
     numbers[6].forEach((number, index) => {
-      number.textContent = gapValues[select.selectedIndex - 1].calorie[index];
+      number.textContent =
+        gapValues[userSelect.selectedIndex - 1].calorie[index];
     });
   }
 
   const viewMode = localStorage.getItem(MODE_LS);
   if (viewMode !== null) viewDataCount = viewMode;
-  modeBtn.value = `${viewDataCount}개씩`;
-}
+  modeChangeBtn.value = `${viewDataCount}개씩`;
+};
 
-function addHistory() {
-  if (select.selectedIndex == 0) return;
+const addHistory = () => {
+  if (userSelect.selectedIndex == 0) return;
 
   if (
     inputs[0].value == "" ||
@@ -212,7 +236,7 @@ function addHistory() {
 
   let parsedSaveDatas = [];
 
-  const saveDatas = localStorage.getItem(select.selectedIndex);
+  const saveDatas = localStorage.getItem(userSelect.selectedIndex);
 
   let isData = false;
 
@@ -272,28 +296,31 @@ function addHistory() {
     }
   });
 
-  localStorage.setItem(select.selectedIndex, JSON.stringify(parsedSaveDatas));
-}
+  localStorage.setItem(
+    userSelect.selectedIndex,
+    JSON.stringify(parsedSaveDatas)
+  );
+};
 
-function getViewCount(dataLength) {
+const getViewCount = (dataLength) => {
   const result = dataLength - viewDataStartIndex;
 
   if (viewDataCount <= result) return viewDataCount;
   else return result;
-}
+};
 
-function showHistory() {
+const showHistory = () => {
   arrows.forEach((partArrows) => {
     partArrows.forEach((arrows) => {
       arrows.textContent = "";
     });
   });
 
-  if (select.selectedIndex == 0) return;
+  if (userSelect.selectedIndex == 0) return;
 
   let parsedSaveDatas = [];
 
-  const saveDatas = localStorage.getItem(select.selectedIndex);
+  const saveDatas = localStorage.getItem(userSelect.selectedIndex);
 
   if (saveDatas !== null) {
     parsedSaveDatas = JSON.parse(saveDatas);
@@ -322,19 +349,20 @@ function showHistory() {
           let targetGapValues;
 
           if (index2 == 0)
-            targetGapValues = gapValues[select.selectedIndex - 1].weight;
+            targetGapValues = gapValues[userSelect.selectedIndex - 1].weight;
           else if (index2 == 1)
-            targetGapValues = gapValues[select.selectedIndex - 1].bodyFat;
+            targetGapValues = gapValues[userSelect.selectedIndex - 1].bodyFat;
           else if (index2 == 2)
-            targetGapValues = gapValues[select.selectedIndex - 1].water;
+            targetGapValues = gapValues[userSelect.selectedIndex - 1].water;
           else if (index2 == 3)
-            targetGapValues = gapValues[select.selectedIndex - 1].muscle;
+            targetGapValues = gapValues[userSelect.selectedIndex - 1].muscle;
           else if (index2 == 4)
-            targetGapValues = gapValues[select.selectedIndex - 1].bone;
+            targetGapValues = gapValues[userSelect.selectedIndex - 1].bone;
           else if (index2 == 5)
-            targetGapValues = gapValues[select.selectedIndex - 1].visceralFat;
+            targetGapValues =
+              gapValues[userSelect.selectedIndex - 1].visceralFat;
           else if (index2 == 6)
-            targetGapValues = gapValues[select.selectedIndex - 1].calorie;
+            targetGapValues = gapValues[userSelect.selectedIndex - 1].calorie;
 
           let minIndex = 0;
           let minValue = 0;
@@ -396,34 +424,34 @@ function showHistory() {
       });
     });
   }
-}
+};
 
-function handleChangeUser() {
-  if (options[0].selected === true) {
-    baseData.textContent = "";
-  } else if (options[1].selected === true) {
-    baseData.textContent = "나이 : 38 / 키 : 155";
-  } else if (options[2].selected === true) {
-    baseData.textContent = "나이 : 37 / 키 : 180";
+const handleChangeUser = () => {
+  if (userSelectOptions[0].selected === true) {
+    userBaseData.textContent = "";
+  } else if (userSelectOptions[1].selected === true) {
+    userBaseData.textContent = "나이 : 38 / 키 : 155";
+  } else if (userSelectOptions[2].selected === true) {
+    userBaseData.textContent = "나이 : 37 / 키 : 180";
   }
 
   showBase();
   showHistory();
-}
+};
 
-function handleAddBtn(event) {
+const handleAddBtn = (event) => {
   event.preventDefault();
 
   addHistory();
   showHistory();
-}
+};
 
-function handleBeforeBtn(event) {
+const handleBeforeBtn = (event) => {
   event.preventDefault();
 
-  if (select.selectedIndex == 0) return;
+  if (userSelect.selectedIndex == 0) return;
 
-  const saveDatas = localStorage.getItem(select.selectedIndex);
+  const saveDatas = localStorage.getItem(userSelect.selectedIndex);
 
   if (saveDatas !== null) {
     parsedSaveDatas = JSON.parse(saveDatas);
@@ -435,9 +463,9 @@ function handleBeforeBtn(event) {
     }
     showHistory();
   }
-}
+};
 
-function handleModeBtn(event) {
+const handleModeChangeBtn = (event) => {
   event.preventDefault();
 
   viewDataCount++;
@@ -447,17 +475,17 @@ function handleModeBtn(event) {
   }
 
   localStorage.setItem(MODE_LS, viewDataCount);
-  modeBtn.value = `${viewDataCount}개씩`;
+  modeChangeBtn.value = `${viewDataCount}개씩`;
 
   showHistory();
-}
+};
 
-function handleNextBtn(event) {
+const handleNextBtn = (event) => {
   event.preventDefault();
 
-  if (select.selectedIndex == 0) return;
+  if (userSelect.selectedIndex == 0) return;
 
-  const saveDatas = localStorage.getItem(select.selectedIndex);
+  const saveDatas = localStorage.getItem(userSelect.selectedIndex);
 
   if (saveDatas !== null) {
     parsedSaveDatas = JSON.parse(saveDatas);
@@ -469,16 +497,16 @@ function handleNextBtn(event) {
     }
     showHistory();
   }
-}
+};
 
-function init() {
+const init = () => {
   showBase();
 
-  select.addEventListener("change", handleChangeUser);
+  userSelect.addEventListener("change", handleChangeUser);
   addBtn.addEventListener("click", handleAddBtn);
   beforeBtn.addEventListener("click", handleBeforeBtn);
-  modeBtn.addEventListener("click", handleModeBtn);
+  modeChangeBtn.addEventListener("click", handleModeChangeBtn);
   nextBtn.addEventListener("click", handleNextBtn);
-}
+};
 
 init();
