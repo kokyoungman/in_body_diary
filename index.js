@@ -1,7 +1,11 @@
 // 자바스크립트 프로젝트 구현 - 인바디 다이어리 (index.js)
 
+// 유저 선택 칸
 const userSelect = document.querySelector("select");
+// 유저 선택 옵션들
 const userSelectOptions = document.querySelectorAll("option");
+
+// 유저 기본 데이터
 const userBaseData = document.querySelector(".js-base-data");
 
 // 입력하는 칸들
@@ -126,9 +130,10 @@ const modeChangeBtn = document.querySelector(".js-mode-change-btn");
 // 다음 버튼
 const nextBtn = document.querySelector(".js-next-btn");
 
-// 모드 Local Storage
+// 모드 로컬 저장소
 const MODE_LS = "mode";
 
+// 간격 값들
 const gapValues = [
   {
     weight: [45, 58, 62, 72, 84],
@@ -150,12 +155,15 @@ const gapValues = [
   },
 ];
 
-const VIEW_DATA_TOTAL_COUNT = 5;
+// 보여줄 데이터 갯수
+const MAX_VIEW_DATA_COUNT = 5;
 let viewDataStartIndex = 0;
-let viewDataCount = VIEW_DATA_TOTAL_COUNT;
+let viewDataCount = MAX_VIEW_DATA_COUNT;
 
+// ???
 const saveDataValueStartIndex = 3;
 
+// 남은 일수를 가져옴???
 const getRemainDay = (startDate, endDate) => {
   const elapsed = new Date(endDate - startDate);
   const secondsMs = Math.floor(elapsed / 1000);
@@ -164,17 +172,20 @@ const getRemainDay = (startDate, endDate) => {
   return Math.floor(hoursMs / 24);
 };
 
-const showBase = () => {
-  const date = new Date();
-
+// 유저 기본 데이터를 보여줌
+const showUserBaseData = () => {
+  // 입력값을 모두 초기화함
   inputs.forEach((input, index) => {
     input.value = "";
   });
 
+  // 현재 날짜와 시간을 입력값에 넣음
+  const date = new Date();
   inputs[0].value = date.getFullYear();
   inputs[1].value = date.getMonth() + 1;
   inputs[2].value = date.getDate();
 
+  // 유저 선택에 따라 숫자들에 간격 값들을 넣음
   if (userSelect.selectedIndex == 0) {
     numbers.forEach((partNumbers) => {
       partNumbers.forEach((number) => {
@@ -210,14 +221,18 @@ const showBase = () => {
     });
   }
 
+  // 로컬 저장소에서 모드의 값을 가져와서 적용함
   const viewMode = localStorage.getItem(MODE_LS);
   if (viewMode !== null) viewDataCount = viewMode;
   modeChangeBtn.value = `${viewDataCount}개씩`;
 };
 
+// 히스토리를 추가함
 const addHistory = () => {
+  // 유저를 선택하지 않았다면, 끝냄
   if (userSelect.selectedIndex == 0) return;
 
+  // 모든 값을 입력하지 않았다면, 알림을 출력하고 끝냄
   if (
     inputs[0].value == "" ||
     inputs[1].value == "" ||
@@ -234,11 +249,11 @@ const addHistory = () => {
     return;
   }
 
-  let parsedSaveDatas = [];
+  let parsedSaveDatas = []; // 분석한 저장 데이터들
+  let isData = false; // 데이터 유무
 
+  // 로컬 저장소에서 해당 유저의 값을 가져와서 있으면, 변경할지 여부를 확인하고, 없으면 저장함
   const saveDatas = localStorage.getItem(userSelect.selectedIndex);
-
-  let isData = false;
 
   if (saveDatas !== null) {
     parsedSaveDatas = JSON.parse(saveDatas);
@@ -309,6 +324,7 @@ const getViewCount = (dataLength) => {
   else return result;
 };
 
+// 히스토리를 보여줌
 const showHistory = () => {
   arrows.forEach((partArrows) => {
     partArrows.forEach((arrows) => {
@@ -435,7 +451,7 @@ const handleChangeUser = () => {
     userBaseData.textContent = "나이 : 37 / 키 : 180";
   }
 
-  showBase();
+  showUserBaseData();
   showHistory();
 };
 
@@ -470,7 +486,7 @@ const handleModeChangeBtn = (event) => {
 
   viewDataCount++;
 
-  if (VIEW_DATA_TOTAL_COUNT < viewDataCount) {
+  if (MAX_VIEW_DATA_COUNT < viewDataCount) {
     viewDataCount = 1;
   }
 
@@ -500,7 +516,7 @@ const handleNextBtn = (event) => {
 };
 
 const init = () => {
-  showBase();
+  showUserBaseData();
 
   userSelect.addEventListener("change", handleChangeUser);
   addBtn.addEventListener("click", handleAddBtn);
