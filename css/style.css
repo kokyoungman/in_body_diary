@@ -22,7 +22,6 @@ body {
   background-color: white;
 }
 
-/* 화면 */
 .screen {
   width: 1440px;
   height: 100%;
@@ -37,7 +36,6 @@ body {
     0px 1px 3px rgba(0, 0, 0, 0.08);
 }
 
-/* 화면 메인 */
 .screen main {
   width: 95%;
   height: 100%;

@@ -77,6 +77,9 @@ partNumbers.push(document.querySelector(".js-number-0-1"));
 partNumbers.push(document.querySelector(".js-number-0-2"));
 partNumbers.push(document.querySelector(".js-number-0-3"));
 partNumbers.push(document.querySelector(".js-number-0-4"));
+partNumbers.push(document.querySelector(".js-number-0-5"));
+partNumbers.push(document.querySelector(".js-number-0-6"));
+partNumbers.push(document.querySelector(".js-number-0-7"));
 numbers.push(partNumbers);
 partNumbers = [];
 partNumbers.push(document.querySelector(".js-number-1-0"));
@@ -104,6 +107,8 @@ partNumbers = [];
 partNumbers.push(document.querySelector(".js-number-4-0"));
 partNumbers.push(document.querySelector(".js-number-4-1"));
 partNumbers.push(document.querySelector(".js-number-4-2"));
+partNumbers.push(document.querySelector(".js-number-4-3"));
+partNumbers.push(document.querySelector(".js-number-4-4"));
 numbers.push(partNumbers);
 partNumbers = [];
 partNumbers.push(document.querySelector(".js-number-5-0"));
@@ -117,6 +122,25 @@ partNumbers.push(document.querySelector(".js-number-6-1"));
 partNumbers.push(document.querySelector(".js-number-6-2"));
 partNumbers.push(document.querySelector(".js-number-6-3"));
 numbers.push(partNumbers);
+
+// 등급 텍스트들
+let gradeTexts = [];
+let partGradeTexts = [];
+gradeTexts.push(partGradeTexts);
+partGradeTexts = [];
+gradeTexts.push(partGradeTexts);
+partGradeTexts = [];
+gradeTexts.push(partGradeTexts);
+partGradeTexts = [];
+gradeTexts.push(partGradeTexts);
+partGradeTexts = [];
+partGradeTexts.push(document.querySelector(".js-grade-text-4-0"));
+partGradeTexts.push(document.querySelector(".js-grade-text-4-1"));
+gradeTexts.push(partGradeTexts);
+partGradeTexts = [];
+gradeTexts.push(partGradeTexts);
+partGradeTexts = [];
+gradeTexts.push(partGradeTexts);
 
 // 추가 버튼
 const addBtn = document.querySelector(".js-add-btn");
@@ -136,22 +160,32 @@ const MODE_LS = "mode";
 // 간격 값들
 const gapValues = [
   {
-    weight: [45, 58, 62, 72, 84],
+    weight: [45, 55, 58, 60, 62, 69, 72, 84],
     bodyFat: ["-", 20, 30, 35, "+"],
-    water: [37.8, 48.6, 53.0, 56.4, 59.9, 66.0],
-    muscle: ["-", 24.2, 30.3, 35.3, "+"],
-    bone: ["-", 2.2, "+"],
+    water: [37.8, 44.7, 48.1, 51.6, 55.0, 66.0],
+    muscle: ["-", 24.1, 30.1, 35.1, "+"],
+    bone: ["-", 1.8, 2.2, 2.5, "+"],
     visceralFat: [1, 9, 14, 30],
     calorie: ["-", 1000, 2200, "+"],
   },
   {
-    weight: [62, 78, 84, 98, 113],
+    weight: [62, 75, 78, 81, 84, 94, 98, 113],
     bodyFat: ["-", 17, 23, 28, "+"],
-    water: [37.8, 44.7, 48.1, 51.6, 55.0, 66.0],
+    water: [37.8, 48.8, 52.3, 55.7, 59.1, 66.0],
     muscle: ["-", 33.3, 39.3, 43.8, "+"],
-    bone: ["-", 2.9, "+"],
+    bone: ["-", 2.5, 2.9, 3.2, "+"],
     visceralFat: [1, 9, 14, 30],
     calorie: ["-", 1100, 2400, "+"],
+  },
+];
+
+// 등급 텍스트 값들
+const gradeTextValues = [
+  {
+    bone: [45, 60],
+  },
+  {
+    bone: [60, 75],
   },
 ];
 
@@ -160,10 +194,10 @@ const MAX_VIEW_DATA_COUNT = 5;
 let viewDataStartIndex = 0;
 let viewDataCount = MAX_VIEW_DATA_COUNT;
 
-// ???
+// 저장 데이터 값의 시작 인덱스
 const saveDataValueStartIndex = 3;
 
-// 남은 일수를 가져옴???
+// 남은 일수를 가져옴
 const getRemainDay = (startDate, endDate) => {
   const elapsed = new Date(endDate - startDate);
   const secondsMs = Math.floor(elapsed / 1000);
@@ -175,7 +209,7 @@ const getRemainDay = (startDate, endDate) => {
 // 유저 기본 데이터를 보여줌
 const showUserBaseData = () => {
   // 입력값을 모두 초기화함
-  inputs.forEach((input, index) => {
+  inputs.forEach((input) => {
     input.value = "";
   });
 
@@ -190,6 +224,12 @@ const showUserBaseData = () => {
     numbers.forEach((partNumbers) => {
       partNumbers.forEach((number) => {
         number.textContent = "";
+      });
+    });
+
+    gradeTexts.forEach((partGradeTexts) => {
+      partGradeTexts.forEach((gradeText) => {
+        gradeText.textContent = "";
       });
     });
   } else {
@@ -218,6 +258,12 @@ const showUserBaseData = () => {
     numbers[6].forEach((number, index) => {
       number.textContent =
         gapValues[userSelect.selectedIndex - 1].calorie[index];
+    });
+
+    gradeTexts[4].forEach((gradeText, index) => {
+      gradeText.textContent =
+        gradeTextValues[userSelect.selectedIndex - 1].bone[index] +
+        "kg 미만이면, 건강";
     });
   }
 
@@ -317,6 +363,7 @@ const addHistory = () => {
   );
 };
 
+// 보여줄 갯수를 가져옴
 const getViewCount = (dataLength) => {
   const result = dataLength - viewDataStartIndex;
 
@@ -442,26 +489,41 @@ const showHistory = () => {
   }
 };
 
+// 유저를 변경함
 const handleChangeUser = () => {
   if (userSelectOptions[0].selected === true) {
     userBaseData.textContent = "";
   } else if (userSelectOptions[1].selected === true) {
-    userBaseData.textContent = "나이 : 38 / 키 : 155";
+    userBaseData.textContent = "나이 : 40 / 키 : 155";
   } else if (userSelectOptions[2].selected === true) {
-    userBaseData.textContent = "나이 : 37 / 키 : 180";
+    userBaseData.textContent = "나이 : 39 / 키 : 180";
   }
 
   showUserBaseData();
   showHistory();
 };
 
+// 유저를 체크함
+const handleCheckUser = (event) => {
+  event.preventDefault();
+
+  if (userSelect.selectedIndex == 0) {
+    alert("사용자를 선택하세요.");
+    return;
+  }
+};
+
+// 추가 버튼을 누름
 const handleAddBtn = (event) => {
   event.preventDefault();
+
+  handleCheckUser(event);
 
   addHistory();
   showHistory();
 };
 
+// 이전 버튼을 누름
 const handleBeforeBtn = (event) => {
   event.preventDefault();
 
@@ -481,6 +543,7 @@ const handleBeforeBtn = (event) => {
   }
 };
 
+// 모드 변경 버튼을 누름
 const handleModeChangeBtn = (event) => {
   event.preventDefault();
 
@@ -496,6 +559,7 @@ const handleModeChangeBtn = (event) => {
   showHistory();
 };
 
+// 다음 버튼을 누름
 const handleNextBtn = (event) => {
   event.preventDefault();
 
@@ -515,10 +579,14 @@ const handleNextBtn = (event) => {
   }
 };
 
+// 초기화함
 const init = () => {
   showUserBaseData();
 
   userSelect.addEventListener("change", handleChangeUser);
+  inputs.forEach((input) => {
+    input.addEventListener("click", handleCheckUser);
+  });
   addBtn.addEventListener("click", handleAddBtn);
   beforeBtn.addEventListener("click", handleBeforeBtn);
   modeChangeBtn.addEventListener("click", handleModeChangeBtn);
