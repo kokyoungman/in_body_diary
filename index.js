@@ -20,7 +20,6 @@ inputs.push(document.querySelector(".js-input-6"));
 inputs.push(document.querySelector(".js-input-7"));
 inputs.push(document.querySelector(".js-input-8"));
 inputs.push(document.querySelector(".js-input-9"));
-inputs.push(document.querySelector(".js-input-10"));
 
 // 화살표들
 let arrows = [];
@@ -32,7 +31,6 @@ partArrows.push(document.querySelector(".js-arrow-0-3"));
 partArrows.push(document.querySelector(".js-arrow-0-4"));
 partArrows.push(document.querySelector(".js-arrow-0-5"));
 partArrows.push(document.querySelector(".js-arrow-0-6"));
-partArrows.push(document.querySelector(".js-arrow-0-7"));
 arrows.push(partArrows);
 partArrows = [];
 partArrows.push(document.querySelector(".js-arrow-1-0"));
@@ -42,7 +40,6 @@ partArrows.push(document.querySelector(".js-arrow-1-3"));
 partArrows.push(document.querySelector(".js-arrow-1-4"));
 partArrows.push(document.querySelector(".js-arrow-1-5"));
 partArrows.push(document.querySelector(".js-arrow-1-6"));
-partArrows.push(document.querySelector(".js-arrow-1-7"));
 arrows.push(partArrows);
 partArrows = [];
 partArrows.push(document.querySelector(".js-arrow-2-0"));
@@ -52,7 +49,6 @@ partArrows.push(document.querySelector(".js-arrow-2-3"));
 partArrows.push(document.querySelector(".js-arrow-2-4"));
 partArrows.push(document.querySelector(".js-arrow-2-5"));
 partArrows.push(document.querySelector(".js-arrow-2-6"));
-partArrows.push(document.querySelector(".js-arrow-2-7"));
 arrows.push(partArrows);
 partArrows = [];
 partArrows.push(document.querySelector(".js-arrow-3-0"));
@@ -62,7 +58,6 @@ partArrows.push(document.querySelector(".js-arrow-3-3"));
 partArrows.push(document.querySelector(".js-arrow-3-4"));
 partArrows.push(document.querySelector(".js-arrow-3-5"));
 partArrows.push(document.querySelector(".js-arrow-3-6"));
-partArrows.push(document.querySelector(".js-arrow-3-7"));
 arrows.push(partArrows);
 partArrows = [];
 partArrows.push(document.querySelector(".js-arrow-4-0"));
@@ -72,7 +67,6 @@ partArrows.push(document.querySelector(".js-arrow-4-3"));
 partArrows.push(document.querySelector(".js-arrow-4-4"));
 partArrows.push(document.querySelector(".js-arrow-4-5"));
 partArrows.push(document.querySelector(".js-arrow-4-6"));
-partArrows.push(document.querySelector(".js-arrow-4-7"));
 arrows.push(partArrows);
 
 // 숫자들
@@ -128,16 +122,6 @@ partNumbers.push(document.querySelector(".js-number-6-1"));
 partNumbers.push(document.querySelector(".js-number-6-2"));
 partNumbers.push(document.querySelector(".js-number-6-3"));
 numbers.push(partNumbers);
-partNumbers = [];
-partNumbers.push(document.querySelector(".js-number-7-0"));
-partNumbers.push(document.querySelector(".js-number-7-1"));
-partNumbers.push(document.querySelector(".js-number-7-2"));
-partNumbers.push(document.querySelector(".js-number-7-3"));
-partNumbers.push(document.querySelector(".js-number-7-4"));
-partNumbers.push(document.querySelector(".js-number-7-5"));
-partNumbers.push(document.querySelector(".js-number-7-6"));
-partNumbers.push(document.querySelector(".js-number-7-7"));
-numbers.push(partNumbers);
 
 // 등급 텍스트들
 let gradeTexts = [];
@@ -152,8 +136,6 @@ gradeTexts.push(partGradeTexts);
 partGradeTexts = [];
 partGradeTexts.push(document.querySelector(".js-grade-text-4-0"));
 partGradeTexts.push(document.querySelector(".js-grade-text-4-1"));
-gradeTexts.push(partGradeTexts);
-partGradeTexts = [];
 gradeTexts.push(partGradeTexts);
 partGradeTexts = [];
 gradeTexts.push(partGradeTexts);
@@ -185,7 +167,6 @@ const gapValues = [
     bone: ["-", 1.8, 2.2, 2.5, "+"],
     visceralFat: [1, 9, 14, 30],
     calorie: ["-", 1000, 2200, "+"],
-    bmi: [19, 23, 24, 25, 26, 29, 30, 35],
   },
   {
     weight: [62, 75, 78, 81, 84, 94, 98, 113],
@@ -195,7 +176,6 @@ const gapValues = [
     bone: ["-", 2.5, 2.9, 3.2, "+"],
     visceralFat: [1, 9, 14, 30],
     calorie: ["-", 1100, 2400, "+"],
-    bmi: [19, 23, 24, 25, 26, 29, 30, 35],
   },
 ];
 
@@ -279,9 +259,6 @@ const showUserBaseData = () => {
       number.textContent =
         gapValues[userSelect.selectedIndex - 1].calorie[index];
     });
-    numbers[7].forEach((number, index) => {
-      number.textContent = gapValues[userSelect.selectedIndex - 1].bmi[index];
-    });
 
     gradeTexts[4].forEach((gradeText, index) => {
       gradeText.textContent =
@@ -312,8 +289,7 @@ const addHistory = () => {
     inputs[6].value == "" ||
     inputs[7].value == "" ||
     inputs[8].value == "" ||
-    inputs[9].value == "" ||
-    inputs[10].value == ""
+    inputs[9].value == ""
   ) {
     alert("모든 값을 입력해주세요.");
     return;
@@ -364,7 +340,6 @@ const addHistory = () => {
       inputs[7].value,
       inputs[8].value,
       inputs[9].value,
-      inputs[10].value,
     ]);
   }
 
@@ -451,8 +426,6 @@ const showHistory = () => {
               gapValues[userSelect.selectedIndex - 1].visceralFat;
           else if (index2 == 6)
             targetGapValues = gapValues[userSelect.selectedIndex - 1].calorie;
-          else if (index2 == 7)
-            targetGapValues = gapValues[userSelect.selectedIndex - 1].bmi;
 
           let minIndex = 0;
           let minValue = 0;
@@ -469,6 +442,14 @@ const showHistory = () => {
           });
 
           arrows[index1][index2].textContent = "🥕" + saveDataValue;
+          if (index2 == 0) {
+            bmi = 0;
+            if (userSelect.selectedIndex == 1)
+              bmi = saveDataValue / (1.55 * 1.55); // 키 155
+            if (userSelect.selectedIndex == 2)
+              bmi = saveDataValue / (1.8 * 1.8); // 키 180
+            arrows[index1][index2].textContent += ` kg / ${bmi.toFixed(2)} BMI`;
+          }
           if (remainDay != 0)
             arrows[index1][index2].textContent += `(D${remainDay})`;
           arrows[index1][index2].style.top =
