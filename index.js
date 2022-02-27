@@ -442,21 +442,28 @@ const showHistory = () => {
           });
 
           arrows[index1][index2].textContent = "🥕" + saveDataValue;
+
           if (index2 == 0) {
             bmi = 0;
             if (userSelect.selectedIndex == 1)
               bmi = saveDataValue / (1.55 * 1.55); // 키 155
             if (userSelect.selectedIndex == 2)
               bmi = saveDataValue / (1.8 * 1.8); // 키 180
-            arrows[index1][index2].textContent += ` kg / ${bmi.toFixed(1)} BMI`;
-          }
+            arrows[index1][index2].textContent += `kg / ${bmi.toFixed(1)} BMI`;
+          } else if (index2 == 1 || index2 == 2 || index2 == 3)
+            arrows[index1][index2].textContent += "%";
+          else if (index2 == 4) arrows[index1][index2].textContent += "kg";
+          else if (index2 == 6) arrows[index1][index2].textContent += " KCAL";
+
           if (remainDay != 0)
             arrows[index1][index2].textContent += `(D${remainDay})`;
           arrows[index1][index2].style.top =
             String(40 + (viewCount - 1 - index1) * 15) + "px";
+
           if (remainDay == 0)
             arrows[index1][index2].style.backgroundColor = "pink";
           else arrows[index1][index2].style.backgroundColor = "#F1FE2D";
+
           arrows[index1][index2].style.opacity =
             String(100 - index1 * 19) + "%";
           arrows[index1][index2].style.fontSize =
