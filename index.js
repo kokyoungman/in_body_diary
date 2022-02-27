@@ -448,7 +448,7 @@ const showHistory = () => {
               bmi = saveDataValue / (1.55 * 1.55); // 키 155
             if (userSelect.selectedIndex == 2)
               bmi = saveDataValue / (1.8 * 1.8); // 키 180
-            arrows[index1][index2].textContent += ` kg / ${bmi.toFixed(2)} BMI`;
+            arrows[index1][index2].textContent += ` kg / ${bmi.toFixed(1)} BMI`;
           }
           if (remainDay != 0)
             arrows[index1][index2].textContent += `(D${remainDay})`;
