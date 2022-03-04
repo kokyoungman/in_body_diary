@@ -41,7 +41,7 @@
             <div class="data-column">
               <div class="data-name">년도</div>
               <input
-                class="data-input js-input-0"
+                class="data-input js-input-year"
                 type="number"
                 min="0"
                 max="9999"
@@ -50,7 +50,7 @@
             <div class="data-column">
               <div class="data-name">월</div>
               <input
-                class="data-input js-input-1"
+                class="data-input js-input-month"
                 type="number"
                 min="1"
                 max="12"
@@ -59,16 +59,26 @@
             <div class="data-column">
               <div class="data-name">일</div>
               <input
-                class="data-input js-input-2"
+                class="data-input js-input-day"
                 type="number"
                 min="1"
                 max="31"
               />
             </div>
             <div class="data-column">
+              <div class="data-name">BMI</div>
+              <!-- BMI 항목은 없어도 되는데, 요청을 해서 넣음 -->
+              <input
+                class="data-input js-input-bmi"
+                type="number"
+                min="0.0"
+                max="500.0"
+              />
+            </div>
+            <div class="data-column">
               <div class="data-name">체중</div>
               <input
-                class="data-input js-input-3"
+                class="data-input js-input-weight"
                 type="number"
                 min="0.0"
                 max="500.0"
@@ -77,7 +87,7 @@
             <div class="data-column">
               <div class="data-name">체지방</div>
               <input
-                class="data-input js-input-4"
+                class="data-input js-input-bodyFat"
                 type="number"
                 min="0.0"
                 max="100.0"
@@ -86,7 +96,7 @@
             <div class="data-column">
               <div class="data-name">수분</div>
               <input
-                class="data-input js-input-5"
+                class="data-input js-input-water"
                 type="number"
                 min="0.0"
                 max="100.0"
@@ -95,7 +105,7 @@
             <div class="data-column">
               <div class="data-name">근육</div>
               <input
-                class="data-input js-input-6"
+                class="data-input js-input-muscle"
                 type="number"
                 min="0.0"
                 max="100.0"
@@ -104,7 +114,7 @@
             <div class="data-column">
               <div class="data-name">뼈</div>
               <input
-                class="data-input js-input-7"
+                class="data-input js-input-bone"
                 type="number"
                 min="0.0"
                 max="100.0"
@@ -113,7 +123,7 @@
             <div class="data-column">
               <div class="data-name">내장지방</div>
               <input
-                class="data-input js-input-8"
+                class="data-input js-input-visceralFat"
                 type="number"
                 min="0.0"
                 max="100.0"
@@ -122,7 +132,7 @@
             <div class="data-column">
               <div class="data-name">칼로리</div>
               <input
-                class="data-input js-input-9"
+                class="data-input js-input-calorie"
                 type="number"
                 min="0.0"
                 max="5000.0"
@@ -300,9 +310,9 @@
 
       <!-- 네비게이션 -->
       <nav class="nav"></nav>
-
-      <!-- 스크립트 -->
-      <script src="index.js"></script>
     </div>
+
+    <!-- 스크립트 -->
+    <script src="index.js"></script>
   </body>
 </html>

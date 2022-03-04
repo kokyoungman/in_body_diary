@@ -1,5 +1,9 @@
 // 자바스크립트 프로젝트 구현 - 인바디 다이어리 (index.js)
 
+// 유저
+let userAge; // 유저 나이
+let userHeight; // 유저 키
+
 // 유저 선택 칸
 const userSelect = document.querySelector("select");
 // 유저 선택 옵션들
@@ -10,16 +14,17 @@ const userBaseData = document.querySelector(".js-base-data");
 
 // 입력하는 칸들
 let inputs = [];
-inputs.push(document.querySelector(".js-input-0"));
-inputs.push(document.querySelector(".js-input-1"));
-inputs.push(document.querySelector(".js-input-2"));
-inputs.push(document.querySelector(".js-input-3"));
-inputs.push(document.querySelector(".js-input-4"));
-inputs.push(document.querySelector(".js-input-5"));
-inputs.push(document.querySelector(".js-input-6"));
-inputs.push(document.querySelector(".js-input-7"));
-inputs.push(document.querySelector(".js-input-8"));
-inputs.push(document.querySelector(".js-input-9"));
+inputs.push(document.querySelector(".js-input-year"));
+inputs.push(document.querySelector(".js-input-month"));
+inputs.push(document.querySelector(".js-input-day"));
+inputs.push(document.querySelector(".js-input-bmi"));
+inputs.push(document.querySelector(".js-input-weight"));
+inputs.push(document.querySelector(".js-input-bodyFat"));
+inputs.push(document.querySelector(".js-input-water"));
+inputs.push(document.querySelector(".js-input-muscle"));
+inputs.push(document.querySelector(".js-input-bone"));
+inputs.push(document.querySelector(".js-input-visceralFat"));
+inputs.push(document.querySelector(".js-input-calorie"));
 
 // 화살표들
 let arrows = [];
@@ -195,7 +200,7 @@ let viewDataStartIndex = 0;
 let viewDataCount = MAX_VIEW_DATA_COUNT;
 
 // 저장 데이터 값의 시작 인덱스
-const saveDataValueStartIndex = 3;
+const SAVE_DATA_VALUE_START_INDEX = 4; // year, month, day, bmi를 제외하기 위해서 추가함
 
 // 남은 일수를 가져옴
 const getRemainDay = (startDate, endDate) => {
@@ -234,8 +239,8 @@ const showUserBaseData = () => {
     });
   } else {
     numbers[0].forEach((number, index) => {
-      number.textContent =
-        gapValues[userSelect.selectedIndex - 1].weight[index];
+      const weight = gapValues[userSelect.selectedIndex - 1].weight[index];
+      number.textContent = weight + ` (${getBmi(userHeight, weight)})`;
     });
     numbers[1].forEach((number, index) => {
       number.textContent =
@@ -279,18 +284,11 @@ const addHistory = () => {
   if (userSelect.selectedIndex == 0) return;
 
   // 모든 값을 입력하지 않았다면, 알림을 출력하고 끝냄
-  if (
-    inputs[0].value == "" ||
-    inputs[1].value == "" ||
-    inputs[2].value == "" ||
-    inputs[3].value == "" ||
-    inputs[4].value == "" ||
-    inputs[5].value == "" ||
-    inputs[6].value == "" ||
-    inputs[7].value == "" ||
-    inputs[8].value == "" ||
-    inputs[9].value == ""
-  ) {
+  let isEmpty = false;
+  inputs.forEach((input) => {
+    if (input.value == "") isEmpty = true;
+  });
+  if (isEmpty == true) {
     alert("모든 값을 입력해주세요.");
     return;
   }
@@ -329,18 +327,11 @@ const addHistory = () => {
         parsedSaveDatas.splice(i, 1);
     }
 
-    parsedSaveDatas.push([
-      inputs[0].value,
-      inputs[1].value,
-      inputs[2].value,
-      inputs[3].value,
-      inputs[4].value,
-      inputs[5].value,
-      inputs[6].value,
-      inputs[7].value,
-      inputs[8].value,
-      inputs[9].value,
-    ]);
+    const values = [];
+    inputs.forEach((input) => {
+      values.push(input.value);
+    });
+    parsedSaveDatas.push(values);
   }
 
   parsedSaveDatas.sort((a, b) => {
@@ -361,14 +352,6 @@ const addHistory = () => {
     userSelect.selectedIndex,
     JSON.stringify(parsedSaveDatas)
   );
-};
-
-// 보여줄 갯수를 가져옴
-const getViewCount = (dataLength) => {
-  const result = dataLength - viewDataStartIndex;
-
-  if (viewDataCount <= result) return viewDataCount;
-  else return result;
 };
 
 // 히스토리를 보여줌
@@ -403,10 +386,9 @@ const showHistory = () => {
       const remainDay = getRemainDay(startDate, endDate);
 
       saveData.forEach((saveDataValue, index2) => {
-        index2 -= saveDataValueStartIndex;
+        index2 -= SAVE_DATA_VALUE_START_INDEX;
 
         const viewCount = getViewCount(parsedSaveDatas.length);
-        console.log(viewCount);
 
         if (0 <= index1 && index1 < viewDataCount && 0 <= index2) {
           let targetGapValues;
@@ -444,12 +426,8 @@ const showHistory = () => {
           arrows[index1][index2].textContent = "🥕" + saveDataValue;
 
           if (index2 == 0) {
-            bmi = 0;
-            if (userSelect.selectedIndex == 1)
-              bmi = saveDataValue / (1.55 * 1.55); // 키 155
-            if (userSelect.selectedIndex == 2)
-              bmi = saveDataValue / (1.8 * 1.8); // 키 180
-            arrows[index1][index2].textContent += `kg / ${bmi.toFixed(1)} BMI`;
+            bmi = getBmi(userHeight, saveDataValue);
+            arrows[index1][index2].textContent += `kg / ${bmi} BMI`;
           } else if (index2 == 1 || index2 == 2 || index2 == 3)
             arrows[index1][index2].textContent += "%";
           else if (index2 == 4) arrows[index1][index2].textContent += "kg";
@@ -504,18 +482,40 @@ const showHistory = () => {
   }
 };
 
+// 보여줄 갯수를 가져옴
+const getViewCount = (dataLength) => {
+  const result = dataLength - viewDataStartIndex;
+
+  if (viewDataCount <= result) return viewDataCount;
+  else return result;
+};
+
+// bmi를 가져옴
+const getBmi = (height, weight) => {
+  const h = height / 100;
+  const bmi = weight / (h * h);
+  return bmi.toFixed(1);
+};
+
 // 유저를 변경함
 const handleChangeUser = () => {
-  if (userSelectOptions[0].selected === true) {
-    userBaseData.textContent = "";
-  } else if (userSelectOptions[1].selected === true) {
-    userBaseData.textContent = "나이 : 40 / 키 : 155";
+  if (userSelectOptions[1].selected === true) {
+    initUser(40, 155);
   } else if (userSelectOptions[2].selected === true) {
-    userBaseData.textContent = "나이 : 39 / 키 : 180";
+    initUser(39, 180);
   }
+
+  if (userSelect.selectedIndex == 0) userBaseData.textContent = "";
+  else userBaseData.textContent = `나이 : ${userAge} / 키 : ${userHeight}`;
 
   showUserBaseData();
   showHistory();
+};
+
+// 유저를 초기화함
+const initUser = (age, height) => {
+  userAge = age;
+  userHeight = height;
 };
 
 // 유저를 체크함
