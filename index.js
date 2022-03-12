@@ -13,7 +13,7 @@ const userSelectOptions = document.querySelectorAll("option");
 const userBaseData = document.querySelector(".js-base-data");
 
 // 입력하는 칸들
-let inputs = [];
+const inputs = [];
 inputs.push(document.querySelector(".js-input-year"));
 inputs.push(document.querySelector(".js-input-month"));
 inputs.push(document.querySelector(".js-input-day"));
@@ -27,7 +27,7 @@ inputs.push(document.querySelector(".js-input-visceralFat"));
 inputs.push(document.querySelector(".js-input-calorie"));
 
 // 화살표들
-let arrows = [];
+const arrows = [];
 let partArrows = [];
 partArrows.push(document.querySelector(".js-arrow-0-0"));
 partArrows.push(document.querySelector(".js-arrow-0-1"));
@@ -75,7 +75,7 @@ partArrows.push(document.querySelector(".js-arrow-4-6"));
 arrows.push(partArrows);
 
 // 숫자들
-let numbers = [];
+const numbers = [];
 let partNumbers = [];
 partNumbers.push(document.querySelector(".js-number-0-0"));
 partNumbers.push(document.querySelector(".js-number-0-1"));
@@ -129,7 +129,7 @@ partNumbers.push(document.querySelector(".js-number-6-3"));
 numbers.push(partNumbers);
 
 // 등급 텍스트들
-let gradeTexts = [];
+const gradeTexts = [];
 let partGradeTexts = [];
 gradeTexts.push(partGradeTexts);
 partGradeTexts = [];
@@ -335,14 +335,14 @@ const addHistory = () => {
   }
 
   parsedSaveDatas.sort((a, b) => {
-    if (a[0] < b[0]) return -1;
-    else if (a[0] > b[0]) return 1;
+    if (parseInt(a[0]) < parseInt(b[0])) return -1;
+    else if (parseInt(a[0]) > parseInt(b[0])) return 1;
     else {
-      if (a[1] < b[1]) return -1;
-      else if (a[1] > b[1]) return 1;
+      if (parseInt(a[1]) < parseInt(b[1])) return -1;
+      else if (parseInt(a[1]) > parseInt(b[1])) return 1;
       else {
-        if (a[2] < b[2]) return -1;
-        else if (a[2] > b[2]) return 1;
+        if (parseInt(a[2]) < parseInt(b[2])) return -1;
+        else if (parseInt(a[2]) > parseInt(b[2])) return 1;
         else return 0;
       }
     }
@@ -423,7 +423,16 @@ const showHistory = () => {
             return saveDataValue < value;
           });
 
-          arrows[index1][index2].textContent = "🥕" + saveDataValue;
+          if (
+            index2 == 0 ||
+            index2 == 1 ||
+            index2 == 2 ||
+            index2 == 3 ||
+            index2 == 4
+          )
+            arrows[index1][index2].textContent =
+              "🥕" + parseFloat(saveDataValue).toFixed(1);
+          else arrows[index1][index2].textContent = "🥕" + saveDataValue;
 
           if (index2 == 0) {
             bmi = getBmi(userHeight, saveDataValue);
