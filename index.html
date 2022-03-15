@@ -1,5 +1,14 @@
 <!-- 자바스크립트 프로젝트 구현 - 인바디 다이어리 (index.html) -->
 
+<!-- 출처 : <https://www.euro.who.int/en/health-topics/disease-prevention/nutrition/a-healthy-lifestyle/body-mass-index-bmi> -->
+<!-- BMI = 몸무게kg / 키m * 키m -->
+<!-- 저체중 < 18.5 -->
+<!-- 18.5 <= 정상 < 25 -->
+<!-- 25 <= 과체중 < 30 -->
+<!-- 30 <= 비만 < 35 -->
+<!-- 35 <= 고도 비만 < 40 -->
+<!-- 40 <= 병적 비만 -->
+
 <!DOCTYPE html>
 <html lang="ko">
   <head>
@@ -20,7 +29,9 @@
       <div class="status-bar"></div>
 
       <!-- 화면 상단 -->
-      <header></header>
+      <header>
+        <input class="js-type-change-btn" type="submit" value="🤔" />
+      </header>
 
       <!-- 화면 메인 -->
       <main>
@@ -144,7 +155,7 @@
 
         <!-- 화면 메인 (사이드바) -->
         <sidebar>
-          <div class="bars">
+          <div class="bars js-bars-1">
             <div class="bar-column">
               <div class="title">체중 (kg / BMI)</div>
               <div class="arrow js-arrow-0-0"></div>
@@ -302,6 +313,11 @@
               <input class="btn js-next-btn" type="submit" value="다음" />
             </div>
           </div>
+          <div class="bars js-bars-2 js-hide-bars">
+            <div class="bar-column">
+              <canvas id="js-chart-canvas" height="70"></canvas>
+            </div>
+          </div>
         </sidebar>
       </main>
 
@@ -313,6 +329,11 @@
     </div>
 
     <!-- 스크립트 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.1/chart.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2"></script>
+    <script src="manager/mainManager.js"></script>
+    <script src="chart/baseChart.js"></script>
+    <script src="chart/weightChart.js"></script>
     <script src="index.js"></script>
   </body>
 </html>

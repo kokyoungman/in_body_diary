@@ -22,6 +22,7 @@ body {
   background-color: white;
 }
 
+/* 화면 */
 .screen {
   width: 1440px;
   height: 100%;
@@ -36,6 +37,16 @@ body {
     0px 1px 3px rgba(0, 0, 0, 0.08);
 }
 
+/* 화면 상단 */
+.screen header {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+/* 화면 메인 */
 .screen main {
   width: 95%;
   height: 100%;
@@ -45,6 +56,7 @@ body {
   align-items: center;
 }
 
+/* 화면 메인 (중간) */
 .screen main .middle {
   width: 35%;
   height: 85%;
@@ -77,6 +89,7 @@ body {
   width: 50%;
 }
 
+/* 화면 메인 (사이드바) */
 .screen main sidebar {
   width: 65%;
   height: 100%;
@@ -99,6 +112,10 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+.screen main sidebar .js-bars-2 .bar-column {
+  height: 30%;
 }
 
 .screen main sidebar .bars .bar-column .title {
@@ -172,4 +189,8 @@ body {
   width: 70px;
   height: 30px;
   font-size: 20px;
+}
+
+.screen main sidebar .js-hide-bars {
+  display: none;
 }

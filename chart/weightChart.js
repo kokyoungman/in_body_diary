@@ -1,4 +1,4 @@
-// 자바스크립트 프로젝트 구현 - 인바디 다이어리 (WeightChart.js)
+// 자바스크립트 프로젝트 구현 - 인바디 다이어리 (weightChart.js)
 
 class WeightChart {
   constructor(labels, values, gradeDrawValues) {
@@ -10,9 +10,9 @@ class WeightChart {
     const plugins = [ChartDataLabels];
 
     const dataset = {
-      label: "체중",
+      label: "BMI",
       data: values,
-      backgroundColor: "rgba(255, 99, 132, 0.5)",
+      backgroundColor: "rgba(0, 0, 0, 0.2)",
       barThickness: 20,
     };
     datasets.push(dataset);
@@ -22,9 +22,18 @@ class WeightChart {
       scales: {
         x: {
           beginAtZero: true,
+          max: 55,
         },
       },
       plugins: {
+        title: {
+          display: true,
+          text: "BMI",
+          align: "end",
+        },
+        legend: {
+          display: false,
+        },
         datalabels: {
           color: "blue",
           anchor: "end",
@@ -75,6 +84,15 @@ class WeightChart {
           "#F90000",
         ];
 
+        const gradeTexts = [
+          "저체중",
+          "정상",
+          "과체중",
+          "비만",
+          "고도 비만",
+          "병적 비만",
+        ];
+
         gradeColors.forEach((gradeColor, index) => {
           ctx.save();
 
@@ -85,7 +103,11 @@ class WeightChart {
             gradePosXs[index + 1] - gradePosXs[index],
             bottom - top
           );
-          ctx.fillText(optionValues[index], gradePosXs[index], top - 10);
+          ctx.fillText(
+            `${optionValues[index]} ${gradeTexts[index]}`,
+            gradePosXs[index],
+            top - 10
+          );
 
           canvasContext.restore();
         });
