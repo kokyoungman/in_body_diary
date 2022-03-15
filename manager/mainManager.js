@@ -409,8 +409,8 @@ class mainManager {
         const endDate = new Date(saveData[0], saveData[1], saveData[2]);
         const remainDay = this.getRemainDay(startDate, endDate);
 
-        if (remainDay == 0) weightLabels.unshift("Today");
-        else weightLabels.unshift(`(D${remainDay})`);
+        if (remainDay == 0) weightLabels.unshift("최근");
+        else weightLabels.unshift(`D${remainDay}`);
 
         saveData.forEach((saveDataValue, index2) => {
           index2 -= this.SAVE_DATA_VALUE_START_INDEX;
