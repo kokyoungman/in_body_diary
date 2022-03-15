@@ -1,7 +1,7 @@
 // 자바스크립트 프로젝트 구현 - 인바디 다이어리 (weightChart.js)
 
 class WeightChart {
-  constructor(labels, values, gradeDrawValues) {
+  constructor(labels, values, weightKgs, gradeDrawValues) {
     const canvasContext = document
       .querySelector("#js-chart-canvas")
       .getContext("2d");
@@ -35,9 +35,12 @@ class WeightChart {
           display: false,
         },
         datalabels: {
-          color: "blue",
+          color: "#020202",
           anchor: "end",
           align: "start",
+          formatter: (value, context) => {
+            return `${value} BMI (${weightKgs[context.dataIndex]}kg)`;
+          },
         },
         gradeDraw: {
           value0: gradeDrawValues[0],
@@ -126,9 +129,15 @@ class WeightChart {
   }
 
   // 재설정함
-  change = (labels, values, gradeDrawValues) => {
+  change = (labels, values, weightKgs, gradeDrawValues) => {
     this.baseChart.changeLabels(labels);
     this.baseChart.changeValues(0, values);
+    this.baseChart.chart.config.options.plugins.datalabels.formatter = (
+      value,
+      context
+    ) => {
+      return `${value} BMI (${weightKgs[context.dataIndex]}kg)`;
+    };
     this.baseChart.changeGradeDrawValues(gradeDrawValues);
     this.baseChart.update();
   };

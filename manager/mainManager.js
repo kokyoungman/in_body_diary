@@ -211,8 +211,8 @@ class mainManager {
     this.viewDataStartIndex = 0;
     this.viewDataCount = this.MAX_VIEW_DATA_COUNT;
 
-    // 저장 데이터 값의 시작 인덱스
-    this.SAVE_DATA_VALUE_START_INDEX = 4; // year, month, day, bmi를 제외하기 위해서 추가함
+    // 시작 항목 인덱스
+    this.START_ITEM_INDEX = 4; // year, month, day, bmi를 제외하기 위해서 추가함
   }
 
   // 남은 일수를 가져옴
@@ -401,44 +401,51 @@ class mainManager {
 
       const weightLabels = [];
       const weightValues = [];
+      const weightKgs = [];
       const weightGradeDrawValues = [0, 18.5, 25, 30, 35, 40, 55];
 
-      parsedSaveDatas.forEach((saveData, index1) => {
-        index1 -= this.viewDataStartIndex;
+      parsedSaveDatas.forEach((saveData, dayIndex) => {
+        dayIndex -= this.viewDataStartIndex;
 
         const endDate = new Date(saveData[0], saveData[1], saveData[2]);
         const remainDay = this.getRemainDay(startDate, endDate);
 
-        if (remainDay == 0) weightLabels.unshift("최근");
-        else weightLabels.unshift(`D${remainDay}`);
-
-        saveData.forEach((saveDataValue, index2) => {
-          index2 -= this.SAVE_DATA_VALUE_START_INDEX;
+        saveData.forEach((saveDataValue, itemIndex) => {
+          itemIndex -= this.START_ITEM_INDEX;
 
           const viewCount = this.getViewCount(parsedSaveDatas.length);
 
-          if (0 <= index1 && index1 < this.viewDataCount && 0 <= index2) {
+          if (
+            0 <= dayIndex &&
+            dayIndex < this.viewDataCount &&
+            0 <= itemIndex
+          ) {
+            if (itemIndex == 0) {
+              if (remainDay == 0) weightLabels.unshift("최근");
+              else weightLabels.unshift(`D${remainDay}`);
+            }
+
             let targetGapValues;
 
-            if (index2 == 0)
+            if (itemIndex == 0)
               targetGapValues =
                 this.gapValues[this.userSelect.selectedIndex - 1].weight;
-            else if (index2 == 1)
+            else if (itemIndex == 1)
               targetGapValues =
                 this.gapValues[this.userSelect.selectedIndex - 1].bodyFat;
-            else if (index2 == 2)
+            else if (itemIndex == 2)
               targetGapValues =
                 this.gapValues[this.userSelect.selectedIndex - 1].water;
-            else if (index2 == 3)
+            else if (itemIndex == 3)
               targetGapValues =
                 this.gapValues[this.userSelect.selectedIndex - 1].muscle;
-            else if (index2 == 4)
+            else if (itemIndex == 4)
               targetGapValues =
                 this.gapValues[this.userSelect.selectedIndex - 1].bone;
-            else if (index2 == 5)
+            else if (itemIndex == 5)
               targetGapValues =
                 this.gapValues[this.userSelect.selectedIndex - 1].visceralFat;
-            else if (index2 == 6)
+            else if (itemIndex == 6)
               targetGapValues =
                 this.gapValues[this.userSelect.selectedIndex - 1].calorie;
 
@@ -457,50 +464,55 @@ class mainManager {
             });
 
             if (
-              index2 == 0 ||
-              index2 == 1 ||
-              index2 == 2 ||
-              index2 == 3 ||
-              index2 == 4
+              itemIndex == 0 ||
+              itemIndex == 1 ||
+              itemIndex == 2 ||
+              itemIndex == 3 ||
+              itemIndex == 4
             )
-              this.arrows[index1][index2].textContent =
+              this.arrows[dayIndex][itemIndex].textContent =
                 "🥕" + parseFloat(saveDataValue).toFixed(1);
-            else this.arrows[index1][index2].textContent = "🥕" + saveDataValue;
+            else
+              this.arrows[dayIndex][itemIndex].textContent =
+                "🥕" + saveDataValue;
 
-            if (index2 == 0) {
+            if (itemIndex == 0) {
               const bmi = this.getBmi(this.userHeight, saveDataValue);
-              this.arrows[index1][index2].textContent += `kg / ${bmi} BMI`;
+              this.arrows[dayIndex][itemIndex].textContent += `kg / ${bmi} BMI`;
               weightValues.unshift(bmi);
-            } else if (index2 == 1 || index2 == 2 || index2 == 3)
-              this.arrows[index1][index2].textContent += "%";
-            else if (index2 == 4)
-              this.arrows[index1][index2].textContent += "kg";
-            else if (index2 == 6)
-              this.arrows[index1][index2].textContent += " KCAL";
+              weightKgs.unshift(saveDataValue);
+            } else if (itemIndex == 1 || itemIndex == 2 || itemIndex == 3)
+              this.arrows[dayIndex][itemIndex].textContent += "%";
+            else if (itemIndex == 4)
+              this.arrows[dayIndex][itemIndex].textContent += "kg";
+            else if (itemIndex == 6)
+              this.arrows[dayIndex][itemIndex].textContent += " KCAL";
 
             if (remainDay != 0)
-              this.arrows[index1][index2].textContent += `(D${remainDay})`;
-            this.arrows[index1][index2].style.top =
-              String(40 + (viewCount - 1 - index1) * 15) + "px";
+              this.arrows[dayIndex][itemIndex].textContent += `(D${remainDay})`;
+            this.arrows[dayIndex][itemIndex].style.top =
+              String(40 + (viewCount - 1 - dayIndex) * 15) + "px";
 
             if (remainDay == 0)
-              this.arrows[index1][index2].style.backgroundColor = "pink";
-            else this.arrows[index1][index2].style.backgroundColor = "#F1FE2D";
+              this.arrows[dayIndex][itemIndex].style.backgroundColor = "pink";
+            else
+              this.arrows[dayIndex][itemIndex].style.backgroundColor =
+                "#F1FE2D";
 
-            this.arrows[index1][index2].style.opacity =
-              String(100 - index1 * 19) + "%";
-            this.arrows[index1][index2].style.fontSize =
-              String(20 - index1 * 4) + "px";
-            this.arrows[index1][index2].style.fontWeight = "30px";
+            this.arrows[dayIndex][itemIndex].style.opacity =
+              String(100 - dayIndex * 19) + "%";
+            this.arrows[dayIndex][itemIndex].style.fontSize =
+              String(20 - dayIndex * 4) + "px";
+            this.arrows[dayIndex][itemIndex].style.fontWeight = "30px";
 
             const oneSize = 1 / (targetGapValues.length - 1);
 
             if (minValue == "-")
-              //this.arrows[index1][index2].style.left = String(oneSize * 0.5 * 100) + "%";
-              this.arrows[index1][index2].style.left = "0%";
+              //this.arrows[dayIndex][itemIndex].style.left = String(oneSize * 0.5 * 100) + "%";
+              this.arrows[dayIndex][itemIndex].style.left = "0%";
             else if (maxValue == "+")
-              //this.arrows[index1][index2].style.left = String(100 - oneSize * 0.5 * 100) + "%";
-              this.arrows[index1][index2].style.left = "100%";
+              //this.arrows[dayIndex][itemIndex].style.left = String(100 - oneSize * 0.5 * 100) + "%";
+              this.arrows[dayIndex][itemIndex].style.left = "100%";
             else {
               const startPoint = oneSize * minIndex;
 
@@ -508,16 +520,16 @@ class mainManager {
               const y = maxValue - minValue;
 
               if (minIndex == 0 && saveDataValue <= minValue)
-                this.arrows[index1][index2].style.left = "0%";
+                this.arrows[dayIndex][itemIndex].style.left = "0%";
               else if (
                 minIndex == targetGapValues.length - 2 &&
                 saveDataValue >= maxValue
               )
-                this.arrows[index1][index2].style.left = "100%";
+                this.arrows[dayIndex][itemIndex].style.left = "100%";
               else {
                 const result = oneSize * (x / y);
 
-                this.arrows[index1][index2].style.left =
+                this.arrows[dayIndex][itemIndex].style.left =
                   String((startPoint + result) * 100) + "%";
               }
             }
@@ -525,7 +537,12 @@ class mainManager {
         });
       });
 
-      weightChart.change(weightLabels, weightValues, weightGradeDrawValues);
+      weightChart.change(
+        weightLabels,
+        weightValues,
+        weightKgs,
+        weightGradeDrawValues
+      );
     }
   };
 
