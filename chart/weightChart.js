@@ -90,16 +90,29 @@ class WeightChart {
             bottom - top
           );
           ctx.fillText(`${gradeTexts[index]}`, gradePosXs[index], top - 40);
-          ctx.fillText(
-            `${options.gradeValues[index]} BMI ~`,
-            gradePosXs[index],
-            top - 25
-          );
-          ctx.fillText(
-            `${options.gradeKgs[index]}kg ~`,
-            gradePosXs[index],
-            top - 10
-          );
+          if (index == 0) {
+            ctx.fillText(
+              `BMI : ${options.gradeValues[index]} ~`,
+              gradePosXs[index],
+              top - 25
+            );
+            ctx.fillText(
+              `kg : ${options.gradeKgs[index]} ~`,
+              gradePosXs[index],
+              top - 10
+            );
+          } else {
+            ctx.fillText(
+              `${options.gradeValues[index]}`,
+              gradePosXs[index],
+              top - 25
+            );
+            ctx.fillText(
+              `${options.gradeKgs[index]} ~`,
+              gradePosXs[index],
+              top - 10
+            );
+          }
 
           canvasContext.restore();
         });
