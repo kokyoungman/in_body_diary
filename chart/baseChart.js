@@ -27,17 +27,6 @@ class BaseChart {
     this.chart.config.data.datasets[index].data = values;
   };
 
-  // 단계값들을 변경함
-  changeGradeDrawValues = (gradeDrawValues) => {
-    this.chart.config.options.plugins.gradeDraw.value0 = gradeDrawValues[0];
-    this.chart.config.options.plugins.gradeDraw.value1 = gradeDrawValues[1];
-    this.chart.config.options.plugins.gradeDraw.value2 = gradeDrawValues[2];
-    this.chart.config.options.plugins.gradeDraw.value3 = gradeDrawValues[3];
-    this.chart.config.options.plugins.gradeDraw.value4 = gradeDrawValues[4];
-    this.chart.config.options.plugins.gradeDraw.value5 = gradeDrawValues[5];
-    this.chart.config.options.plugins.gradeDraw.value6 = gradeDrawValues[6];
-  };
-
   // 업데이트함
   update = () => {
     this.chart.update();

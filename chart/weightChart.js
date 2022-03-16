@@ -1,7 +1,7 @@
 // 자바스크립트 프로젝트 구현 - 인바디 다이어리 (weightChart.js)
 
 class WeightChart {
-  constructor(labels, values, weightKgs, gradeDrawValues) {
+  constructor(labels, values, kgs, gradeValues, gradeKgs) {
     const canvasContext = document
       .querySelector("#js-chart-canvas")
       .getContext("2d");
@@ -25,12 +25,12 @@ class WeightChart {
           max: 55,
         },
       },
-      plugins: {
-        title: {
-          display: true,
-          text: "BMI",
-          align: "end",
+      layout: {
+        padding: {
+          top: 55,
         },
+      },
+      plugins: {
         legend: {
           display: false,
         },
@@ -39,17 +39,12 @@ class WeightChart {
           anchor: "end",
           align: "start",
           formatter: (value, context) => {
-            return `${value} BMI (${weightKgs[context.dataIndex]}kg)`;
+            return `${value} BMI (${kgs[context.dataIndex]}kg)`;
           },
         },
         gradeDraw: {
-          value0: gradeDrawValues[0],
-          value1: gradeDrawValues[1],
-          value2: gradeDrawValues[2],
-          value3: gradeDrawValues[3],
-          value4: gradeDrawValues[4],
-          value5: gradeDrawValues[5],
-          value6: gradeDrawValues[6],
+          gradeValues,
+          gradeKgs,
         },
       },
     };
@@ -64,18 +59,9 @@ class WeightChart {
           scales: { x, y },
         } = chart;
 
-        const optionValues = [];
-        optionValues.push(options.value0);
-        optionValues.push(options.value1);
-        optionValues.push(options.value2);
-        optionValues.push(options.value3);
-        optionValues.push(options.value4);
-        optionValues.push(options.value5);
-        optionValues.push(options.value6);
-
         const gradePosXs = [];
-        optionValues.forEach((optionValue) => {
-          gradePosXs.push(x.getPixelForValue(optionValue));
+        options.gradeValues.forEach((gradeValue) => {
+          gradePosXs.push(x.getPixelForValue(gradeValue));
         });
 
         const gradeColors = [
@@ -106,8 +92,14 @@ class WeightChart {
             gradePosXs[index + 1] - gradePosXs[index],
             bottom - top
           );
+          ctx.fillText(`${gradeTexts[index]}`, gradePosXs[index], top - 40);
           ctx.fillText(
-            `${optionValues[index]} ${gradeTexts[index]}`,
+            `${options.gradeValues[index]} BMI ~`,
+            gradePosXs[index],
+            top - 25
+          );
+          ctx.fillText(
+            `${options.gradeKgs[index]}kg ~`,
             gradePosXs[index],
             top - 10
           );
@@ -129,16 +121,20 @@ class WeightChart {
   }
 
   // 재설정함
-  change = (labels, values, weightKgs, gradeDrawValues) => {
+  change = (labels, values, kgs, gradeValues, gradeKgs) => {
     this.baseChart.changeLabels(labels);
     this.baseChart.changeValues(0, values);
+
     this.baseChart.chart.config.options.plugins.datalabels.formatter = (
       value,
       context
     ) => {
-      return `${value} BMI (${weightKgs[context.dataIndex]}kg)`;
+      return `${value} BMI (${kgs[context.dataIndex]}kg)`;
     };
-    this.baseChart.changeGradeDrawValues(gradeDrawValues);
+    this.baseChart.chart.config.options.plugins.gradeDraw.gradeValues =
+      gradeValues;
+    this.baseChart.chart.config.options.plugins.gradeDraw.gradeKgs = gradeKgs;
+
     this.baseChart.update();
   };
 }

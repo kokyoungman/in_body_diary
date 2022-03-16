@@ -379,11 +379,6 @@ class mainManager {
       });
     });
 
-    if (this.userSelect.selectedIndex == 0) {
-      weightChart.change([], [], [0, 18.5, 25, 30, 35, 40, 55]);
-      return;
-    }
-
     let parsedSaveDatas = [];
 
     const saveDatas = localStorage.getItem(this.userSelect.selectedIndex);
@@ -398,11 +393,6 @@ class mainManager {
         parsedSaveDatas[0][1],
         parsedSaveDatas[0][2]
       );
-
-      const weightLabels = [];
-      const weightValues = [];
-      const weightKgs = [];
-      const weightGradeDrawValues = [0, 18.5, 25, 30, 35, 40, 55];
 
       parsedSaveDatas.forEach((saveData, dayIndex) => {
         dayIndex -= this.viewDataStartIndex;
@@ -420,11 +410,6 @@ class mainManager {
             dayIndex < this.viewDataCount &&
             0 <= itemIndex
           ) {
-            if (itemIndex == 0) {
-              if (remainDay == 0) weightLabels.unshift("최근");
-              else weightLabels.unshift(`D${remainDay}`);
-            }
-
             let targetGapValues;
 
             if (itemIndex == 0)
@@ -479,8 +464,6 @@ class mainManager {
             if (itemIndex == 0) {
               const bmi = this.getBmi(this.userHeight, saveDataValue);
               this.arrows[dayIndex][itemIndex].textContent += `kg / ${bmi} BMI`;
-              weightValues.unshift(bmi);
-              weightKgs.unshift(saveDataValue);
             } else if (itemIndex == 1 || itemIndex == 2 || itemIndex == 3)
               this.arrows[dayIndex][itemIndex].textContent += "%";
             else if (itemIndex == 4)
@@ -536,12 +519,76 @@ class mainManager {
           }
         });
       });
+    }
+
+    this.showHistoryForChart();
+  };
+
+  // 차트를 위한 히스토리를 보여줌
+  showHistoryForChart = () => {
+    if (this.userSelect.selectedIndex == 0) {
+      weightChart.change([], [], [], [], []);
+      return;
+    }
+
+    let parsedSaveDatas = [];
+
+    const saveDatas = localStorage.getItem(this.userSelect.selectedIndex);
+
+    if (saveDatas !== null) {
+      parsedSaveDatas = JSON.parse(saveDatas);
+
+      const startDataIndex = parsedSaveDatas.length - 1;
+      const startDate = new Date(
+        parsedSaveDatas[startDataIndex][0],
+        parsedSaveDatas[startDataIndex][1],
+        parsedSaveDatas[startDataIndex][2]
+      );
+
+      const weightLabels = [];
+      const weightValues = [];
+      const weightKgs = [];
+      const weightGradeValues = [0, 18.5, 25, 30, 35, 40, 55];
+      const weightGradeKgs = [];
+
+      weightGradeValues.forEach((weightGradeValue) => {
+        weightGradeKgs.push(this.getKg(this.userHeight, weightGradeValue));
+      });
+
+      parsedSaveDatas.forEach((saveData, dayIndex) => {
+        dayIndex -= this.viewDataStartIndex;
+
+        const endDate = new Date(saveData[0], saveData[1], saveData[2]);
+        const remainDay = this.getRemainDay(startDate, endDate);
+
+        saveData.forEach((saveDataValue, itemIndex) => {
+          itemIndex -= this.START_ITEM_INDEX;
+
+          const viewCount = this.getViewCount(parsedSaveDatas.length);
+
+          if (
+            0 <= dayIndex &&
+            dayIndex < this.viewDataCount &&
+            0 <= itemIndex
+          ) {
+            if (itemIndex == 0) {
+              if (remainDay == 0) weightLabels.push("최근");
+              else weightLabels.push(`D${remainDay}`);
+
+              const bmi = this.getBmi(this.userHeight, saveDataValue);
+              weightValues.push(bmi);
+              weightKgs.push(saveDataValue);
+            }
+          }
+        });
+      });
 
       weightChart.change(
         weightLabels,
         weightValues,
         weightKgs,
-        weightGradeDrawValues
+        weightGradeValues,
+        weightGradeKgs
       );
     }
   };
@@ -559,6 +606,13 @@ class mainManager {
     const h = height / 100; // cm 단위를 m 단위로 변경함
     const bmi = weight / (h * h);
     return bmi.toFixed(1);
+  };
+
+  // 몸무게을 가져옴
+  getKg = (height, bmi) => {
+    const h = height / 100; // cm 단위를 m 단위로 변경함
+    const kg = bmi * (h * h);
+    return kg.toFixed(1);
   };
 
   // 유저를 변경함
@@ -665,6 +719,10 @@ class mainManager {
 
     this.bars1.classList.toggle("js-hide-bars");
     this.bars2.classList.toggle("js-hide-bars");
+
+    if (this.bars1.classList.contains("js-hide-bars"))
+      this.typeChangeBtn.value = "🥕";
+    else this.typeChangeBtn.value = "📊";
   };
 
   // 초기화함
