@@ -1,9 +1,10 @@
 // 자바스크립트 프로젝트 구현 - 인바디 다이어리 (mainManager.js)
 
 class mainManager {
-  constructor(document, weightChart) {
+  constructor(document, worldWeightChart, koreaWeightChart) {
     // 차트
-    this.weightChart = weightChart;
+    this.worldWeightChart = worldWeightChart;
+    this.koreaWeightChart = koreaWeightChart;
 
     // 유저
     this.userAge;
@@ -531,7 +532,8 @@ class mainManager {
   // 차트를 위한 히스토리를 보여줌
   showHistoryForChart = () => {
     if (this.userSelect.selectedIndex == 0) {
-      weightChart.change([], [], [], [], []);
+      worldWeightChart.change([], [], [], [], []);
+      koreaWeightChart.change([], [], [], [], []);
       return;
     }
 
@@ -553,11 +555,16 @@ class mainManager {
       const weightLabels = [];
       const weightValues = [];
       const weightKgs = [];
-      const weightGradeValues = [0, 18.5, 25, 30, 35, 40, 55];
-      const weightGradeKgs = [];
+      const worldWeightGradeValues = [0, 18.5, 25, 30, 35, 40, 45];
+      const worldWeightGradeKgs = [];
+      const koreaWeightGradeValues = [0, 18.5, 23, 25, 30, 35, 45];
+      const koreaWeightGradeKgs = [];
 
-      weightGradeValues.forEach((weightGradeValue) => {
-        weightGradeKgs.push(this.getKg(this.userHeight, weightGradeValue));
+      worldWeightGradeValues.forEach((weightGradeValue) => {
+        worldWeightGradeKgs.push(this.getKg(this.userHeight, weightGradeValue));
+      });
+      koreaWeightGradeValues.forEach((weightGradeValue) => {
+        koreaWeightGradeKgs.push(this.getKg(this.userHeight, weightGradeValue));
       });
 
       parsedSaveDatas.forEach((saveData, dayIndex) => {
@@ -588,12 +595,19 @@ class mainManager {
         });
       });
 
-      weightChart.change(
+      worldWeightChart.change(
         weightLabels,
         weightValues,
         weightKgs,
-        weightGradeValues,
-        weightGradeKgs
+        worldWeightGradeValues,
+        worldWeightGradeKgs
+      );
+      koreaWeightChart.change(
+        weightLabels,
+        weightValues,
+        weightKgs,
+        koreaWeightGradeValues,
+        koreaWeightGradeKgs
       );
     }
   };

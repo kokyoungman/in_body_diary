@@ -1,13 +1,21 @@
 <!-- 자바스크립트 프로젝트 구현 - 인바디 다이어리 (index.html) -->
 
-<!-- 출처 : <https://www.euro.who.int/en/health-topics/disease-prevention/nutrition/a-healthy-lifestyle/body-mass-index-bmi> -->
+<!-- 참고 (세계보건기구) : <https://www.euro.who.int/en/health-topics/disease-prevention/nutrition/a-healthy-lifestyle/body-mass-index-bmi> -->
 <!-- BMI = 몸무게kg / 키m * 키m -->
 <!-- 저체중 < 18.5 -->
 <!-- 18.5 <= 정상 < 25 -->
 <!-- 25 <= 과체중 < 30 -->
-<!-- 30 <= 비만 < 35 -->
-<!-- 35 <= 고도 비만 < 40 -->
-<!-- 40 <= 병적 비만 -->
+<!-- 30 <= 1단계 비만 < 35 -->
+<!-- 35 <= 2단계 비만 < 40 -->
+<!-- 40 <= 3단계 비만 -->
+
+<!-- 참고 (대한비만학회) : <http://general.kosso.or.kr/html/?pmode=BBBS0001300003&page=1&smode=view&seq=1358&searchValue=&searchTitle=strTitle> -->
+<!-- 저체중 < 18.5 -->
+<!-- 18.5 <= 정상 < 23 -->
+<!-- 23 <= 과체중 < 25 -->
+<!-- 25 <= 1단계 비만 < 30 -->
+<!-- 30 <= 2단계 비만 < 35 -->
+<!-- 35 <= 3단계 비만 -->
 
 <!DOCTYPE html>
 <html lang="ko">
@@ -315,7 +323,12 @@
           </div>
           <div class="bars js-bars-2 js-hide-bars">
             <div class="bar-column">
-              <canvas id="js-chart-canvas" height="70"></canvas>
+              <div class="title">세계보건기구 기준 BMI</div>
+              <canvas id="js-world-chart-canvas" height="70"></canvas>
+            </div>
+            <div class="bar-column">
+              <div class="title">대한비만학회 기준 BMI</div>
+              <canvas id="js-korea-chart-canvas" height="70"></canvas>
             </div>
             <div class="change-history">
               <input class="btn js-before-btn-2" type="submit" value="이전" />

@@ -1,10 +1,7 @@
 // 자바스크립트 프로젝트 구현 - 인바디 다이어리 (weightChart.js)
 
 class WeightChart {
-  constructor(labels, values, kgs, gradeValues, gradeKgs) {
-    const canvasContext = document
-      .querySelector("#js-chart-canvas")
-      .getContext("2d");
+  constructor(canvasContext, labels, values, kgs, gradeValues, gradeKgs) {
     const type = "bar";
     const datasets = [];
     const plugins = [ChartDataLabels];
@@ -22,7 +19,7 @@ class WeightChart {
       scales: {
         x: {
           beginAtZero: true,
-          max: 55,
+          max: 45,
         },
       },
       layout: {
@@ -77,9 +74,9 @@ class WeightChart {
           "저체중",
           "정상",
           "과체중",
-          "비만",
-          "고도 비만",
-          "병적 비만",
+          "1단계 비만",
+          "2단계 비만",
+          "3단계 비만",
         ];
 
         gradeColors.forEach((gradeColor, index) => {
