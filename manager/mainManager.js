@@ -161,12 +161,15 @@ class mainManager {
 
     // 이전 버튼
     this.beforeBtn = document.querySelector(".js-before-btn");
+    this.beforeBtn2 = document.querySelector(".js-before-btn-2");
 
     // 모드 변경 버튼
     this.modeChangeBtn = document.querySelector(".js-mode-change-btn");
+    this.modeChangeBtn2 = document.querySelector(".js-mode-change-btn-2");
 
     // 다음 버튼
     this.nextBtn = document.querySelector(".js-next-btn");
+    this.nextBtn2 = document.querySelector(".js-next-btn-2");
 
     // 타입 변경 버튼
     this.typeChangeBtn = document.querySelector(".js-type-change-btn");
@@ -293,6 +296,7 @@ class mainManager {
     const viewMode = localStorage.getItem(this.MODE_LS);
     if (viewMode !== null) this.viewDataCount = viewMode;
     this.modeChangeBtn.value = `${this.viewDataCount}개씩`;
+    this.modeChangeBtn2.value = `${this.viewDataCount}개씩`;
   };
 
   // 히스토리를 추가함
@@ -538,11 +542,12 @@ class mainManager {
     if (saveDatas !== null) {
       parsedSaveDatas = JSON.parse(saveDatas);
 
-      const startDataIndex = parsedSaveDatas.length - 1;
+      parsedSaveDatas.reverse();
+
       const startDate = new Date(
-        parsedSaveDatas[startDataIndex][0],
-        parsedSaveDatas[startDataIndex][1],
-        parsedSaveDatas[startDataIndex][2]
+        parsedSaveDatas[0][0],
+        parsedSaveDatas[0][1],
+        parsedSaveDatas[0][2]
       );
 
       const weightLabels = [];
@@ -572,12 +577,12 @@ class mainManager {
             0 <= itemIndex
           ) {
             if (itemIndex == 0) {
-              if (remainDay == 0) weightLabels.push("최근");
-              else weightLabels.push(`D${remainDay}`);
+              if (remainDay == 0) weightLabels.unshift("최근");
+              else weightLabels.unshift(`D${remainDay}`);
 
               const bmi = this.getBmi(this.userHeight, saveDataValue);
-              weightValues.push(bmi);
-              weightKgs.push(saveDataValue);
+              weightValues.unshift(bmi);
+              weightKgs.unshift(saveDataValue);
             }
           }
         });
@@ -689,6 +694,7 @@ class mainManager {
 
     localStorage.setItem(this.MODE_LS, this.viewDataCount);
     this.modeChangeBtn.value = `${this.viewDataCount}개씩`;
+    this.modeChangeBtn2.value = `${this.viewDataCount}개씩`;
 
     this.showHistory();
   };
@@ -735,8 +741,11 @@ class mainManager {
     });
     this.addBtn.addEventListener("click", this.handleAddBtn);
     this.beforeBtn.addEventListener("click", this.handleBeforeBtn);
+    this.beforeBtn2.addEventListener("click", this.handleBeforeBtn);
     this.modeChangeBtn.addEventListener("click", this.handleModeChangeBtn);
+    this.modeChangeBtn2.addEventListener("click", this.handleModeChangeBtn);
     this.nextBtn.addEventListener("click", this.handleNextBtn);
+    this.nextBtn2.addEventListener("click", this.handleNextBtn);
 
     this.typeChangeBtn.addEventListener("click", this.handleTypeChangeBtn);
   };
