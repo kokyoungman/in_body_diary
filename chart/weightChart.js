@@ -92,12 +92,12 @@ class WeightChart {
           ctx.fillText(`${gradeTexts[index]}`, gradePosXs[index], top - 40);
           if (index == 0) {
             ctx.fillText(
-              `BMI : ${options.gradeValues[index]} ~`,
+              `BMI ${options.gradeValues[index]}`,
               gradePosXs[index],
               top - 25
             );
             ctx.fillText(
-              `kg : ${options.gradeKgs[index]} ~`,
+              `kg ${options.gradeKgs[index]}`,
               gradePosXs[index],
               top - 10
             );
@@ -108,7 +108,7 @@ class WeightChart {
               top - 25
             );
             ctx.fillText(
-              `${options.gradeKgs[index]} ~`,
+              `${options.gradeKgs[index]}`,
               gradePosXs[index],
               top - 10
             );
