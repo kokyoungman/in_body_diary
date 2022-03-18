@@ -9,5 +9,5 @@ const koreaCanvasContext = document
 worldWeightChart = new WeightChart(worldCanvasContext, [], [], [], [], []);
 koreaWeightChart = new WeightChart(koreaCanvasContext, [], [], [], [], []);
 
-mainManager = new mainManager(document, worldWeightChart, koreaWeightChart);
+mainManager = new MainManager(document, worldWeightChart, koreaWeightChart);
 mainManager.init();

@@ -1,6 +1,6 @@
-// 자바스크립트 프로젝트 구현 - 인바디 다이어리 (mainManager.js)
+// 자바스크립트 프로젝트 구현 - 인바디 다이어리 (main_manager.js)
 
-class mainManager {
+class MainManager {
   constructor(document, worldWeightChart, koreaWeightChart) {
     // 차트
     this.worldWeightChart = worldWeightChart;
