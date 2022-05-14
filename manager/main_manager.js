@@ -394,9 +394,9 @@ class MainManager {
       parsedSaveDatas.reverse();
 
       const startDate = new Date(
-        parsedSaveDatas[0][0],
-        parsedSaveDatas[0][1],
-        parsedSaveDatas[0][2]
+        date.getFullYear(),
+        date.getMonth() + 1,
+        date.getDate()
       );
 
       parsedSaveDatas.forEach((saveData, dayIndex) => {
@@ -546,7 +546,11 @@ class MainManager {
 
       parsedSaveDatas.reverse();
 
-      const startDate = new Date();
+      const startDate = new Date(
+        date.getFullYear(),
+        date.getMonth() + 1,
+        date.getDate()
+      );
 
       const weightLabels = [];
       const weightValues = [];
