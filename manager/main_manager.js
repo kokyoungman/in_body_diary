@@ -477,19 +477,19 @@ class MainManager {
             else if (itemIndex == 6)
               this.arrows[dayIndex][itemIndex].textContent += " KCAL";
 
-            if (remainDay != 0)
+            if (remainDay == 0)
+              this.arrows[dayIndex][itemIndex].textContent += "(오늘)";
+            else
               this.arrows[dayIndex][itemIndex].textContent += `(D${remainDay})`;
             this.arrows[dayIndex][itemIndex].style.top =
               String(40 + (viewCount - 1 - dayIndex) * 15) + "px";
 
-            if (remainDay == 0)
+            if (dayIndex == 0)
               this.arrows[dayIndex][itemIndex].style.backgroundColor = "pink";
             else
               this.arrows[dayIndex][itemIndex].style.backgroundColor =
                 "#F1FE2D";
 
-            this.arrows[dayIndex][itemIndex].style.opacity =
-              String(100 - dayIndex * 19) + "%";
             this.arrows[dayIndex][itemIndex].style.fontSize =
               String(20 - dayIndex * 4) + "px";
             this.arrows[dayIndex][itemIndex].style.fontWeight = "30px";
