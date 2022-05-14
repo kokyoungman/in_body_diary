@@ -393,6 +393,7 @@ class MainManager {
 
       parsedSaveDatas.reverse();
 
+      const date = new Date();
       const startDate = new Date(
         date.getFullYear(),
         date.getMonth() + 1,
@@ -546,6 +547,7 @@ class MainManager {
 
       parsedSaveDatas.reverse();
 
+      const date = new Date();
       const startDate = new Date(
         date.getFullYear(),
         date.getMonth() + 1,
