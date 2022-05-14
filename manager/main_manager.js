@@ -546,11 +546,7 @@ class MainManager {
 
       parsedSaveDatas.reverse();
 
-      const startDate = new Date(
-        parsedSaveDatas[0][0],
-        parsedSaveDatas[0][1],
-        parsedSaveDatas[0][2]
-      );
+      const startDate = new Date();
 
       const weightLabels = [];
       const weightValues = [];
@@ -584,7 +580,7 @@ class MainManager {
             0 <= itemIndex
           ) {
             if (itemIndex == 0) {
-              if (remainDay == 0) weightLabels.unshift("최근");
+              if (remainDay == 0) weightLabels.unshift("오늘");
               else weightLabels.unshift(`D${remainDay}`);
 
               const bmi = this.getBmi(this.userHeight, saveDataValue);
