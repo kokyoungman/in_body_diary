@@ -220,12 +220,53 @@ class MainManager {
   }
 
   // 남은 일수를 가져옴
-  getRemainDay = (startDate, endDate) => {
-    const elapsed = new Date(endDate - startDate);
+  getRemainDay = (targetDate, nowDate) => {
+    const elapsed = new Date(targetDate - nowDate);
     const secondsMs = Math.floor(elapsed / 1000);
     const minutesMs = Math.floor(secondsMs / 60);
     const hoursMs = Math.floor(minutesMs / 60);
     return Math.floor(hoursMs / 24);
+  };
+
+  // 남은 날짜 텍스트를 가져옴
+  getRemainDateText = (targetDate, nowDate) => {
+    let remainOnlyYear = targetDate.getFullYear() - nowDate.getFullYear();
+    let remainOnlyMonth = targetDate.getMonth() - nowDate.getMonth();
+    let remainOnlyDay = targetDate.getDate() - nowDate.getDate();
+    const remainDay = this.getRemainDay(targetDate, nowDate);
+
+    if (remainOnlyDay > 0) {
+      remainOnlyMonth = remainOnlyMonth + 1;
+      const beforeMonthDay = new Date(
+        nowDate.getFullYear(),
+        nowDate.getMonth(),
+        0
+      ).getDate();
+      remainOnlyDay = remainOnlyDay - beforeMonthDay;
+    }
+    if (remainOnlyMonth > 0) {
+      remainOnlyYear = remainOnlyYear + 1;
+      remainOnlyMonth = remainOnlyMonth - 12;
+    }
+
+    let str = "";
+
+    if (remainOnlyYear < 0) {
+      str = str + `${remainOnlyYear * -1}년 `;
+    }
+    if (remainOnlyMonth < 0) {
+      str = str + `${remainOnlyMonth * -1}달 `;
+    }
+    if (remainOnlyDay < 0) {
+      str = str + `${remainOnlyDay * -1}일 `;
+    }
+    if (str != "") {
+      str = str + `전`;
+    } else {
+      str = "오늘";
+    }
+
+    return str;
   };
 
   // 유저 기본 데이터를 보여줌
@@ -394,17 +435,17 @@ class MainManager {
       parsedSaveDatas.reverse();
 
       const date = new Date();
-      const startDate = new Date(
+      const nowDate = new Date(
         date.getFullYear(),
-        date.getMonth() + 1,
+        date.getMonth(),
         date.getDate()
       );
 
       parsedSaveDatas.forEach((saveData, dayIndex) => {
         dayIndex -= this.viewDataStartIndex;
 
-        const endDate = new Date(saveData[0], saveData[1], saveData[2]);
-        const remainDay = this.getRemainDay(startDate, endDate);
+        const targetDate = new Date(saveData[0], saveData[1] - 1, saveData[2]);
+        const remainDay = this.getRemainDay(targetDate, nowDate);
 
         saveData.forEach((saveDataValue, itemIndex) => {
           itemIndex -= this.START_ITEM_INDEX;
@@ -548,9 +589,9 @@ class MainManager {
       parsedSaveDatas.reverse();
 
       const date = new Date();
-      const startDate = new Date(
+      const nowDate = new Date(
         date.getFullYear(),
-        date.getMonth() + 1,
+        date.getMonth(),
         date.getDate()
       );
 
@@ -572,8 +613,8 @@ class MainManager {
       parsedSaveDatas.forEach((saveData, dayIndex) => {
         dayIndex -= this.viewDataStartIndex;
 
-        const endDate = new Date(saveData[0], saveData[1], saveData[2]);
-        const remainDay = this.getRemainDay(startDate, endDate);
+        const targetDate = new Date(saveData[0], saveData[1] - 1, saveData[2]);
+        const remainDay = this.getRemainDay(targetDate, nowDate);
 
         saveData.forEach((saveDataValue, itemIndex) => {
           itemIndex -= this.START_ITEM_INDEX;
@@ -587,7 +628,10 @@ class MainManager {
           ) {
             if (itemIndex == 0) {
               if (remainDay == 0) weightLabels.unshift("오늘");
-              else weightLabels.unshift(`D${remainDay}`);
+              else
+                weightLabels.unshift(
+                  this.getRemainDateText(targetDate, nowDate)
+                );
 
               const bmi = this.getBmi(this.userHeight, saveDataValue);
               weightValues.unshift(bmi);
@@ -663,7 +707,7 @@ class MainManager {
     event.preventDefault();
 
     if (this.userSelect.selectedIndex == 0) {
-      alert("사용자를 선택하세요.");
+      alert("사용자를 선택해주세요.");
       return;
     }
   };
