@@ -1,6 +1,5 @@
 // 자바스크립트 프로젝트 구현 - 바디 뷰어 (body_builder.js)
 
-
 // 인터넷에서 다운로드 받은 후, 수정한 스크립트
 
 var gender = "male";
@@ -20,8 +19,8 @@ var preview_canvas = null;
 var body_canvas = null;
 
 var loadMesh = function (event) {
-  var shapeinfo_url = "body_viewer/shapedata/" + gender + "/" + category + "/shapeinfo.js";
-  var shape_data_directory = "body_viewer/shapedata/" + gender + "/" + category + "/";
+  var shapeinfo_url = "shapedata/" + gender + "/" + category + "/shapeinfo.js";
+  var shape_data_directory = "shapedata/" + gender + "/" + category + "/";
   model_loader = new ModelLoader(
     shapeinfo_url,
     shape_data_directory,
