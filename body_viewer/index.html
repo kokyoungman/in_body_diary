@@ -47,37 +47,6 @@
       <canvas id="preview-viewer" width="500" height="700"></canvas>
       <canvas id="body-viewer" width="500" height="700"></canvas>
 
-      <script>
-        const changeGender = () => {
-          switchGender();
-        };
-
-        const setDatas1 = () => {
-          const height = 180;
-          const weight = 76;
-          const chest = 91.6;
-          const waist = 81.7;
-          const hips = 96.5;
-          const inseam = 80;
-          const exercise = 0;
-          setBody(height, weight, chest, waist, hips, inseam, exercise);
-        };
-
-        const setDatas2 = () => {
-          const height = 155;
-          const weight = 58;
-          const chest = 92.2;
-          const waist = 80.5;
-          const hips = 93.8;
-          const inseam = 82;
-          const exercise = 0;
-          setBody(height, weight, chest, waist, hips, inseam, exercise);
-        };
-
-        initCanvasIds("preview-viewer", "body-viewer");
-        loadMesh();
-      </script>
-
       <div>
         <a href="#" onClick="changeGender();">성별 변환</a>
       </div>
@@ -88,5 +57,8 @@
         <a href="#" onClick="setDatas2();">데이터 설정2</a>
       </div>
     </div>
+
+    <!-- 스크립트 -->
+    <script src="index.js"></script>
   </body>
 </html>
