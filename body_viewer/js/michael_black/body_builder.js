@@ -6,7 +6,15 @@ var gender = "male";
 var category = "all_" + gender;
 var body_color = [0.5, 0.65, 1, 1];
 
-var data_orders = [3, 4, 1, 0, 2, 5, 6]; // height (키), weight (몸무게), chest (가슴), waist (허리), hips (엉덩이), inseam (가랑이부터 바닥까지), exercise (일주일 운동 시간)
+var data_height = 180; // 키
+var data_weight = 76; // 몸무게
+var data_chest = 91.6; // 가슴
+var data_waist = 81.7; // 허리
+var data_hips = 96.5; // 엉덩이
+var data_inseam = 80; // 가랑이부터 바닥까지
+var data_exercise = 0; // 일주일 운동 시간
+
+var data_orders = [3, 4, 1, 0, 2, 5, 6];
 var model_loader = undefined;
 var model = null;
 var modelViewer = null;
@@ -69,18 +77,24 @@ var startViewer = function (canvas, model) {
   }
   controller = new CameraController(canvas);
   modelViewer = new ModelViewer([model], canvas, controller);
+
+  updateModel(0, data_height * 10);
+  updateModel(1, Math.pow(data_weight, 1 / 3));
+  updateModel(2, data_chest * 10);
+  updateModel(3, data_waist * 10);
+  updateModel(4, data_hips * 10);
+  updateModel(5, data_inseam * 10);
+  updateModel(6, data_exercise * 3);
 };
 
 var updateModel = function (index, value) {
   var diff = 5;
-  if (true) {
-    conditional_multivariate_gaussian.condition_on_indices([index], [value]);
-    for (var i = 0; i < data_orders.length; i++) {
-      var value = conditional_multivariate_gaussian.all_values[i];
-      model_loader.current_model.setScalefactor(i, (value - mu[i]) / diff);
-    }
-    refreshModel();
+  conditional_multivariate_gaussian.condition_on_indices([index], [value]);
+  for (var i = 0; i < data_orders.length; i++) {
+    var value = conditional_multivariate_gaussian.all_values[i];
+    model_loader.current_model.setScalefactor(i, (value - mu[i]) / diff);
   }
+  refreshModel();
 };
 
 var refreshModel = function () {
@@ -112,20 +126,40 @@ var switchGender = function () {
   loadMesh();
 };
 
-var setBodyDatas = function (
-  height,
-  weight,
-  chest,
-  waist,
-  hips,
-  inseam,
-  exercise
-) {
-  updateModel(0, height * 10);
-  updateModel(1, Math.pow(weight, 1 / 3));
-  updateModel(2, chest * 10);
-  updateModel(3, waist * 10);
-  updateModel(4, hips * 10);
-  updateModel(5, inseam * 10);
-  updateModel(6, exercise * 3);
+var setHeight = function (height) {
+  data_height = height;
+  updateModel(0, data_height * 10);
+};
+var setWeight = function (weight) {
+  data_weight = weight;
+  updateModel(1, Math.pow(data_weight, 1 / 3));
+};
+var setChest = function (chest) {
+  data_chest = chest;
+  updateModel(2, data_chest * 10);
+};
+var setWaist = function (waist) {
+  data_waist = waist;
+  updateModel(3, data_waist * 10);
+};
+var setHips = function (hips) {
+  data_hips = hips;
+  updateModel(4, data_hips * 10);
+};
+var setInseam = function (inseam) {
+  data_inseam = inseam;
+  updateModel(5, data_inseam * 10);
+};
+var setExercise = function (exercise) {
+  data_exercise = exercise;
+  updateModel(6, data_exercise * 3);
+};
+var setBody = function (height, weight, chest, waist, hips, inseam, exercise) {
+  setHeight(height);
+  setWeight(weight);
+  setChest(chest);
+  setWaist(waist);
+  setHips(hips);
+  setInseam(inseam);
+  setExercise(exercise);
 };
