@@ -1,6 +1,5 @@
 // 자바스크립트 프로젝트 구현 - 바디 뷰어 (mesh_loader.js)
 
-
 // 인터넷에서 다운로드 받은 후, 수정한 스크립트
 
 // ***************************************************************** LICENSE AND COPYRIGHT *****************************************************************
@@ -251,9 +250,14 @@ var ModelLoader = Class.create({
     for (var i = 0; i < this.filenames.length; i++) {
       this.offset_meshes[i] = this.meshes[this.offset_names[i]];
     }
-    preview_canvas.hide();
-    body_canvas.show();
-    //preview_canvas.remove();		// 이 부분을 주석 처리하지 않으면, 성별을 바꿔서 다시 실행하려고 할 때, 이미 remove()가 되어서, 실행이 안되는 문제가 생김
+
+    // 이 부분을 다른 곳으로 옮김
+    // preview_canvas.hide();
+    // body_canvas.show();
+
+    // 이 부분을 주석 처리하지 않으면, 성별을 바꿔서 다시 실행하려고 할 때, 이미 remove()가 되어서, 실행이 안되는 문제가 생김
+    // preview_canvas.remove();
+
     this.current_model = new Model(this.template_mesh, this.offset_meshes);
     this.startModelViewerFunction(body_canvas, this.current_model);
   },

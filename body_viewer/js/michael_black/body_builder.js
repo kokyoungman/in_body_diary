@@ -26,6 +26,14 @@ var conditional_multivariate_gaussian = null;
 var preview_canvas = null;
 var body_canvas = null;
 
+var initCanvasIds = function (previewViewerId, bodyViewerId) {
+  preview_canvas = $(previewViewerId);
+  body_canvas = $(bodyViewerId);
+
+  preview_canvas.show();
+  body_canvas.hide();
+};
+
 var loadMesh = function (event) {
   var shapeinfo_url = "shapedata/" + gender + "/" + category + "/shapeinfo.js";
   var shape_data_directory = "shapedata/" + gender + "/" + category + "/";
@@ -69,14 +77,8 @@ var startViewer = function (canvas, model) {
   if (modelViewer) {
     modelViewer.disconnect();
   }
+
   model_loader.current_model.setColor(body_color);
-  try {
-    var gl = canvas.getContext("experimental-webgl");
-  } catch (e) {
-    consle.log("브라우저가 WebGL을 지원하지 않습니다.");
-  }
-  controller = new CameraController(canvas);
-  modelViewer = new ModelViewer([model], canvas, controller);
 
   updateModel(0, data_height * 10);
   updateModel(1, Math.pow(data_weight, 1 / 3));
@@ -85,6 +87,19 @@ var startViewer = function (canvas, model) {
   updateModel(4, data_hips * 10);
   updateModel(5, data_inseam * 10);
   updateModel(6, data_exercise * 3);
+
+  try {
+    var gl = canvas.getContext("experimental-webgl");
+  } catch (e) {
+    consle.log("브라우저가 WebGL을 지원하지 않습니다.");
+  }
+  controller = new CameraController(canvas);
+  modelViewer = new ModelViewer([model], canvas, controller);
+
+  refreshModel();
+
+  preview_canvas.hide();
+  body_canvas.show();
 };
 
 var updateModel = function (index, value) {
@@ -94,7 +109,6 @@ var updateModel = function (index, value) {
     var value = conditional_multivariate_gaussian.all_values[i];
     model_loader.current_model.setScalefactor(i, (value - mu[i]) / diff);
   }
-  refreshModel();
 };
 
 var refreshModel = function () {
@@ -109,14 +123,6 @@ var refreshModel = function () {
   }
 };
 
-var initCanvasIds = function (previewViewerId, bodyViewerId) {
-  preview_canvas = $(previewViewerId);
-  body_canvas = $(bodyViewerId);
-
-  preview_canvas.show();
-  body_canvas.hide();
-};
-
 var switchGender = function () {
   if (gender == "male") gender = "female";
   else gender = "male";
@@ -129,36 +135,50 @@ var switchGender = function () {
 var setHeight = function (height) {
   data_height = height;
   updateModel(0, data_height * 10);
+
+  refreshModel();
 };
 
 var setWeight = function (weight) {
   data_weight = weight;
   updateModel(1, Math.pow(data_weight, 1 / 3));
+
+  refreshModel();
 };
 
 var setChest = function (chest) {
   data_chest = chest;
   updateModel(2, data_chest * 10);
+
+  refreshModel();
 };
 
 var setWaist = function (waist) {
   data_waist = waist;
   updateModel(3, data_waist * 10);
+
+  refreshModel();
 };
 
 var setHips = function (hips) {
   data_hips = hips;
   updateModel(4, data_hips * 10);
+
+  refreshModel();
 };
 
 var setInseam = function (inseam) {
   data_inseam = inseam;
   updateModel(5, data_inseam * 10);
+
+  refreshModel();
 };
 
 var setExercise = function (exercise) {
   data_exercise = exercise;
   updateModel(6, data_exercise * 3);
+
+  refreshModel();
 };
 
 var setBody = function (height, weight, chest, waist, hips, inseam, exercise) {
@@ -169,4 +189,6 @@ var setBody = function (height, weight, chest, waist, hips, inseam, exercise) {
   setHips(hips);
   setInseam(inseam);
   setExercise(exercise);
+
+  refreshModel();
 };
