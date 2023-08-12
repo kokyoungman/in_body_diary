@@ -130,30 +130,37 @@ var setHeight = function (height) {
   data_height = height;
   updateModel(0, data_height * 10);
 };
+
 var setWeight = function (weight) {
   data_weight = weight;
   updateModel(1, Math.pow(data_weight, 1 / 3));
 };
+
 var setChest = function (chest) {
   data_chest = chest;
   updateModel(2, data_chest * 10);
 };
+
 var setWaist = function (waist) {
   data_waist = waist;
   updateModel(3, data_waist * 10);
 };
+
 var setHips = function (hips) {
   data_hips = hips;
   updateModel(4, data_hips * 10);
 };
+
 var setInseam = function (inseam) {
   data_inseam = inseam;
   updateModel(5, data_inseam * 10);
 };
+
 var setExercise = function (exercise) {
   data_exercise = exercise;
   updateModel(6, data_exercise * 3);
 };
+
 var setBody = function (height, weight, chest, waist, hips, inseam, exercise) {
   setHeight(height);
   setWeight(weight);
