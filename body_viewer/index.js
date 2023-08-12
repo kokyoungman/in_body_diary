@@ -5,13 +5,13 @@ const changeGender = () => {
 };
 
 const setDatas1 = () => {
-  const height = 180;
-  const weight = 76;
-  const chest = 91.6;
-  const waist = 81.7;
-  const hips = 96.5;
-  const inseam = 80;
-  const exercise = 0;
+  const height = 180; // 키
+  const weight = 76; // 몸무게
+  const chest = 91.6; // 가슴
+  const waist = 81.7; // 허리
+  const hips = 96.5; // 엉덩이
+  const inseam = 80; // 가랑이부터 바닥까지
+  const exercise = 0; // 일주일 운동 시간
   setBody(height, weight, chest, waist, hips, inseam, exercise);
 };
 

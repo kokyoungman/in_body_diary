@@ -6,13 +6,13 @@ var gender = "male";
 var category = "all_" + gender;
 var body_color = [0.5, 0.65, 1, 1];
 
-var data_height = 180; // 키
-var data_weight = 76; // 몸무게
-var data_chest = 91.6; // 가슴
-var data_waist = 81.7; // 허리
-var data_hips = 96.5; // 엉덩이
-var data_inseam = 80; // 가랑이부터 바닥까지
-var data_exercise = 0; // 일주일 운동 시간
+var data_height = -1;
+var data_weight = -1;
+var data_chest = -1;
+var data_waist = -1;
+var data_hips = -1;
+var data_inseam = -1;
+var data_exercise = -1;
 
 var data_orders = [3, 4, 1, 0, 2, 5, 6];
 var model_loader = undefined;
@@ -80,13 +80,13 @@ var startViewer = function (canvas, model) {
 
   model_loader.current_model.setColor(body_color);
 
-  updateModel(0, data_height * 10);
-  updateModel(1, Math.pow(data_weight, 1 / 3));
-  updateModel(2, data_chest * 10);
-  updateModel(3, data_waist * 10);
-  updateModel(4, data_hips * 10);
-  updateModel(5, data_inseam * 10);
-  updateModel(6, data_exercise * 3);
+  if (data_height != -1) updateModel(0, data_height * 10);
+  if (data_weight != -1) updateModel(1, Math.pow(data_weight, 1 / 3));
+  if (data_chest != -1) updateModel(2, data_chest * 10);
+  if (data_waist != -1) updateModel(3, data_waist * 10);
+  if (data_hips != -1) updateModel(4, data_hips * 10);
+  if (data_inseam != -1) updateModel(5, data_inseam * 10);
+  if (data_exercise != -1) updateModel(6, data_exercise * 3);
 
   try {
     var gl = canvas.getContext("experimental-webgl");
@@ -112,6 +112,10 @@ var updateModel = function (index, value) {
 };
 
 var refreshModel = function () {
+  if (modelViewer == null) {
+    return;
+  }
+
   try {
     modelViewer.repaint();
   } catch (e) {
