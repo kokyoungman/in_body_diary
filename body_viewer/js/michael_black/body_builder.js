@@ -35,8 +35,10 @@ var initCanvasIds = function (previewViewerId, bodyViewerId) {
 };
 
 var loadMesh = function (event) {
-  var shapeinfo_url = "shapedata/" + gender + "/" + category + "/shapeinfo.js";
-  var shape_data_directory = "shapedata/" + gender + "/" + category + "/";
+  var shapeinfo_url =
+    "body_viewer/shapedata/" + gender + "/" + category + "/shapeinfo.js";
+  var shape_data_directory =
+    "body_viewer/shapedata/" + gender + "/" + category + "/";
   model_loader = new ModelLoader(
     shapeinfo_url,
     shape_data_directory,
