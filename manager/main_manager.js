@@ -173,9 +173,7 @@ class MainManager {
     this.nextBtn2 = document.querySelector(".js-next-btn-2");
 
     // 타입 변경 버튼
-    this.typeChangeBtn1 = document.querySelector(".js-type-change-btn-1");
-    this.typeChangeBtn2 = document.querySelector(".js-type-change-btn-2");
-    this.typeChangeBtn3 = document.querySelector(".js-type-change-btn-3");
+    this.typeChangeBtn = document.querySelector(".js-type-change-btn");
 
     // 모드 로컬 저장소
     this.MODE_LS = "mode";
@@ -811,8 +809,6 @@ class MainManager {
     this.nextBtn1.addEventListener("click", this.handleNextBtn);
     this.nextBtn2.addEventListener("click", this.handleNextBtn);
 
-    this.typeChangeBtn1.addEventListener("click", this.handleTypeChangeBtn);
-    this.typeChangeBtn2.addEventListener("click", this.handleTypeChangeBtn);
-    this.typeChangeBtn3.addEventListener("click", this.handleTypeChangeBtn);
+    this.typeChangeBtn.addEventListener("click", this.handleTypeChangeBtn);
   };
 }
