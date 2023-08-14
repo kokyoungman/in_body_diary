@@ -15,39 +15,15 @@
     <title>Body Viewer</title>
   </head>
   <body>
-    <div>
-      <canvas
-        id="preview-viewer"
-        width="500"
-        height="700"
-        style="background-color: black"
-      ></canvas>
-      <canvas
-        id="body-viewer"
-        width="500"
-        height="700"
-        style="background-color: black"
-      ></canvas>
-
-      <div>
-        <a href="#" onClick="changeGender();">성별 변환</a>
-      </div>
-      <div>
-        <a href="#" onClick="setDatas1();">데이터 설정1</a>
-      </div>
-      <div>
-        <a href="#" onClick="setDatas2();">데이터 설정2</a>
-      </div>
-    </div>
     <!-- 화면 -->
     <div class="screen">
       <!-- 상태 표시줄 -->
-      <div class="status-bar"></div>
+      <div class="status-bar">
+        <a href="/">🥕</a>
+      </div>
 
       <!-- 화면 상단 -->
-      <header>
-        <input class="js-type-change-btn" type="submit" value="📊" />
-      </header>
+      <header></header>
 
       <!-- 화면 메인 -->
       <main>
@@ -60,7 +36,7 @@
             <option value="User2">남편</option>
           </select>
 
-          <!-- 기본 정보 (나이, 키) -->
+          <!-- 기본 정보 (키) -->
           <div class="base-data js-base-data"></div>
 
           <!-- 정보들 -->
@@ -93,76 +69,57 @@
               />
             </div>
             <div class="data-column">
-              <div class="data-name">BMI</div>
-              <!-- BMI 항목은 없어도 되는데, 요청을 해서 넣음 -->
-              <input
-                class="data-input js-input-bmi"
-                type="number"
-                min="0.0"
-                max="500.0"
-              />
-            </div>
-            <div class="data-column">
-              <div class="data-name">체중</div>
+              <div class="data-name">몸무게</div>
               <input
                 class="data-input js-input-weight"
                 type="number"
                 min="0.0"
-                max="500.0"
+                max="100.0"
               />
             </div>
             <div class="data-column">
-              <div class="data-name">체지방</div>
+              <div class="data-name">가슴 둘레</div>
               <input
-                class="data-input js-input-bodyFat"
+                class="data-input js-input-chest"
                 type="number"
                 min="0.0"
                 max="100.0"
               />
             </div>
             <div class="data-column">
-              <div class="data-name">수분</div>
+              <div class="data-name">허리 둘레</div>
               <input
-                class="data-input js-input-water"
+                class="data-input js-input-waist"
                 type="number"
                 min="0.0"
                 max="100.0"
               />
             </div>
             <div class="data-column">
-              <div class="data-name">근육</div>
+              <div class="data-name">엉덩이 둘레</div>
               <input
-                class="data-input js-input-muscle"
+                class="data-input js-input-hips"
                 type="number"
                 min="0.0"
                 max="100.0"
               />
             </div>
             <div class="data-column">
-              <div class="data-name">뼈</div>
+              <div class="data-name">위 팔 둘레</div>
               <input
-                class="data-input js-input-bone"
+                class="data-input js-input-apper-arm"
                 type="number"
                 min="0.0"
                 max="100.0"
               />
             </div>
             <div class="data-column">
-              <div class="data-name">내장지방</div>
+              <div class="data-name">허벅지 둘레</div>
               <input
-                class="data-input js-input-visceralFat"
+                class="data-input js-input-thigh"
                 type="number"
                 min="0.0"
                 max="100.0"
-              />
-            </div>
-            <div class="data-column">
-              <div class="data-name">칼로리</div>
-              <input
-                class="data-input js-input-calorie"
-                type="number"
-                min="0.0"
-                max="5000.0"
               />
             </div>
           </div>
@@ -171,165 +128,31 @@
 
         <!-- 화면 메인 (사이드바) -->
         <sidebar>
-          <div class="bars js-bars-1">
-            <div class="bar-column">
-              <div class="title">체중 (kg / BMI)</div>
-              <div class="arrow js-arrow-0-0"></div>
-              <div class="arrow js-arrow-1-0"></div>
-              <div class="arrow js-arrow-2-0"></div>
-              <div class="arrow js-arrow-3-0"></div>
-              <div class="arrow js-arrow-4-0"></div>
-              <div class="numbers">
-                <div class="number js-number-0-0"></div>
-                <div class="number js-number-0-1"></div>
-                <div class="number js-number-0-2"></div>
-                <div class="number js-number-0-3"></div>
-                <div class="number js-number-0-4"></div>
-                <div class="number js-number-0-5"></div>
-                <div class="number js-number-0-6"></div>
-                <div class="number js-number-0-7"></div>
-              </div>
-              <div class="grades">
-                <div class="grade-row">건강</div>
-                <div class="grade-row"></div>
-                <div class="grade-row">과체중</div>
-                <div class="grade-row"></div>
-                <div class="grade-row">비만</div>
-                <div class="grade-row"></div>
-                <div class="grade-row">고도비만</div>
-              </div>
+          <div>
+            <canvas
+              id="preview-viewer"
+              width="50"
+              height="70"
+              style="background-color: black"
+            ></canvas>
+            <canvas
+              id="body-viewer"
+              width="50"
+              height="70"
+              style="background-color: black"
+            ></canvas>
+
+            <div>
+              <a href="#" onClick="changeGender();">성별 변환</a>
             </div>
-            <div class="bar-column">
-              <div class="title">체지방 (%)</div>
-              <div class="arrow js-arrow-0-1"></div>
-              <div class="arrow js-arrow-1-1"></div>
-              <div class="arrow js-arrow-2-1"></div>
-              <div class="arrow js-arrow-3-1"></div>
-              <div class="arrow js-arrow-4-1"></div>
-              <div class="numbers">
-                <div class="number js-number-1-0"></div>
-                <div class="number js-number-1-1"></div>
-                <div class="number js-number-1-2"></div>
-                <div class="number js-number-1-3"></div>
-                <div class="number js-number-1-4"></div>
-              </div>
-              <div class="grades">
-                <div class="grade-row">지방 미달</div>
-                <div class="grade-row">건강</div>
-                <div class="grade-row">과다 지방</div>
-                <div class="grade-row">비만</div>
-              </div>
+            <div>
+              <a href="#" onClick="setDatas1();">데이터 설정1</a>
             </div>
-            <div class="bar-column">
-              <div class="title">수분 (%)</div>
-              <div class="arrow js-arrow-0-2"></div>
-              <div class="arrow js-arrow-1-2"></div>
-              <div class="arrow js-arrow-2-2"></div>
-              <div class="arrow js-arrow-3-2"></div>
-              <div class="arrow js-arrow-4-2"></div>
-              <div class="numbers">
-                <div class="number js-number-2-0"></div>
-                <div class="number js-number-2-1"></div>
-                <div class="number js-number-2-2"></div>
-                <div class="number js-number-2-3"></div>
-                <div class="number js-number-2-4"></div>
-                <div class="number js-number-2-5"></div>
-              </div>
-              <div class="grades">
-                <div class="grade-row">심한 탈수</div>
-                <div class="grade-row">탈수</div>
-                <div class="grade-row">중간 수화</div>
-                <div class="grade-row">약간의 수화</div>
-                <div class="grade-row">최적 수화</div>
-              </div>
-            </div>
-            <div class="bar-column">
-              <div class="title">근육 (%)</div>
-              <div class="arrow js-arrow-0-3"></div>
-              <div class="arrow js-arrow-1-3"></div>
-              <div class="arrow js-arrow-2-3"></div>
-              <div class="arrow js-arrow-3-3"></div>
-              <div class="arrow js-arrow-4-3"></div>
-              <div class="numbers">
-                <div class="number js-number-3-0"></div>
-                <div class="number js-number-3-1"></div>
-                <div class="number js-number-3-2"></div>
-                <div class="number js-number-3-3"></div>
-                <div class="number js-number-3-4"></div>
-              </div>
-              <div class="grades">
-                <div class="grade-row">낮음</div>
-                <div class="grade-row">보통</div>
-                <div class="grade-row">높음</div>
-                <div class="grade-row">매우 높음</div>
-              </div>
-            </div>
-            <div class="bar-column">
-              <div class="title">뼈 (kg)</div>
-              <div class="arrow js-arrow-0-4"></div>
-              <div class="arrow js-arrow-1-4"></div>
-              <div class="arrow js-arrow-2-4"></div>
-              <div class="arrow js-arrow-3-4"></div>
-              <div class="arrow js-arrow-4-4"></div>
-              <div class="numbers">
-                <div class="number js-number-4-0"></div>
-                <div class="number js-number-4-1"></div>
-                <div class="number js-number-4-2"></div>
-                <div class="number js-number-4-3"></div>
-                <div class="number js-number-4-4"></div>
-              </div>
-              <div class="grades">
-                <div class="grade-row">미달</div>
-                <div class="grade-row js-grade-text-4-0"></div>
-                <div class="grade-row js-grade-text-4-1"></div>
-                <div class="grade-row">건강</div>
-              </div>
-            </div>
-            <div class="bar-column">
-              <div class="title">내장지방</div>
-              <div class="arrow js-arrow-0-5"></div>
-              <div class="arrow js-arrow-1-5"></div>
-              <div class="arrow js-arrow-2-5"></div>
-              <div class="arrow js-arrow-3-5"></div>
-              <div class="arrow js-arrow-4-5"></div>
-              <div class="numbers">
-                <div class="number js-number-5-0"></div>
-                <div class="number js-number-5-1"></div>
-                <div class="number js-number-5-2"></div>
-                <div class="number js-number-5-3"></div>
-              </div>
-              <div class="grades">
-                <div class="grade-row">표준</div>
-                <div class="grade-row">약간 비만</div>
-                <div class="grade-row">비만</div>
-              </div>
-            </div>
-            <div class="bar-column">
-              <div class="title">칼로리 (KCAL)</div>
-              <div class="arrow js-arrow-0-6"></div>
-              <div class="arrow js-arrow-1-6"></div>
-              <div class="arrow js-arrow-2-6"></div>
-              <div class="arrow js-arrow-3-6"></div>
-              <div class="arrow js-arrow-4-6"></div>
-              <div class="numbers">
-                <div class="number js-number-6-0"></div>
-                <div class="number js-number-6-1"></div>
-                <div class="number js-number-6-2"></div>
-                <div class="number js-number-6-3"></div>
-              </div>
-              <div class="grades">
-                <div class="grade-row">미달</div>
-                <div class="grade-row">건강</div>
-                <div class="grade-row">과다</div>
-              </div>
-            </div>
-            <div class="change-history">
-              <input class="btn js-before-btn" type="submit" value="이전" />
-              <input class="btn js-mode-change-btn" type="submit" value="" />
-              <input class="btn js-next-btn" type="submit" value="다음" />
+            <div>
+              <a href="#" onClick="setDatas2();">데이터 설정2</a>
             </div>
           </div>
-          <div class="bars js-bars-2 js-hide-bars">
+          <div class="bars js-bars">
             <div class="bar-column">
               <div class="title">(해외) 세계보건기구 기준 BMI</div>
               <canvas id="js-world-chart-canvas" height="70"></canvas>
