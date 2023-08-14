@@ -161,19 +161,21 @@ class MainManager {
     this.addBtn = document.querySelector(".js-add-btn");
 
     // 이전 버튼
-    this.beforeBtn = document.querySelector(".js-before-btn");
+    this.beforeBtn1 = document.querySelector(".js-before-btn-1");
     this.beforeBtn2 = document.querySelector(".js-before-btn-2");
 
     // 모드 변경 버튼
-    this.modeChangeBtn = document.querySelector(".js-mode-change-btn");
+    this.modeChangeBtn1 = document.querySelector(".js-mode-change-btn-1");
     this.modeChangeBtn2 = document.querySelector(".js-mode-change-btn-2");
 
     // 다음 버튼
-    this.nextBtn = document.querySelector(".js-next-btn");
+    this.nextBtn1 = document.querySelector(".js-next-btn-1");
     this.nextBtn2 = document.querySelector(".js-next-btn-2");
 
     // 타입 변경 버튼
-    this.typeChangeBtn = document.querySelector(".js-type-change-btn");
+    this.typeChangeBtn1 = document.querySelector(".js-type-change-btn-1");
+    this.typeChangeBtn2 = document.querySelector(".js-type-change-btn-2");
+    this.typeChangeBtn3 = document.querySelector(".js-type-change-btn-3");
 
     // 모드 로컬 저장소
     this.MODE_LS = "mode";
@@ -337,7 +339,7 @@ class MainManager {
     // 로컬 저장소에서 모드의 값을 가져와서 적용함
     const viewMode = localStorage.getItem(this.MODE_LS);
     if (viewMode !== null) this.viewDataCount = viewMode;
-    this.modeChangeBtn.value = `${this.viewDataCount}개씩`;
+    this.modeChangeBtn1.value = `${this.viewDataCount}개씩`;
     this.modeChangeBtn2.value = `${this.viewDataCount}개씩`;
   };
 
@@ -753,7 +755,7 @@ class MainManager {
     }
 
     localStorage.setItem(this.MODE_LS, this.viewDataCount);
-    this.modeChangeBtn.value = `${this.viewDataCount}개씩`;
+    this.modeChangeBtn1.value = `${this.viewDataCount}개씩`;
     this.modeChangeBtn2.value = `${this.viewDataCount}개씩`;
 
     this.showHistory();
@@ -786,9 +788,11 @@ class MainManager {
     this.bars1.classList.toggle("js-hide-bars");
     this.bars2.classList.toggle("js-hide-bars");
 
-    if (this.bars1.classList.contains("js-hide-bars"))
+    if (this.bars1.classList.contains("js-hide-bars")) {
       this.typeChangeBtn.value = "🥕";
-    else this.typeChangeBtn.value = "📊";
+    } else {
+      this.typeChangeBtn.value = "📊";
+    }
   };
 
   // 초기화함
@@ -800,13 +804,15 @@ class MainManager {
       input.addEventListener("click", this.handleCheckUser);
     });
     this.addBtn.addEventListener("click", this.handleAddBtn);
-    this.beforeBtn.addEventListener("click", this.handleBeforeBtn);
+    this.beforeBtn1.addEventListener("click", this.handleBeforeBtn);
     this.beforeBtn2.addEventListener("click", this.handleBeforeBtn);
-    this.modeChangeBtn.addEventListener("click", this.handleModeChangeBtn);
+    this.modeChangeBtn1.addEventListener("click", this.handleModeChangeBtn);
     this.modeChangeBtn2.addEventListener("click", this.handleModeChangeBtn);
-    this.nextBtn.addEventListener("click", this.handleNextBtn);
+    this.nextBtn1.addEventListener("click", this.handleNextBtn);
     this.nextBtn2.addEventListener("click", this.handleNextBtn);
 
-    this.typeChangeBtn.addEventListener("click", this.handleTypeChangeBtn);
+    this.typeChangeBtn1.addEventListener("click", this.handleTypeChangeBtn);
+    this.typeChangeBtn2.addEventListener("click", this.handleTypeChangeBtn);
+    this.typeChangeBtn3.addEventListener("click", this.handleTypeChangeBtn);
   };
 }
