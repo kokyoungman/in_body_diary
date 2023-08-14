@@ -1,142 +1,223 @@
 <!-- 자바스크립트 프로젝트 구현 - 인바디 다이어리 (body_viewer.html) -->
 
-
 <!-- '바디 뷰어'에서 추가함 -->
 
 <!DOCTYPE html>
 <html lang="ko">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
-		<link rel="stylesheet" href="css/style.css" />
-		<title>Body Viewer</title>
-	</head>
-	<body>
-		<!-- 화면 -->
-		<div class="screen">
-			<!-- 상태 표시줄 -->
-			<div class="status-bar">
-				<a href="/">🥕</a>
-			</div>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css"
+    />
+    <link rel="stylesheet" href="css/style_body_viewer.css" />
+    <title>Body Viewer</title>
+  </head>
+  <body>
+    <!-- 화면 -->
+    <div class="screen">
+      <!-- 상태 표시줄 -->
+      <div class="status-bar">
+        <a href="/">🥕</a>
+      </div>
 
-			<!-- 화면 상단 -->
-			<header>
-				<input class="js-type-change-btn" type="submit" value="📊" />
-			</header>
+      <!-- 화면 상단 -->
+      <header>
+        <input class="js-type-change-btn" type="submit" value="📊" />
+      </header>
 
-			<!-- 화면 메인 -->
-			<main>
-				<!-- 화면 메인 (왼쪽) -->
-				<div class="left">
-					<!-- 사용자 선택 -->
-					<select>
-						<option value="None">---사용자를 선택하세요---</option>
-						<option value="User1">공주</option>
-						<option value="User2">남편</option>
-					</select>
+      <!-- 화면 메인 -->
+      <main>
+        <!-- 화면 메인 (왼쪽) -->
+        <div class="left">
+          <!-- 사용자 선택 -->
+          <select>
+            <option value="None">---사용자를 선택하세요---</option>
+            <option value="User1">공주</option>
+            <option value="User2">남편</option>
+          </select>
 
-					<!-- 기본 정보 (키) -->
-					<div class="base-data js-base-data"></div>
+          <!-- 기본 정보 (키) -->
+          <div class="base-data js-base-data"></div>
 
-					<!-- 정보들 -->
-					<div class="datas">
-						<div class="data-column">
-							<div class="data-name">년도</div>
-							<input class="data-input js-input-year" type="number" min="0" max="9999" />
-						</div>
-						<div class="data-column">
-							<div class="data-name">월</div>
-							<input class="data-input js-input-month" type="number" min="1" max="12" />
-						</div>
-						<div class="data-column">
-							<div class="data-name">일</div>
-							<input class="data-input js-input-day" type="number" min="1" max="31" />
-						</div>
-						<div class="data-column">
-							<div class="data-name">몸무게</div>
-							<input class="data-input js-input-weight" type="number" min="0.0" max="100.0" />
-						</div>
-						<div class="data-column">
-							<div class="data-name">가슴 둘레</div>
-							<input class="data-input js-input-chest" type="number" min="0.0" max="100.0" />
-						</div>
-						<div class="data-column">
-							<div class="data-name">허리 둘레</div>
-							<input class="data-input js-input-waist" type="number" min="0.0" max="100.0" />
-						</div>
-						<div class="data-column">
-							<div class="data-name">엉덩이 둘레</div>
-							<input class="data-input js-input-hips" type="number" min="0.0" max="100.0" />
-						</div>
-						<div class="data-column">
-							<div class="data-name">위 팔 둘레</div>
-							<input class="data-input js-input-apper-arm" type="number" min="0.0" max="100.0" />
-						</div>
-						<div class="data-column">
-							<div class="data-name">허벅지 둘레</div>
-							<input class="data-input js-input-thigh" type="number" min="0.0" max="100.0" />
-						</div>
-					</div>
-					<input class="js-add-btn" type="submit" value="추가" />
-				</div>
+          <!-- 정보들 -->
+          <div class="datas">
+            <div class="data-column">
+              <div class="data-name">년도</div>
+              <input
+                class="data-input js-input-year"
+                type="number"
+                min="0"
+                max="9999"
+              />
+            </div>
+            <div class="data-column">
+              <div class="data-name">월</div>
+              <input
+                class="data-input js-input-month"
+                type="number"
+                min="1"
+                max="12"
+              />
+            </div>
+            <div class="data-column">
+              <div class="data-name">일</div>
+              <input
+                class="data-input js-input-day"
+                type="number"
+                min="1"
+                max="31"
+              />
+            </div>
+            <div class="data-column">
+              <div class="data-name">몸무게</div>
+              <input
+                class="data-input js-input-weight"
+                type="number"
+                min="0.0"
+                max="100.0"
+              />
+            </div>
+            <div class="data-column">
+              <div class="data-name">가슴 둘레</div>
+              <input
+                class="data-input js-input-chest"
+                type="number"
+                min="0.0"
+                max="100.0"
+              />
+            </div>
+            <div class="data-column">
+              <div class="data-name">허리 둘레</div>
+              <input
+                class="data-input js-input-waist"
+                type="number"
+                min="0.0"
+                max="100.0"
+              />
+            </div>
+            <div class="data-column">
+              <div class="data-name">엉덩이 둘레</div>
+              <input
+                class="data-input js-input-hips"
+                type="number"
+                min="0.0"
+                max="100.0"
+              />
+            </div>
+            <div class="data-column">
+              <div class="data-name">위 팔 둘레</div>
+              <input
+                class="data-input js-input-apper-arm"
+                type="number"
+                min="0.0"
+                max="100.0"
+              />
+            </div>
+            <div class="data-column">
+              <div class="data-name">허벅지 둘레</div>
+              <input
+                class="data-input js-input-thigh"
+                type="number"
+                min="0.0"
+                max="100.0"
+              />
+            </div>
+          </div>
+          <input class="js-add-btn" type="submit" value="추가" />
+        </div>
 
-				<!-- 화면 메인 (오른쪽) -->
-				<div class="right">
-					<div class="bars js-bars">
-						<div class="bar-column">
-							<div class="title">몸무게</div>
-							<canvas id="js-world-chart-canvas" height="30"></canvas>
-						</div>
-						<div class="bar-column">
-							<div class="title">가슴 둘레</div>
-							<canvas id="js-korea-chart-canvas" height="30"></canvas>
-						</div>
-						<div class="bar-column">
-							<div class="title">허리 둘레</div>
-							<canvas id="js-korea-chart-canvas" height="30"></canvas>
-						</div>
-						<div class="bar-column">
-							<div class="title">엉덩이 둘레</div>
-							<canvas id="js-korea-chart-canvas" height="30"></canvas>
-						</div>
-						<div class="bar-column">
-							<div class="title">위 팔 둘레</div>
-							<canvas id="js-korea-chart-canvas" height="30"></canvas>
-						</div>
-						<div class="bar-column">
-							<div class="title">허벅지 둘레</div>
-							<canvas id="js-korea-chart-canvas" height="30"></canvas>
-						</div>
-						<div class="bar-column">
-							<canvas id="preview-viewer" width="300" height="400" style="background-color: black"></canvas>
-							<canvas id="body-viewer" width="300" height="400" style="background-color: black"></canvas>
-						</div>
-						<div class="change-history">
-							<input class="btn js-before-btn-2" type="submit" value="이전" />
-							<input class="btn js-mode-change-btn-2" type="submit" value="" />
-							<input class="btn js-next-btn-2" type="submit" value="다음" />
-						</div>
-					</div>
-				</div>
-			</main>
+        <!-- 화면 메인 (오른쪽) -->
+        <div class="right">
+          <div class="bars js-bars">
+            <div class="bar-column">
+              <div class="title">몸무게</div>
+              <canvas id="js-world-chart-canvas" height="30"></canvas>
+            </div>
+            <div class="bar-column">
+              <div class="title">가슴 둘레</div>
+              <canvas id="js-korea-chart-canvas" height="30"></canvas>
+            </div>
+            <div class="bar-column">
+              <div class="title">허리 둘레</div>
+              <canvas id="js-korea-chart-canvas" height="30"></canvas>
+            </div>
+            <div class="bar-column">
+              <div class="title">엉덩이 둘레</div>
+              <canvas id="js-korea-chart-canvas" height="30"></canvas>
+            </div>
+            <div class="bar-column">
+              <div class="title">위 팔 둘레</div>
+              <canvas id="js-korea-chart-canvas" height="30"></canvas>
+            </div>
+            <div class="bar-column">
+              <div class="title">허벅지 둘레</div>
+              <canvas id="js-korea-chart-canvas" height="30"></canvas>
+            </div>
+            <div class="bar-column">
+              <canvas
+                id="preview-viewer"
+                width="300"
+                height="400"
+                style="background-color: black"
+              ></canvas>
+              <canvas
+                id="body-viewer"
+                width="300"
+                height="400"
+                style="background-color: black"
+              ></canvas>
+            </div>
+            <div class="change-history">
+              <input class="btn js-before-btn-2" type="submit" value="이전" />
+              <input class="btn js-mode-change-btn-2" type="submit" value="" />
+              <input class="btn js-next-btn-2" type="submit" value="다음" />
+            </div>
+          </div>
+        </div>
+      </main>
 
-			<!-- 화면 하단 -->
-			<footer class="footer"></footer>
+      <!-- 화면 하단 -->
+      <footer class="footer"></footer>
 
-			<!-- 네비게이션 -->
-			<nav class="nav"></nav>
-		</div>
+      <!-- 네비게이션 -->
+      <nav class="nav"></nav>
+    </div>
 
-		<!-- 스크립트 -->
-		<script type="text/javascript" src="body_viewer/js/util/prototypejs/prototype.js"></script>
-		<script type="text/javascript" src="body_viewer/js/util/sylvester/sylvester.js"></script>
-		<script type="text/javascript" src="body_viewer/js/michael_black/body_builder.js"></script>
-		<script type="text/javascript" src="body_viewer/js/michael_black/cameracontroller.js"></script>
-		<script type="text/javascript" src="body_viewer/js/michael_black/conditional_gaussian.js"></script>
-		<script type="text/javascript" src="body_viewer/js/michael_black/mesh_loader.js"></script>
-		<script type="text/javascript" src="body_viewer/js/michael_black/model_viewer.js"></script>
-		<script type="text/javascript" src="body_viewer/js/michael_black/moz_matrix4x4.js"></script>
-		<script src="body_viewer.js"></script>
-	</body>
+    <!-- 스크립트 -->
+    <script
+      type="text/javascript"
+      src="body_viewer/js/util/prototypejs/prototype.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="body_viewer/js/util/sylvester/sylvester.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="body_viewer/js/michael_black/body_builder.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="body_viewer/js/michael_black/cameracontroller.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="body_viewer/js/michael_black/conditional_gaussian.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="body_viewer/js/michael_black/mesh_loader.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="body_viewer/js/michael_black/model_viewer.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="body_viewer/js/michael_black/moz_matrix4x4.js"
+    ></script>
+    <script src="body_viewer.js"></script>
+  </body>
 </html>
