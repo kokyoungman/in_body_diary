@@ -28,5 +28,8 @@ const setDatas2 = () => {
   setBody(height, weight, chest, waist, hips, inseam, exercise);
 };
 
+bodyViewerManager = new BodyViewerManager(document);
+bodyViewerManager.init();
+
 initCanvasIds("preview-viewer", "body-viewer");
 loadMesh();
