@@ -173,7 +173,9 @@ class MainManager {
     this.nextBtn2 = document.querySelector(".js-next-btn-2");
 
     // 타입 변경 버튼
-    this.typeChangeBtn = document.querySelector(".js-type-change-btn");
+    this.typeChangeBtn1 = document.querySelector(".js-type-change-btn-1");
+    this.typeChangeBtn2 = document.querySelector(".js-type-change-btn-2");
+    this.typeChangeBtn3 = document.querySelector(".js-type-change-btn-3");
 
     // 모드 로컬 저장소
     this.MODE_LS = "mode";
@@ -780,17 +782,26 @@ class MainManager {
   };
 
   // 타입 변경 버튼을 누름
-  handleTypeChangeBtn = (event) => {
+  handleTypeChangeBtn1 = (event) => {
     event.preventDefault();
 
-    this.bars1.classList.toggle("js-hide-bars");
-    this.bars2.classList.toggle("js-hide-bars");
-
     if (this.bars1.classList.contains("js-hide-bars")) {
-      this.typeChangeBtn.value = "🥕";
-    } else {
-      this.typeChangeBtn.value = "📊";
+      this.bars1.classList.toggle("js-hide-bars");
+      this.bars2.classList.toggle("js-hide-bars");
     }
+  };
+  handleTypeChangeBtn2 = (event) => {
+    event.preventDefault();
+
+    if (this.bars2.classList.contains("js-hide-bars")) {
+      this.bars1.classList.toggle("js-hide-bars");
+      this.bars2.classList.toggle("js-hide-bars");
+    }
+  };
+  handleTypeChangeBtn3 = (event) => {
+    event.preventDefault();
+
+    location.href = "./body_viewer.html";
   };
 
   // 초기화함
@@ -809,6 +820,8 @@ class MainManager {
     this.nextBtn1.addEventListener("click", this.handleNextBtn);
     this.nextBtn2.addEventListener("click", this.handleNextBtn);
 
-    this.typeChangeBtn.addEventListener("click", this.handleTypeChangeBtn);
+    this.typeChangeBtn1.addEventListener("click", this.handleTypeChangeBtn1);
+    this.typeChangeBtn2.addEventListener("click", this.handleTypeChangeBtn2);
+    this.typeChangeBtn3.addEventListener("click", this.handleTypeChangeBtn3);
   };
 }
