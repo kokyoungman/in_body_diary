@@ -788,9 +788,9 @@ class MainManager {
     this.bars2.classList.toggle("js-hide-bars");
 
     if (this.bars1.classList.contains("js-hide-bars")) {
-      this.typeChangeBtn.value = "🥕";
+      this.typeChangeBtn1.value = "🥕";
     } else {
-      this.typeChangeBtn.value = "📊";
+      this.typeChangeBtn1.value = "📊";
     }
   };
   handleTypeChangeBtn2 = (event) => {
