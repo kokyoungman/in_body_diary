@@ -175,7 +175,6 @@ class MainManager {
     // 타입 변경 버튼
     this.typeChangeBtn1 = document.querySelector(".js-type-change-btn-1");
     this.typeChangeBtn2 = document.querySelector(".js-type-change-btn-2");
-    this.typeChangeBtn3 = document.querySelector(".js-type-change-btn-3");
 
     // 모드 로컬 저장소
     this.MODE_LS = "mode";
@@ -785,20 +784,16 @@ class MainManager {
   handleTypeChangeBtn1 = (event) => {
     event.preventDefault();
 
+    this.bars1.classList.toggle("js-hide-bars");
+    this.bars2.classList.toggle("js-hide-bars");
+
     if (this.bars1.classList.contains("js-hide-bars")) {
-      this.bars1.classList.toggle("js-hide-bars");
-      this.bars2.classList.toggle("js-hide-bars");
+      this.typeChangeBtn.value = "🥕";
+    } else {
+      this.typeChangeBtn.value = "📊";
     }
   };
   handleTypeChangeBtn2 = (event) => {
-    event.preventDefault();
-
-    if (this.bars2.classList.contains("js-hide-bars")) {
-      this.bars1.classList.toggle("js-hide-bars");
-      this.bars2.classList.toggle("js-hide-bars");
-    }
-  };
-  handleTypeChangeBtn3 = (event) => {
     event.preventDefault();
 
     location.href = "./body_viewer.html";
@@ -822,6 +817,5 @@ class MainManager {
 
     this.typeChangeBtn1.addEventListener("click", this.handleTypeChangeBtn1);
     this.typeChangeBtn2.addEventListener("click", this.handleTypeChangeBtn2);
-    this.typeChangeBtn3.addEventListener("click", this.handleTypeChangeBtn3);
   };
 }
