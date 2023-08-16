@@ -1,7 +1,9 @@
-// 자바스크립트 프로젝트 구현 - 인바디 다이어리 (main_manager.js)
+// 자바스크립트 프로젝트 구현 - 인바디 다이어리 (home_manager.js)
 
-class MainManager {
+class HomeManager {
   constructor(document, worldWeightChart, koreaWeightChart) {
+    this.commonManager = new CommonManager();
+
     // 차트
     this.worldWeightChart = worldWeightChart;
     this.koreaWeightChart = koreaWeightChart;
@@ -220,56 +222,6 @@ class MainManager {
     this.START_ITEM_INDEX = 4; // year, month, day, bmi를 제외하기 위해서 추가함
   }
 
-  // 남은 일수를 가져옴
-  getRemainDay = (targetDate, nowDate) => {
-    const elapsed = new Date(targetDate - nowDate);
-    const secondsMs = Math.floor(elapsed / 1000);
-    const minutesMs = Math.floor(secondsMs / 60);
-    const hoursMs = Math.floor(minutesMs / 60);
-    return Math.floor(hoursMs / 24);
-  };
-
-  // 남은 날짜 텍스트를 가져옴
-  getRemainDateText = (targetDate, nowDate) => {
-    let remainOnlyYear = targetDate.getFullYear() - nowDate.getFullYear();
-    let remainOnlyMonth = targetDate.getMonth() - nowDate.getMonth();
-    let remainOnlyDay = targetDate.getDate() - nowDate.getDate();
-    const remainDay = this.getRemainDay(targetDate, nowDate);
-
-    if (remainOnlyDay > 0) {
-      remainOnlyMonth = remainOnlyMonth + 1;
-      const beforeMonthDay = new Date(
-        nowDate.getFullYear(),
-        nowDate.getMonth(),
-        0
-      ).getDate();
-      remainOnlyDay = remainOnlyDay - beforeMonthDay;
-    }
-    if (remainOnlyMonth > 0) {
-      remainOnlyYear = remainOnlyYear + 1;
-      remainOnlyMonth = remainOnlyMonth - 12;
-    }
-
-    let str = "";
-
-    if (remainOnlyYear < 0) {
-      str = str + `${remainOnlyYear * -1}년 `;
-    }
-    if (remainOnlyMonth < 0) {
-      str = str + `${remainOnlyMonth * -1}달 `;
-    }
-    if (remainOnlyDay < 0) {
-      str = str + `${remainOnlyDay * -1}일 `;
-    }
-    if (str != "") {
-      str = str + `전`;
-    } else {
-      str = "오늘";
-    }
-
-    return str;
-  };
-
   // 유저 기본 데이터를 보여줌
   showUserBaseData = () => {
     // 입력값을 모두 초기화함
@@ -301,7 +253,7 @@ class MainManager {
         const weight =
           this.gapValues[this.userSelect.selectedIndex - 1].weight[index];
         number.textContent =
-          weight + ` (${this.getBmi(this.userHeight, weight)})`;
+          weight + ` (${this.commonManager.getBmi(this.userHeight, weight)})`;
       });
       this.numbers[1].forEach((number, index) => {
         number.textContent =
@@ -446,7 +398,7 @@ class MainManager {
         dayIndex -= this.viewDataStartIndex;
 
         const targetDate = new Date(saveData[0], saveData[1] - 1, saveData[2]);
-        const remainDay = this.getRemainDay(targetDate, nowDate);
+        const remainDay = this.commonManager.getRemainDay(targetDate, nowDate);
 
         saveData.forEach((saveDataValue, itemIndex) => {
           itemIndex -= this.START_ITEM_INDEX;
@@ -510,7 +462,10 @@ class MainManager {
                 "🥕" + saveDataValue;
 
             if (itemIndex == 0) {
-              const bmi = this.getBmi(this.userHeight, saveDataValue);
+              const bmi = this.commonManager.getBmi(
+                this.userHeight,
+                saveDataValue
+              );
               this.arrows[dayIndex][itemIndex].textContent += `kg / ${bmi} BMI`;
             } else if (itemIndex == 1 || itemIndex == 2 || itemIndex == 3)
               this.arrows[dayIndex][itemIndex].textContent += "%";
@@ -605,17 +560,21 @@ class MainManager {
       const koreaWeightGradeKgs = [];
 
       worldWeightGradeValues.forEach((weightGradeValue) => {
-        worldWeightGradeKgs.push(this.getKg(this.userHeight, weightGradeValue));
+        worldWeightGradeKgs.push(
+          this.commonManager.getKg(this.userHeight, weightGradeValue)
+        );
       });
       koreaWeightGradeValues.forEach((weightGradeValue) => {
-        koreaWeightGradeKgs.push(this.getKg(this.userHeight, weightGradeValue));
+        koreaWeightGradeKgs.push(
+          this.commonManager.getKg(this.userHeight, weightGradeValue)
+        );
       });
 
       parsedSaveDatas.forEach((saveData, dayIndex) => {
         dayIndex -= this.viewDataStartIndex;
 
         const targetDate = new Date(saveData[0], saveData[1] - 1, saveData[2]);
-        const remainDay = this.getRemainDay(targetDate, nowDate);
+        const remainDay = this.commonManager.getRemainDay(targetDate, nowDate);
 
         saveData.forEach((saveDataValue, itemIndex) => {
           itemIndex -= this.START_ITEM_INDEX;
@@ -631,10 +590,13 @@ class MainManager {
               if (remainDay == 0) weightLabels.unshift("오늘");
               else
                 weightLabels.unshift(
-                  this.getRemainDateText(targetDate, nowDate)
+                  this.commonManager.getRemainDateText(targetDate, nowDate)
                 );
 
-              const bmi = this.getBmi(this.userHeight, saveDataValue);
+              const bmi = this.commonManager.getBmi(
+                this.userHeight,
+                saveDataValue
+              );
               weightValues.unshift(bmi);
               weightKgs.unshift(saveDataValue);
             }
@@ -665,20 +627,6 @@ class MainManager {
 
     if (this.viewDataCount <= result) return this.viewDataCount;
     else return result;
-  };
-
-  // BMI를 가져옴
-  getBmi = (height, weight) => {
-    const h = height / 100; // cm 단위를 m 단위로 변경함
-    const bmi = weight / (h * h);
-    return bmi.toFixed(1);
-  };
-
-  // 몸무게을 가져옴
-  getKg = (height, bmi) => {
-    const h = height / 100; // cm 단위를 m 단위로 변경함
-    const kg = bmi * (h * h);
-    return kg.toFixed(1);
   };
 
   // 유저를 변경함
