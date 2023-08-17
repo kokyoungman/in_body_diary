@@ -47,7 +47,8 @@ class BodyViewerManager {
     this.typeChangeBtn2 = document.querySelector(".js-type-change-btn-2");
 
     // 모드 로컬 저장소
-    this.MODE_LS = "mode";
+    this.MODE_LS = "body_viewer_mode";
+    this.DATA_LS = "body_viewer_data_";
 
     // 보여줄 데이터 갯수
     this.MAX_VIEW_DATA_COUNT = 5;
@@ -96,7 +97,9 @@ class BodyViewerManager {
     let isData = false; // 데이터 유무
 
     // 로컬 저장소에서 해당 유저의 값을 가져와서 있으면, 변경할지 여부를 확인하고, 없으면 저장함
-    const saveDatas = localStorage.getItem(this.userSelect.selectedIndex);
+    const saveDatas = localStorage.getItem(
+      this.DATA_LS + this.userSelect.selectedIndex
+    );
 
     if (saveDatas !== null) {
       parsedSaveDatas = JSON.parse(saveDatas);
@@ -148,7 +151,7 @@ class BodyViewerManager {
     });
 
     localStorage.setItem(
-      this.userSelect.selectedIndex,
+      this.DATA_LS + this.userSelect.selectedIndex,
       JSON.stringify(parsedSaveDatas)
     );
   };
@@ -157,7 +160,9 @@ class BodyViewerManager {
   showHistory = () => {
     let parsedSaveDatas = [];
 
-    const saveDatas = localStorage.getItem(this.userSelect.selectedIndex);
+    const saveDatas = localStorage.getItem(
+      this.DATA_LS + this.userSelect.selectedIndex
+    );
 
     if (saveDatas !== null) {
       parsedSaveDatas = JSON.parse(saveDatas);
@@ -193,7 +198,9 @@ class BodyViewerManager {
 
     let parsedSaveDatas = [];
 
-    const saveDatas = localStorage.getItem(this.userSelect.selectedIndex);
+    const saveDatas = localStorage.getItem(
+      this.DATA_LS + this.userSelect.selectedIndex
+    );
 
     if (saveDatas !== null) {
       parsedSaveDatas = JSON.parse(saveDatas);
@@ -327,7 +334,9 @@ class BodyViewerManager {
 
     if (this.userSelect.selectedIndex == 0) return;
 
-    const saveDatas = localStorage.getItem(this.userSelect.selectedIndex);
+    const saveDatas = localStorage.getItem(
+      this.DATA_LS + this.userSelect.selectedIndex
+    );
 
     if (saveDatas !== null) {
       const parsedSaveDatas = JSON.parse(saveDatas);
@@ -363,7 +372,9 @@ class BodyViewerManager {
 
     if (this.userSelect.selectedIndex == 0) return;
 
-    const saveDatas = localStorage.getItem(this.userSelect.selectedIndex);
+    const saveDatas = localStorage.getItem(
+      this.DATA_LS + this.userSelect.selectedIndex
+    );
 
     if (saveDatas !== null) {
       const parsedSaveDatas = JSON.parse(saveDatas);
