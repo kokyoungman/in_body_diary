@@ -184,22 +184,20 @@ class BodyViewerManager {
   // 유저를 변경함
   handleChangeUser = () => {
     if (this.userSelectOptions[1].selected === true) {
-      this.initUser(40, 155);
+      this.initUser(155);
     } else if (this.userSelectOptions[2].selected === true) {
-      this.initUser(39, 180);
+      this.initUser(180);
     }
 
     if (this.userSelect.selectedIndex == 0) this.userBaseData.textContent = "";
-    else
-      this.userBaseData.textContent = `나이 : ${this.userAge} / 키 : ${this.userHeight}`;
+    else this.userBaseData.textContent = `키 : ${this.userHeight}`;
 
     this.showUserBaseData();
     this.showHistory();
   };
 
   // 유저를 초기화함
-  initUser = (age, height) => {
-    this.userAge = age;
+  initUser = (height) => {
     this.userHeight = height;
   };
 
