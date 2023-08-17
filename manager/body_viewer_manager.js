@@ -153,6 +153,16 @@ class BodyViewerManager {
                 );
 
               weightValues.unshift(parsedSaveDataValue);
+            } else if (itemIndex == 1) {
+              chestValues.unshift(parsedSaveDataValue);
+            } else if (itemIndex == 2) {
+              waistValues.unshift(parsedSaveDataValue);
+            } else if (itemIndex == 3) {
+              hipsValues.unshift(parsedSaveDataValue);
+            } else if (itemIndex == 4) {
+              upperArmValues.unshift(parsedSaveDataValue);
+            } else if (itemIndex == 5) {
+              thighValues.unshift(parsedSaveDataValue);
             }
           }
         });
@@ -160,11 +170,11 @@ class BodyViewerManager {
 
       this.bodyViewerChart.change(
         weightValues,
-        weightKgs,
-        weightValues,
-        weightKgs,
-        weightValues,
-        weightKgs
+        chestValues,
+        waistValues,
+        hipsValues,
+        upperArmValues,
+        thighValues
       );
     }
   };
