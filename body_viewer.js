@@ -28,14 +28,7 @@ const setDatas2 = () => {
   setBody(height, weight, chest, waist, hips, inseam, exercise);
 };
 
-weightChart = new BodyViewerChart();
-chestChart = new BodyViewerChart();
-waistChart = new BodyViewerChart();
-hipsChart = new BodyViewerChart();
-upperArmChart = new BodyViewerChart();
-thighChart = new BodyViewerChart();
-
-bodyViewerManager = new BodyViewerManager(document, weightChart, chestChart);
+bodyViewerManager = new BodyViewerManager(document);
 bodyViewerManager.init();
 
 initCanvasIds("preview-viewer", "body-viewer");

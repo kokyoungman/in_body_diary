@@ -4,6 +4,14 @@ class BodyViewerManager {
   constructor(document) {
     this.baseManager = new BaseManager();
 
+    // 차트
+    this.weightChart = new BodyViewerChart();
+    this.chestChart = new BodyViewerChart();
+    this.waistChart = new BodyViewerChart();
+    this.hipsChart = new BodyViewerChart();
+    this.upperArmChart = new BodyViewerChart();
+    this.thighChart = new BodyViewerChart();
+
     // 유저
     this.userHeight;
 
