@@ -47,8 +47,8 @@ class BodyViewerManager {
     this.typeChangeBtn2 = document.querySelector(".js-type-change-btn-2");
 
     // 모드 로컬 저장소
-    this.MODE_LS = "body_viewer_mode";
-    this.DATA_LS = "body_viewer_data_";
+    this.MODE_LS = "mode";
+    this.DATAS_LS = "body_viewer_datas_";
 
     // 보여줄 데이터 갯수
     this.MAX_VIEW_DATA_COUNT = 5;
@@ -61,8 +61,8 @@ class BodyViewerManager {
 
   // 유저 기본 데이터를 보여줌
   showUserBaseData = () => {
-    // 입력값들을 초기화함
-    this.baseManager.initInputs(this.inputs);
+    // 입력값들을 보여줌
+    this.baseManager.showInputs(this.inputs);
 
     // 로컬 저장소에서 모드의 값을 가져와서 적용함
     const viewMode = localStorage.getItem(this.MODE_LS);
@@ -83,7 +83,7 @@ class BodyViewerManager {
 
     // 데이터들을 저장함
     this.baseManager.saveDatas(
-      this.DATA_LS + this.userSelect.selectedIndex,
+      this.DATAS_LS + this.userSelect.selectedIndex,
       this.inputs
     );
   };
@@ -98,7 +98,7 @@ class BodyViewerManager {
     let parsedSaveDatas = [];
 
     const saveDatas = localStorage.getItem(
-      this.DATA_LS + this.userSelect.selectedIndex
+      this.DATAS_LS + this.userSelect.selectedIndex
     );
 
     if (saveDatas !== null) {
@@ -228,7 +228,7 @@ class BodyViewerManager {
     if (this.userSelect.selectedIndex == 0) return;
 
     const saveDatas = localStorage.getItem(
-      this.DATA_LS + this.userSelect.selectedIndex
+      this.DATAS_LS + this.userSelect.selectedIndex
     );
 
     if (saveDatas !== null) {
@@ -266,7 +266,7 @@ class BodyViewerManager {
     if (this.userSelect.selectedIndex == 0) return;
 
     const saveDatas = localStorage.getItem(
-      this.DATA_LS + this.userSelect.selectedIndex
+      this.DATAS_LS + this.userSelect.selectedIndex
     );
 
     if (saveDatas !== null) {
