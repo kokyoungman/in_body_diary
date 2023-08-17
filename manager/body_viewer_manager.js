@@ -152,12 +152,6 @@ class BodyViewerManager {
 
   // 히스토리를 보여줌
   showHistory = () => {
-    this.arrows.forEach((partArrows) => {
-      partArrows.forEach((partArrow) => {
-        partArrow.textContent = "";
-      });
-    });
-
     let parsedSaveDatas = [];
 
     const saveDatas = localStorage.getItem(this.userSelect.selectedIndex);
@@ -180,127 +174,7 @@ class BodyViewerManager {
         const targetDate = new Date(saveData[0], saveData[1] - 1, saveData[2]);
         const remainDay = this.baseManager.getRemainDay(targetDate, nowDate);
 
-        saveData.forEach((saveDataValue, itemIndex) => {
-          itemIndex -= this.START_ITEM_INDEX;
-
-          const viewCount = this.getViewCount(parsedSaveDatas.length);
-
-          if (
-            0 <= dayIndex &&
-            dayIndex < this.viewDataCount &&
-            0 <= itemIndex
-          ) {
-            let targetGapValues;
-
-            if (itemIndex == 0)
-              targetGapValues =
-                this.gapValues[this.userSelect.selectedIndex - 1].weight;
-            else if (itemIndex == 1)
-              targetGapValues =
-                this.gapValues[this.userSelect.selectedIndex - 1].bodyFat;
-            else if (itemIndex == 2)
-              targetGapValues =
-                this.gapValues[this.userSelect.selectedIndex - 1].water;
-            else if (itemIndex == 3)
-              targetGapValues =
-                this.gapValues[this.userSelect.selectedIndex - 1].muscle;
-            else if (itemIndex == 4)
-              targetGapValues =
-                this.gapValues[this.userSelect.selectedIndex - 1].bone;
-            else if (itemIndex == 5)
-              targetGapValues =
-                this.gapValues[this.userSelect.selectedIndex - 1].visceralFat;
-            else if (itemIndex == 6)
-              targetGapValues =
-                this.gapValues[this.userSelect.selectedIndex - 1].calorie;
-
-            let minIndex = 0;
-            let minValue = 0;
-
-            const maxValue = targetGapValues.find((value, index) => {
-              if (index == 0) return false;
-
-              minIndex = index - 1;
-              minValue = targetGapValues[minIndex];
-
-              if (targetGapValues.length - 1 == index) return true;
-
-              return saveDataValue < value;
-            });
-
-            if (
-              itemIndex == 0 ||
-              itemIndex == 1 ||
-              itemIndex == 2 ||
-              itemIndex == 3 ||
-              itemIndex == 4
-            )
-              this.arrows[dayIndex][itemIndex].textContent =
-                "🥕" + parseFloat(saveDataValue).toFixed(1);
-            else
-              this.arrows[dayIndex][itemIndex].textContent =
-                "🥕" + saveDataValue;
-
-            if (itemIndex == 0) {
-              const bmi = this.baseManager.getBmi(
-                this.userHeight,
-                saveDataValue
-              );
-              this.arrows[dayIndex][itemIndex].textContent += `kg / ${bmi} BMI`;
-            } else if (itemIndex == 1 || itemIndex == 2 || itemIndex == 3)
-              this.arrows[dayIndex][itemIndex].textContent += "%";
-            else if (itemIndex == 4)
-              this.arrows[dayIndex][itemIndex].textContent += "kg";
-            else if (itemIndex == 6)
-              this.arrows[dayIndex][itemIndex].textContent += " KCAL";
-
-            if (remainDay == 0)
-              this.arrows[dayIndex][itemIndex].textContent += "(오늘)";
-            else
-              this.arrows[dayIndex][itemIndex].textContent += `(D${remainDay})`;
-            this.arrows[dayIndex][itemIndex].style.top =
-              String(40 + (viewCount - 1 - dayIndex) * 15) + "px";
-
-            if (dayIndex == 0)
-              this.arrows[dayIndex][itemIndex].style.backgroundColor = "pink";
-            else
-              this.arrows[dayIndex][itemIndex].style.backgroundColor =
-                "#F1FE2D";
-
-            this.arrows[dayIndex][itemIndex].style.fontSize =
-              String(20 - dayIndex * 4) + "px";
-            this.arrows[dayIndex][itemIndex].style.fontWeight = "30px";
-
-            const oneSize = 1 / (targetGapValues.length - 1);
-
-            if (minValue == "-")
-              //this.arrows[dayIndex][itemIndex].style.left = String(oneSize * 0.5 * 100) + "%";
-              this.arrows[dayIndex][itemIndex].style.left = "0%";
-            else if (maxValue == "+")
-              //this.arrows[dayIndex][itemIndex].style.left = String(100 - oneSize * 0.5 * 100) + "%";
-              this.arrows[dayIndex][itemIndex].style.left = "100%";
-            else {
-              const startPoint = oneSize * minIndex;
-
-              const x = saveDataValue - minValue;
-              const y = maxValue - minValue;
-
-              if (minIndex == 0 && saveDataValue <= minValue)
-                this.arrows[dayIndex][itemIndex].style.left = "0%";
-              else if (
-                minIndex == targetGapValues.length - 2 &&
-                saveDataValue >= maxValue
-              )
-                this.arrows[dayIndex][itemIndex].style.left = "100%";
-              else {
-                const result = oneSize * (x / y);
-
-                this.arrows[dayIndex][itemIndex].style.left =
-                  String((startPoint + result) * 100) + "%";
-              }
-            }
-          }
-        });
+        saveData.forEach((saveDataValue, itemIndex) => {});
       });
     }
 
