@@ -61,16 +61,8 @@ class BodyViewerManager {
 
   // 유저 기본 데이터를 보여줌
   showUserBaseData = () => {
-    // 입력값을 모두 초기화함
-    this.inputs.forEach((input) => {
-      input.value = "";
-    });
-
-    // 현재 날짜와 시간을 입력값에 넣음
-    const date = new Date();
-    this.inputs[0].value = date.getFullYear();
-    this.inputs[1].value = date.getMonth() + 1;
-    this.inputs[2].value = date.getDate();
+    // 입력값들을 초기화함
+    this.baseManager.initInputs(this.inputs);
 
     // 로컬 저장소에서 모드의 값을 가져와서 적용함
     const viewMode = localStorage.getItem(this.MODE_LS);
@@ -84,75 +76,15 @@ class BodyViewerManager {
     if (this.userSelect.selectedIndex == 0) return;
 
     // 모든 값을 입력하지 않았다면, 알림을 출력하고 끝냄
-    let isEmpty = false;
-    this.inputs.forEach((input) => {
-      if (input.value == "") isEmpty = true;
-    });
-    if (isEmpty == true) {
+    if (this.baseManager.isInputs(this.inputs) == false) {
       alert("모든 값을 입력해주세요.");
       return;
     }
 
-    let parsedSaveDatas = []; // 분석한 저장 데이터들
-    let isData = false; // 데이터 유무
-
-    // 로컬 저장소에서 해당 유저의 값을 가져와서 있으면, 변경할지 여부를 확인하고, 없으면 저장함
-    const saveDatas = localStorage.getItem(
-      this.DATA_LS + this.userSelect.selectedIndex
-    );
-
-    if (saveDatas !== null) {
-      parsedSaveDatas = JSON.parse(saveDatas);
-
-      parsedSaveDatas.forEach((saveData) => {
-        if (
-          saveData[0] == this.inputs[0].value &&
-          saveData[1] == this.inputs[1].value &&
-          saveData[2] == this.inputs[2].value
-        )
-          isData = true;
-      });
-    }
-
-    if (isData) {
-      if (confirm("이미 같은 날짜의 값이 있습니다. 변경하시겠습니까?"))
-        isData = false;
-    }
-
-    if (isData == false) {
-      for (let i = parsedSaveDatas.length - 1; i >= 0; i--) {
-        if (
-          parsedSaveDatas[i][0] == this.inputs[0].value &&
-          parsedSaveDatas[i][1] == this.inputs[1].value &&
-          parsedSaveDatas[i][2] == this.inputs[2].value
-        )
-          parsedSaveDatas.splice(i, 1);
-      }
-
-      const values = [];
-      this.inputs.forEach((input) => {
-        values.push(input.value);
-      });
-      parsedSaveDatas.push(values);
-    }
-
-    parsedSaveDatas.sort((a, b) => {
-      if (parseInt(a[0]) < parseInt(b[0])) return -1;
-      else if (parseInt(a[0]) > parseInt(b[0])) return 1;
-      else {
-        if (parseInt(a[1]) < parseInt(b[1])) return -1;
-        else if (parseInt(a[1]) > parseInt(b[1])) return 1;
-        else {
-          if (parseInt(a[2]) < parseInt(b[2])) return -1;
-          else if (parseInt(a[2]) > parseInt(b[2])) return 1;
-          else return 0;
-        }
-      }
-    });
-
-    localStorage.setItem(
+    // 데이터들을 저장함
+    this.baseManager.saveDatas(
       this.DATA_LS + this.userSelect.selectedIndex,
-      JSON.stringify(parsedSaveDatas)
+      this.inputs
     );
   };
 
