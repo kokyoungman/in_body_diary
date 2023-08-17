@@ -10,10 +10,6 @@ class BodyViewerChart {
     upperArmValues,
     thighValues
   ) => {
-    if (weightValues.length == 0) {
-      return;
-    }
-
     weightValues.unshift("몸무게");
     chestValues.unshift("가슴 둘레");
     waistValues.unshift("허리 둘레");
