@@ -5,12 +5,7 @@ class BodyViewerManager {
     this.baseManager = new BaseManager();
 
     // 차트
-    this.weightChart = new BodyViewerChart();
-    this.chestChart = new BodyViewerChart();
-    this.waistChart = new BodyViewerChart();
-    this.hipsChart = new BodyViewerChart();
-    this.upperArmChart = new BodyViewerChart();
-    this.thighChart = new BodyViewerChart();
+    this.bodyViewerChart = new BodyViewerChart();
 
     // 유저
     this.userHeight;
@@ -192,8 +187,7 @@ class BodyViewerManager {
   // 차트를 위한 히스토리를 보여줌
   showHistoryForChart = () => {
     if (this.userSelect.selectedIndex == 0) {
-      worldWeightChart.change([], [], [], [], []);
-      koreaWeightChart.change([], [], [], [], []);
+      this.bodyViewerChart.change([], [], [], [], [], []);
       return;
     }
 
@@ -266,19 +260,13 @@ class BodyViewerManager {
         });
       });
 
-      worldWeightChart.change(
-        weightLabels,
+      this.bodyViewerChart.change(
         weightValues,
         weightKgs,
-        worldWeightGradeValues,
-        worldWeightGradeKgs
-      );
-      koreaWeightChart.change(
-        weightLabels,
         weightValues,
         weightKgs,
-        koreaWeightGradeValues,
-        koreaWeightGradeKgs
+        weightValues,
+        weightKgs
       );
     }
   };
