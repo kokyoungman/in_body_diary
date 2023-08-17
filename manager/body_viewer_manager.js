@@ -294,6 +294,7 @@ class BodyViewerManager {
   // 초기화함
   init = () => {
     this.showUserBaseData();
+    this.showHistory();
 
     this.userSelect.addEventListener("change", this.handleChangeUser);
     this.inputs.forEach((input) => {
