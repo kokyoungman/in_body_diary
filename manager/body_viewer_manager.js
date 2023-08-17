@@ -116,29 +116,18 @@ class BodyViewerManager {
       const weightLabels = [];
       const weightValues = [];
       const weightKgs = [];
-      const worldWeightGradeValues = [0, 18.5, 25, 30, 35, 40, 45];
-      const worldWeightGradeKgs = [];
-      const koreaWeightGradeValues = [0, 18.5, 23, 25, 30, 35, 45];
-      const koreaWeightGradeKgs = [];
 
-      worldWeightGradeValues.forEach((weightGradeValue) => {
-        worldWeightGradeKgs.push(
-          this.baseManager.getKg(this.userHeight, weightGradeValue)
-        );
-      });
-      koreaWeightGradeValues.forEach((weightGradeValue) => {
-        koreaWeightGradeKgs.push(
-          this.baseManager.getKg(this.userHeight, weightGradeValue)
-        );
-      });
-
-      parsedSaveDatas.forEach((saveData, dayIndex) => {
+      parsedSaveDatas.forEach((parsedSaveData, dayIndex) => {
         dayIndex -= this.viewDataStartIndex;
 
-        const targetDate = new Date(saveData[0], saveData[1] - 1, saveData[2]);
+        const targetDate = new Date(
+          parsedSaveData[0],
+          parsedSaveData[1] - 1,
+          parsedSaveData[2]
+        );
         const remainDay = this.baseManager.getRemainDay(targetDate, nowDate);
 
-        saveData.forEach((saveDataValue, itemIndex) => {
+        parsedSaveData.forEach((parsedSaveDataValue, itemIndex) => {
           itemIndex -= this.START_ITEM_INDEX;
 
           const viewCount = this.baseManager.getViewCount(
@@ -161,10 +150,10 @@ class BodyViewerManager {
 
               const bmi = this.baseManager.getBmi(
                 this.userHeight,
-                saveDataValue
+                parsedSaveDataValue
               );
               weightValues.unshift(bmi);
-              weightKgs.unshift(saveDataValue);
+              weightKgs.unshift(parsedSaveDataValue);
             }
           }
         });

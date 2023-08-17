@@ -336,13 +336,17 @@ class HomeManager {
         date.getDate()
       );
 
-      parsedSaveDatas.forEach((saveData, dayIndex) => {
+      parsedSaveDatas.forEach((parsedSaveData, dayIndex) => {
         dayIndex -= this.viewDataStartIndex;
 
-        const targetDate = new Date(saveData[0], saveData[1] - 1, saveData[2]);
+        const targetDate = new Date(
+          parsedSaveData[0],
+          parsedSaveData[1] - 1,
+          parsedSaveData[2]
+        );
         const remainDay = this.baseManager.getRemainDay(targetDate, nowDate);
 
-        saveData.forEach((saveDataValue, itemIndex) => {
+        parsedSaveData.forEach((parsedSaveDataValue, itemIndex) => {
           itemIndex -= this.START_ITEM_INDEX;
 
           const viewCount = this.baseManager.getViewCount(
@@ -391,7 +395,7 @@ class HomeManager {
 
               if (targetGapValues.length - 1 == index) return true;
 
-              return saveDataValue < value;
+              return parsedSaveDataValue < value;
             });
 
             if (
@@ -402,15 +406,15 @@ class HomeManager {
               itemIndex == 4
             )
               this.arrows[dayIndex][itemIndex].textContent =
-                "🥕" + parseFloat(saveDataValue).toFixed(1);
+                "🥕" + parseFloat(parsedSaveDataValue).toFixed(1);
             else
               this.arrows[dayIndex][itemIndex].textContent =
-                "🥕" + saveDataValue;
+                "🥕" + parsedSaveDataValue;
 
             if (itemIndex == 0) {
               const bmi = this.baseManager.getBmi(
                 this.userHeight,
-                saveDataValue
+                parsedSaveDataValue
               );
               this.arrows[dayIndex][itemIndex].textContent += `kg / ${bmi} BMI`;
             } else if (itemIndex == 1 || itemIndex == 2 || itemIndex == 3)
@@ -448,14 +452,14 @@ class HomeManager {
             else {
               const startPoint = oneSize * minIndex;
 
-              const x = saveDataValue - minValue;
+              const x = parsedSaveDataValue - minValue;
               const y = maxValue - minValue;
 
-              if (minIndex == 0 && saveDataValue <= minValue)
+              if (minIndex == 0 && parsedSaveDataValue <= minValue)
                 this.arrows[dayIndex][itemIndex].style.left = "0%";
               else if (
                 minIndex == targetGapValues.length - 2 &&
-                saveDataValue >= maxValue
+                parsedSaveDataValue >= maxValue
               )
                 this.arrows[dayIndex][itemIndex].style.left = "100%";
               else {
@@ -515,13 +519,17 @@ class HomeManager {
         );
       });
 
-      parsedSaveDatas.forEach((saveData, dayIndex) => {
+      parsedSaveDatas.forEach((parsedSaveData, dayIndex) => {
         dayIndex -= this.viewDataStartIndex;
 
-        const targetDate = new Date(saveData[0], saveData[1] - 1, saveData[2]);
+        const targetDate = new Date(
+          parsedSaveData[0],
+          parsedSaveData[1] - 1,
+          parsedSaveData[2]
+        );
         const remainDay = this.baseManager.getRemainDay(targetDate, nowDate);
 
-        saveData.forEach((saveDataValue, itemIndex) => {
+        parsedSaveData.forEach((parsedSaveDataValue, itemIndex) => {
           itemIndex -= this.START_ITEM_INDEX;
 
           const viewCount = this.baseManager.getViewCount(
@@ -544,10 +552,10 @@ class HomeManager {
 
               const bmi = this.baseManager.getBmi(
                 this.userHeight,
-                saveDataValue
+                parsedSaveDataValue
               );
               weightValues.unshift(bmi);
-              weightKgs.unshift(saveDataValue);
+              weightKgs.unshift(parsedSaveDataValue);
             }
           }
         });
