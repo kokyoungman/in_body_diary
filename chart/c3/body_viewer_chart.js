@@ -1,15 +1,18 @@
 // 자바스크립트 프로젝트 구현 - 인바디 다이어리 (body_viewer_chart.js)
 
 class BodyViewerChart {
-  constructor(
-    canvasContext,
+  // 재설정함
+  change = (
     weightValues,
     chestValues,
     waistValues,
     hipsValues,
     upperArmValues,
     thighValues
-  ) {
+  ) => {
+    if (weightValues.length == 0) {
+      return;
+    }
     const chart = c3.generate({
       bindto: "#js-chart",
       data: {
@@ -23,20 +26,5 @@ class BodyViewerChart {
         ],
       },
     });
-  }
-
-  // 재설정함
-  change = (labels, values) => {
-    this.baseChart.changeLabels(labels);
-    this.baseChart.changeValues(0, values);
-
-    this.baseChart.chart.config.options.plugins.datalabels.formatter = (
-      value,
-      context
-    ) => {
-      return `${value}`;
-    };
-
-    this.baseChart.update();
   };
 }

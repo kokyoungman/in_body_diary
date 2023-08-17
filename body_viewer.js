@@ -28,38 +28,12 @@ const setDatas2 = () => {
   setBody(height, weight, chest, waist, hips, inseam, exercise);
 };
 
-const weightCanvasContext = document
-  .querySelector("#js-weight-chart-canvas")
-  .getContext("2d");
-const chestCanvasContext = document
-  .querySelector("#js-chest-chart-canvas")
-  .getContext("2d");
-const waistCanvasContext = document
-  .querySelector("#js-waist-chart-canvas")
-  .getContext("2d");
-const hipsCanvasContext = document
-  .querySelector("#js-hips-chart-canvas")
-  .getContext("2d");
-const upperArmCanvasContext = document
-  .querySelector("#js-upper-arm-chart-canvas")
-  .getContext("2d");
-const thighCanvasContext = document
-  .querySelector("#js-thigh-chart-canvas")
-  .getContext("2d");
-weightChart = new BodyViewerChart(weightCanvasContext, [], [], [], [], [], []);
-chestChart = new BodyViewerChart(chestCanvasContext, [], [], [], [], [], []);
-waistChart = new BodyViewerChart(waistCanvasContext, [], [], [], [], [], []);
-hipsChart = new BodyViewerChart(hipsCanvasContext, [], [], [], [], [], []);
-upperArmChart = new BodyViewerChart(
-  upperArmCanvasContext,
-  [],
-  [],
-  [],
-  [],
-  [],
-  []
-);
-thighChart = new BodyViewerChart(thighCanvasContext, [], [], [], [], [], []);
+weightChart = new BodyViewerChart();
+chestChart = new BodyViewerChart();
+waistChart = new BodyViewerChart();
+hipsChart = new BodyViewerChart();
+upperArmChart = new BodyViewerChart();
+thighChart = new BodyViewerChart();
 
 bodyViewerManager = new BodyViewerManager(document, weightChart, chestChart);
 bodyViewerManager.init();
