@@ -307,6 +307,11 @@ class HomeManager {
 
   // 히스토리를 보여줌
   showHistory = () => {
+    this.showHistory1();
+    this.showHistory2();
+  };
+
+  showHistory1 = () => {
     this.arrows.forEach((partArrows) => {
       partArrows.forEach((partArrow) => {
         partArrow.textContent = "";
@@ -460,12 +465,9 @@ class HomeManager {
         });
       });
     }
-
-    this.showHistoryForChart();
   };
 
-  // 차트를 위한 히스토리를 보여줌
-  showHistoryForChart = () => {
+  showHistory2 = () => {
     if (this.userSelect.selectedIndex == 0) {
       worldWeightChart.change([], [], [], [], []);
       koreaWeightChart.change([], [], [], [], []);

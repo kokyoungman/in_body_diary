@@ -90,39 +90,6 @@ class BodyViewerManager {
 
   // 히스토리를 보여줌
   showHistory = () => {
-    let parsedSaveDatas = [];
-
-    const saveDatas = localStorage.getItem(
-      this.DATA_LS + this.userSelect.selectedIndex
-    );
-
-    if (saveDatas !== null) {
-      parsedSaveDatas = JSON.parse(saveDatas);
-
-      parsedSaveDatas.reverse();
-
-      const date = new Date();
-      const nowDate = new Date(
-        date.getFullYear(),
-        date.getMonth(),
-        date.getDate()
-      );
-
-      parsedSaveDatas.forEach((saveData, dayIndex) => {
-        dayIndex -= this.viewDataStartIndex;
-
-        const targetDate = new Date(saveData[0], saveData[1] - 1, saveData[2]);
-        const remainDay = this.baseManager.getRemainDay(targetDate, nowDate);
-
-        saveData.forEach((saveDataValue, itemIndex) => {});
-      });
-    }
-
-    this.showHistoryForChart();
-  };
-
-  // 차트를 위한 히스토리를 보여줌
-  showHistoryForChart = () => {
     if (this.userSelect.selectedIndex == 0) {
       this.bodyViewerChart.change([], [], [], [], [], []);
       return;
