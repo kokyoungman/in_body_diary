@@ -2,6 +2,8 @@
 
 class BodyViewerManager {
   constructor(document, worldWeightChart, koreaWeightChart) {
+    this.baseManager = new BaseManager();
+
     // 차트
     this.worldWeightChart = worldWeightChart;
     this.koreaWeightChart = koreaWeightChart;

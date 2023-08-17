@@ -1,6 +1,6 @@
-// 자바스크립트 프로젝트 구현 - 인바디 다이어리 (common_manager.js)
+// 자바스크립트 프로젝트 구현 - 인바디 다이어리 (base_manager.js)
 
-class CommonManager {
+class BaseManager {
   // 남은 일수를 가져옴
   getRemainDay = (targetDate, nowDate) => {
     const elapsed = new Date(targetDate - nowDate);

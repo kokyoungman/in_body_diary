@@ -2,7 +2,7 @@
 
 class HomeManager {
   constructor(document, worldWeightChart, koreaWeightChart) {
-    this.commonManager = new CommonManager();
+    this.baseManager = new BaseManager();
 
     // 차트
     this.worldWeightChart = worldWeightChart;
@@ -253,7 +253,7 @@ class HomeManager {
         const weight =
           this.gapValues[this.userSelect.selectedIndex - 1].weight[index];
         number.textContent =
-          weight + ` (${this.commonManager.getBmi(this.userHeight, weight)})`;
+          weight + ` (${this.baseManager.getBmi(this.userHeight, weight)})`;
       });
       this.numbers[1].forEach((number, index) => {
         number.textContent =
@@ -398,7 +398,7 @@ class HomeManager {
         dayIndex -= this.viewDataStartIndex;
 
         const targetDate = new Date(saveData[0], saveData[1] - 1, saveData[2]);
-        const remainDay = this.commonManager.getRemainDay(targetDate, nowDate);
+        const remainDay = this.baseManager.getRemainDay(targetDate, nowDate);
 
         saveData.forEach((saveDataValue, itemIndex) => {
           itemIndex -= this.START_ITEM_INDEX;
@@ -462,7 +462,7 @@ class HomeManager {
                 "🥕" + saveDataValue;
 
             if (itemIndex == 0) {
-              const bmi = this.commonManager.getBmi(
+              const bmi = this.baseManager.getBmi(
                 this.userHeight,
                 saveDataValue
               );
@@ -561,12 +561,12 @@ class HomeManager {
 
       worldWeightGradeValues.forEach((weightGradeValue) => {
         worldWeightGradeKgs.push(
-          this.commonManager.getKg(this.userHeight, weightGradeValue)
+          this.baseManager.getKg(this.userHeight, weightGradeValue)
         );
       });
       koreaWeightGradeValues.forEach((weightGradeValue) => {
         koreaWeightGradeKgs.push(
-          this.commonManager.getKg(this.userHeight, weightGradeValue)
+          this.baseManager.getKg(this.userHeight, weightGradeValue)
         );
       });
 
@@ -574,7 +574,7 @@ class HomeManager {
         dayIndex -= this.viewDataStartIndex;
 
         const targetDate = new Date(saveData[0], saveData[1] - 1, saveData[2]);
-        const remainDay = this.commonManager.getRemainDay(targetDate, nowDate);
+        const remainDay = this.baseManager.getRemainDay(targetDate, nowDate);
 
         saveData.forEach((saveDataValue, itemIndex) => {
           itemIndex -= this.START_ITEM_INDEX;
@@ -590,10 +590,10 @@ class HomeManager {
               if (remainDay == 0) weightLabels.unshift("오늘");
               else
                 weightLabels.unshift(
-                  this.commonManager.getRemainDateText(targetDate, nowDate)
+                  this.baseManager.getRemainDateText(targetDate, nowDate)
                 );
 
-              const bmi = this.commonManager.getBmi(
+              const bmi = this.baseManager.getBmi(
                 this.userHeight,
                 saveDataValue
               );
