@@ -1,8 +1,8 @@
 // 자바스크립트 프로젝트 구현 - 인바디 다이어리 (base_manager.js)
 
 class BaseManager {
-  // 입력값들을 초기화함
-  initInputs = (inputs) => {
+  // 입력값들을 보여줌
+  showInputs = (inputs) => {
     // 입력값을 모두 초기화함
     inputs.forEach((input) => {
       input.value = "";
