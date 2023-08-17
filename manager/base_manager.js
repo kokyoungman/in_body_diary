@@ -88,6 +88,17 @@ class BaseManager {
     localStorage.setItem(key, JSON.stringify(parsedSaveDatas));
   };
 
+  // 보여줄 갯수를 가져옴
+  getViewCount = (dataLength, viewDataStartIndex, viewDataCount) => {
+    const result = dataLength - viewDataStartIndex;
+
+    if (viewDataCount <= result) {
+      return viewDataCount;
+    } else {
+      return result;
+    }
+  };
+
   // 남은 일수를 가져옴
   getRemainDay = (targetDate, nowDate) => {
     const elapsed = new Date(targetDate - nowDate);

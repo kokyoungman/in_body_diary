@@ -141,7 +141,11 @@ class BodyViewerManager {
         saveData.forEach((saveDataValue, itemIndex) => {
           itemIndex -= this.START_ITEM_INDEX;
 
-          const viewCount = this.getViewCount(parsedSaveDatas.length);
+          const viewCount = this.baseManager.getViewCount(
+            parsedSaveDatas.length,
+            this.viewDataStartIndex,
+            this.viewDataCount
+          );
 
           if (
             0 <= dayIndex &&
@@ -175,14 +179,6 @@ class BodyViewerManager {
         weightKgs
       );
     }
-  };
-
-  // 보여줄 갯수를 가져옴
-  getViewCount = (dataLength) => {
-    const result = dataLength - this.viewDataStartIndex;
-
-    if (this.viewDataCount <= result) return this.viewDataCount;
-    else return result;
   };
 
   // 유저를 변경함
