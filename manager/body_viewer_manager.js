@@ -115,7 +115,11 @@ class BodyViewerManager {
 
       const weightLabels = [];
       const weightValues = [];
-      const weightKgs = [];
+      const chestValues = [];
+      const waistValues = [];
+      const hipsValues = [];
+      const upperArmValues = [];
+      const thighValues = [];
 
       parsedSaveDatas.forEach((parsedSaveData, dayIndex) => {
         dayIndex -= this.viewDataStartIndex;
@@ -148,12 +152,7 @@ class BodyViewerManager {
                   this.baseManager.getRemainDateText(targetDate, nowDate)
                 );
 
-              const bmi = this.baseManager.getBmi(
-                this.userHeight,
-                parsedSaveDataValue
-              );
-              weightValues.unshift(bmi);
-              weightKgs.unshift(parsedSaveDataValue);
+              weightValues.unshift(parsedSaveDataValue);
             }
           }
         });
