@@ -9,6 +9,7 @@ class BodyViewerManager {
 
     // 유저
     this.userHeight;
+    this.userInseam;
 
     // 유저 선택 칸
     this.userSelect = document.querySelector("select");
@@ -177,29 +178,38 @@ class BodyViewerManager {
         upperArmValues,
         thighValues
       );
+
+      this.setBodyModel(
+        weightValues[1],
+        chestValues[1],
+        waistValues[1],
+        hipsValues[1]
+      );
     }
   };
 
   // 유저를 변경함
   handleChangeUser = () => {
     if (this.userSelectOptions[1].selected === true) {
-      this.initUser(155);
+      this.initUser(155, 80);
       this.setFemaleModel();
     } else if (this.userSelectOptions[2].selected === true) {
-      this.initUser(180);
+      this.initUser(180, 80);
       this.setMaleModel();
     }
 
     if (this.userSelect.selectedIndex == 0) this.userBaseData.textContent = "";
-    else this.userBaseData.textContent = `키 : ${this.userHeight}`;
+    else
+      this.userBaseData.textContent = `키 : ${this.userHeight} / 다리 : ${this.userInseam}`;
 
     this.showUserBaseData();
     this.showHistory();
   };
 
   // 유저를 초기화함
-  initUser = (height) => {
+  initUser = (height, inseam) => {
     this.userHeight = height;
+    this.userInseam = inseam;
   };
 
   // 유저를 체크함
@@ -299,8 +309,8 @@ class BodyViewerManager {
   setFemaleModel = () => {
     setFemale();
   };
-  setBodyModel = (height, weight, chest, waist, hips, inseam, exercise) => {
-    setBody(height, weight, chest, waist, hips, inseam, exercise);
+  setBodyModel = (weight, chest, waist, hips) => {
+    setBody(this.userHeight, weight, chest, waist, hips, this.userInseam, 0);
   };
 
   // 초기화함
