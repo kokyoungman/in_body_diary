@@ -1,6 +1,10 @@
 // 자바스크립트 프로젝트 구현 - 인바디 다이어리 (body_viewer_chart.js)
 
 class BodyViewerChart {
+  constructor(document) {
+    this.chartContext = document.querySelector("#js-chart");
+  }
+
   // 재설정함
   change = (
     weightLabels,
@@ -67,5 +71,17 @@ class BodyViewerChart {
         bottom: 30,
       },
     });
+
+    this.show();
+  };
+
+  // 보여줌
+  show = () => {
+    this.chartContext.classList.remove("js-hide");
+  };
+
+  // 숨김
+  hide = () => {
+    this.chartContext.classList.add("js-hide");
   };
 }

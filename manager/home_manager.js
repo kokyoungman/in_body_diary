@@ -685,10 +685,10 @@ class HomeManager {
   handleTypeChangeBtn1 = (event) => {
     event.preventDefault();
 
-    this.bars1.classList.toggle("js-hide-bars");
-    this.bars2.classList.toggle("js-hide-bars");
+    this.bars1.classList.toggle("js-hide");
+    this.bars2.classList.toggle("js-hide");
 
-    if (this.bars1.classList.contains("js-hide-bars")) {
+    if (this.bars1.classList.contains("js-hide")) {
       this.typeChangeBtn1.value = "🥕";
     } else {
       this.typeChangeBtn1.value = "📊";

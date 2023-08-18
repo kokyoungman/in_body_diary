@@ -29,12 +29,12 @@ var body_canvas = null;
 var initCanvasIds = function (previewViewerId, bodyViewerId) {
   preview_canvas = $(previewViewerId);
   body_canvas = $(bodyViewerId);
-
-  preview_canvas.show();
-  body_canvas.hide();
 };
 
 var loadMesh = function (event) {
+  preview_canvas.show();
+  body_canvas.hide();
+
   var shapeinfo_url =
     "body_viewer/shapedata/" + gender + "/" + category + "/shapeinfo.js";
   var shape_data_directory =
@@ -227,4 +227,9 @@ var setBody = function (height, weight, chest, waist, hips, inseam, exercise) {
   setExercise(exercise);
 
   refreshModel();
+};
+
+var hideBody = function () {
+  preview_canvas.hide();
+  body_canvas.hide();
 };

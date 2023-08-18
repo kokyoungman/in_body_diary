@@ -5,7 +5,7 @@ class BodyViewerManager {
     this.baseManager = new BaseManager();
 
     // 차트
-    this.bodyViewerChart = new BodyViewerChart();
+    this.bodyViewerChart = new BodyViewerChart(document);
 
     // 유저
     this.userHeight;
@@ -92,7 +92,7 @@ class BodyViewerManager {
   // 히스토리를 보여줌
   showHistory = () => {
     if (this.userSelect.selectedIndex == 0) {
-      this.bodyViewerChart.change([], [], [], [], [], [], []);
+      this.bodyViewerChart.hide();
       return;
     }
 
@@ -169,22 +169,32 @@ class BodyViewerManager {
         });
       });
 
-      this.bodyViewerChart.change(
-        weightLabels,
-        weightValues,
-        chestValues,
-        waistValues,
-        hipsValues,
-        upperArmValues,
-        thighValues
-      );
+      if (
+        weightValues.length > 0 &&
+        chestValues.length > 0 &&
+        waistValues.length > 0 &&
+        hipsValues.length > 0
+      ) {
+        this.bodyViewerChart.change(
+          weightLabels,
+          weightValues,
+          chestValues,
+          waistValues,
+          hipsValues,
+          upperArmValues,
+          thighValues
+        );
 
-      this.setBodyModel(
-        weightValues[1],
-        chestValues[1],
-        waistValues[1],
-        hipsValues[1]
-      );
+        this.showBodyModel(
+          weightValues[weightValues.length - 1],
+          chestValues[chestValues.length - 1],
+          waistValues[waistValues.length - 1],
+          hipsValues[hipsValues.length - 1]
+        );
+      } else {
+        this.bodyViewerChart.hide();
+        this.hideBodyModel();
+      }
     }
   };
 
@@ -207,6 +217,8 @@ class BodyViewerManager {
       this.setFemaleModel();
     } else if (this.userSelectOptions[2].selected === true) {
       this.setMaleModel();
+    } else {
+      this.hideBodyModel();
     }
   };
 
@@ -313,8 +325,11 @@ class BodyViewerManager {
   setFemaleModel = () => {
     setFemale();
   };
-  setBodyModel = (weight, chest, waist, hips) => {
+  showBodyModel = (weight, chest, waist, hips) => {
     setBody(this.userHeight, weight, chest, waist, hips, this.userInseam, 0);
+  };
+  hideBodyModel = () => {
+    hideBody();
   };
 
   // 초기화함
