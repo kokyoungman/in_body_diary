@@ -34,9 +34,14 @@ class BodyViewerChart {
           thighValues,
         ],
         type: "bar",
+        types: {
+          몸무게: "line",
+          "가슴 둘레": "line",
+          "허리 둘레": "line",
+          "엉덩이 둘레": "line",
+        },
       },
       axis: {
-        rotated: true,
         x: {
           type: "category",
           categories: weightLabels,
