@@ -56,6 +56,10 @@ body {
   align-items: center;
 }
 
+.screen main .js-hide {
+  display: none;
+}
+
 /* 화면 메인 (입력 그룹) */
 .screen main .input-group {
   width: 35%;
@@ -188,8 +192,4 @@ body {
   width: 70px;
   height: 30px;
   font-size: 20px;
-}
-
-.screen main .table-group .js-hide {
-  display: none;
 }
