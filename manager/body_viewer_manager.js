@@ -192,10 +192,8 @@ class BodyViewerManager {
   handleChangeUser = () => {
     if (this.userSelectOptions[1].selected === true) {
       this.initUser(155, 80);
-      this.setFemaleModel();
     } else if (this.userSelectOptions[2].selected === true) {
       this.initUser(180, 80);
-      this.setMaleModel();
     }
 
     if (this.userSelect.selectedIndex == 0) this.userBaseData.textContent = "";
@@ -204,6 +202,12 @@ class BodyViewerManager {
 
     this.showUserBaseData();
     this.showHistory();
+
+    if (this.userSelectOptions[1].selected === true) {
+      this.setFemaleModel();
+    } else if (this.userSelectOptions[2].selected === true) {
+      this.setMaleModel();
+    }
   };
 
   // 유저를 초기화함
