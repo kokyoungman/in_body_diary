@@ -2,7 +2,7 @@
 
 @import "base_style.css";
 
-.screen main .table-group .bars .bar-column {
+.screen main .table-group .table .table-column {
   height: 100%;
 }
 
