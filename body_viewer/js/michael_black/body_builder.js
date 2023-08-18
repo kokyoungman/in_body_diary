@@ -228,8 +228,3 @@ var setBody = function (height, weight, chest, waist, hips, inseam, exercise) {
 
   refreshModel();
 };
-
-var hideBody = function () {
-  preview_canvas.hide();
-  body_canvas.hide();
-};

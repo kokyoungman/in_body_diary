@@ -193,7 +193,6 @@ class BodyViewerManager {
         );
       } else {
         this.bodyViewerChart.hide();
-        this.hideBodyModel();
       }
     }
   };
@@ -218,7 +217,7 @@ class BodyViewerManager {
     } else if (this.userSelectOptions[2].selected === true) {
       this.setMaleModel();
     } else {
-      this.hideBodyModel();
+      this.bodyViewerChart.hide();
     }
   };
 
@@ -327,9 +326,6 @@ class BodyViewerManager {
   };
   showBodyModel = (weight, chest, waist, hips) => {
     setBody(this.userHeight, weight, chest, waist, hips, this.userInseam, 0);
-  };
-  hideBodyModel = () => {
-    hideBody();
   };
 
   // 초기화함
