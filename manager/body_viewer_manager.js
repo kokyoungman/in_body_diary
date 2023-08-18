@@ -47,7 +47,7 @@ class BodyViewerManager {
     this.typeChangeBtn2 = document.querySelector(".js-type-change-btn-2");
 
     // 모드 로컬 저장소
-    this.MODE_LS = "mode";
+    this.MODE_LS = "body_viewer_mode";
     this.DATAS_LS = "body_viewer_datas_";
 
     // 보여줄 데이터 갯수
@@ -91,7 +91,7 @@ class BodyViewerManager {
   // 히스토리를 보여줌
   showHistory = () => {
     if (this.userSelect.selectedIndex == 0) {
-      this.bodyViewerChart.change([], [], [], [], [], []);
+      this.bodyViewerChart.change([], [], [], [], [], [], []);
       return;
     }
 
@@ -169,6 +169,7 @@ class BodyViewerManager {
       });
 
       this.bodyViewerChart.change(
+        weightLabels,
         weightValues,
         chestValues,
         waistValues,

@@ -1,3 +1,7 @@
 /* 자바스크립트 프로젝트 구현 - 인바디 다이어리 (body_viewer_style.css) */
 
 @import "base_style.css";
+
+.screen main .table-group .bars .bar-column {
+  height: 100%;
+}
