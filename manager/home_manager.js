@@ -497,8 +497,8 @@ class HomeManager {
 
   showHistory2 = () => {
     if (this.userSelect.selectedIndex == 0) {
-      worldWeightChart.change([], [], [], [], []);
-      koreaWeightChart.change([], [], [], [], []);
+      this.worldWeightChart.change([], [], [], [], []);
+      this.koreaWeightChart.change([], [], [], [], []);
       return;
     }
 
@@ -581,14 +581,14 @@ class HomeManager {
         });
       });
 
-      worldWeightChart.change(
+      this.worldWeightChart.change(
         weightLabels,
         weightValues,
         weightKgs,
         worldWeightGradeValues,
         worldWeightGradeKgs
       );
-      koreaWeightChart.change(
+      this.koreaWeightChart.change(
         weightLabels,
         weightValues,
         weightKgs,
