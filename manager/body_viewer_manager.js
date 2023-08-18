@@ -32,7 +32,7 @@ class BodyViewerManager {
     this.inputs.push(document.querySelector(".js-input-thigh"));
 
     // 테이블
-    this.table = document.querySelector(".js-table");
+    this.tables = document.querySelectorAll(".js-table");
 
     // 추가 버튼
     this.addBtn = document.querySelector(".js-add-btn");
@@ -244,12 +244,16 @@ class BodyViewerManager {
 
   // 테이블들을 보여줌
   showTables = () => {
-    this.tables.classList.remove("js-hide");
+    this.tables.forEach((table) => {
+      table.classList.remove("js-hide");
+    });
   };
 
   // 테이블들을 숨김
   hideTables = () => {
-    this.tables.classList.add("js-hide");
+    this.tables.forEach((table) => {
+      table.classList.add("js-hide");
+    });
   };
 
   // 추가 버튼을 누름
