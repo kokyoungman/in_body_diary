@@ -51,7 +51,7 @@ class BodyViewerManager {
     this.DATAS_LS = "body_viewer_datas_";
 
     // 보여줄 데이터 갯수
-    this.MAX_VIEW_DATA_COUNT = 5;
+    this.MAX_VIEW_DATA_COUNT = 10;
     this.viewDataStartIndex = 0;
     this.viewDataCount = this.MAX_VIEW_DATA_COUNT;
 
