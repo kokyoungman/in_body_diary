@@ -31,6 +31,9 @@ class BodyViewerManager {
     this.inputs.push(document.querySelector(".js-input-upper-arm"));
     this.inputs.push(document.querySelector(".js-input-thigh"));
 
+    // 바들
+    this.bars = document.querySelector(".js-bars");
+
     // 추가 버튼
     this.addBtn = document.querySelector(".js-add-btn");
 
@@ -92,7 +95,7 @@ class BodyViewerManager {
   // 히스토리를 보여줌
   showHistory = () => {
     if (this.userSelect.selectedIndex == 0) {
-      this.bodyViewerChart.hide();
+      this.hideBars();
       return;
     }
 
@@ -192,7 +195,7 @@ class BodyViewerManager {
           hipsValues[hipsValues.length - 1]
         );
       } else {
-        this.bodyViewerChart.hide();
+        this.hideBars();
       }
     }
   };
@@ -217,7 +220,7 @@ class BodyViewerManager {
     } else if (this.userSelectOptions[2].selected === true) {
       this.setMaleModel();
     } else {
-      this.bodyViewerChart.hide();
+      this.hideBars();
     }
   };
 
@@ -235,6 +238,16 @@ class BodyViewerManager {
       alert("사용자를 선택해주세요.");
       return;
     }
+  };
+
+  // 바들을 보여줌
+  showBars = () => {
+    this.bars.classList.remove("js-hide");
+  };
+
+  // 바들을 숨김
+  hideBars = () => {
+    this.bars.classList.add("js-hide");
   };
 
   // 추가 버튼을 누름

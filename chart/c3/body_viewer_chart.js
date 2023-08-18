@@ -71,17 +71,5 @@ class BodyViewerChart {
         bottom: 30,
       },
     });
-
-    this.show();
-  };
-
-  // 보여줌
-  show = () => {
-    this.chartContext.classList.remove("js-hide");
-  };
-
-  // 숨김
-  hide = () => {
-    this.chartContext.classList.add("js-hide");
   };
 }
