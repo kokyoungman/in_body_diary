@@ -184,8 +184,10 @@ class BodyViewerManager {
   handleChangeUser = () => {
     if (this.userSelectOptions[1].selected === true) {
       this.initUser(155);
+      this.setFemaleModel();
     } else if (this.userSelectOptions[2].selected === true) {
       this.initUser(180);
+      this.setMaleModel();
     }
 
     if (this.userSelect.selectedIndex == 0) this.userBaseData.textContent = "";
@@ -288,6 +290,17 @@ class BodyViewerManager {
   };
   handleTypeChangeBtn2 = (event) => {
     event.preventDefault();
+  };
+
+  // 바디 뷰어 관련
+  setMaleModel = () => {
+    setMale();
+  };
+  setFemaleModel = () => {
+    setFemale();
+  };
+  setBodyModel = (height, weight, chest, waist, hips, inseam, exercise) => {
+    setBody(height, weight, chest, waist, hips, inseam, exercise);
   };
 
   // 초기화함

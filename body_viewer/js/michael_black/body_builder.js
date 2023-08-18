@@ -129,6 +129,36 @@ var refreshModel = function () {
   }
 };
 
+var setMale = function () {
+  if (gender == "male") {
+    return;
+  }
+
+  gender = "male";
+  category = "all_" + gender;
+
+  loadMesh();
+};
+
+var setFemale = function () {
+  if (gender == "female") {
+    return;
+  }
+
+  gender = "female";
+  category = "all_" + gender;
+
+  loadMesh();
+};
+
+var switchGender = function () {
+  if (gender == "male") {
+    setFemale();
+  } else {
+    setMale();
+  }
+};
+
 var switchGender = function () {
   if (gender == "male") gender = "female";
   else gender = "male";
