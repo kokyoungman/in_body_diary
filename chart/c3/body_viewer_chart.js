@@ -20,6 +20,10 @@ class BodyViewerChart {
 
     const chart = c3.generate({
       bindto: "#js-chart",
+      size: {
+        width: 700,
+        height: 700,
+      },
       data: {
         columns: [
           weightValues,
@@ -53,6 +57,9 @@ class BodyViewerChart {
             right: 0,
           },
         },
+      },
+      padding: {
+        bottom: 30,
       },
     });
   };
