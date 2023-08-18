@@ -1,12 +1,32 @@
 // 자바스크립트 프로젝트 구현 - 인바디 다이어리 (home_manager.js)
 
 class HomeManager {
-  constructor(document, worldWeightChart, koreaWeightChart) {
+  constructor() {
     this.baseManager = new BaseManager();
 
     // 차트
-    this.worldWeightChart = worldWeightChart;
-    this.koreaWeightChart = koreaWeightChart;
+    const worldCanvasContext = document
+      .querySelector("#js-world-chart-canvas")
+      .getContext("2d");
+    const koreaCanvasContext = document
+      .querySelector("#js-korea-chart-canvas")
+      .getContext("2d");
+    this.worldWeightChart = new WeightChart(
+      worldCanvasContext,
+      [],
+      [],
+      [],
+      [],
+      []
+    );
+    this.koreaWeightChart = new WeightChart(
+      koreaCanvasContext,
+      [],
+      [],
+      [],
+      [],
+      []
+    );
 
     // 유저
     this.userAge;

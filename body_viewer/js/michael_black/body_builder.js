@@ -26,9 +26,9 @@ var conditional_multivariate_gaussian = null;
 var preview_canvas = null;
 var body_canvas = null;
 
-var initCanvasIds = function (previewViewerId, bodyViewerId) {
-  preview_canvas = $(previewViewerId);
-  body_canvas = $(bodyViewerId);
+var initCanvasIds = function () {
+  preview_canvas = $("preview-viewer");
+  body_canvas = $("body-viewer");
 };
 
 var loadMesh = function (event) {

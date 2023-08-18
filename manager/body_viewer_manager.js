@@ -1,11 +1,11 @@
 // 자바스크립트 프로젝트 구현 - 인바디 다이어리 (body_viewer_manager.js)
 
 class BodyViewerManager {
-  constructor(document) {
+  constructor() {
     this.baseManager = new BaseManager();
 
     // 차트
-    this.bodyViewerChart = new BodyViewerChart(document);
+    this.bodyViewerChart = new BodyViewerChart();
 
     // 유저
     this.userHeight;
