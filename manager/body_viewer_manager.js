@@ -243,12 +243,12 @@ class BodyViewerManager {
   };
 
   // 테이블들을 보여줌
-  showTable = () => {
+  showTables = () => {
     this.tables.classList.remove("js-hide");
   };
 
   // 테이블들을 숨김
-  hideTable = () => {
+  hideTables = () => {
     this.tables.classList.add("js-hide");
   };
 
