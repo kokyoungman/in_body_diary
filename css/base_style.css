@@ -93,13 +93,13 @@ body {
   width: 50%;
 }
 
-/* 화면 메인 (테이블 그룹) */
-.screen main .table-group {
+/* 화면 메인 (차트 그룹) */
+.screen main .chart-group {
   width: 65%;
   height: 100%;
 }
 
-.screen main .table-group .table {
+.screen main .chart-group .views {
   width: 95%;
   height: 100%;
   display: flex;
@@ -108,7 +108,7 @@ body {
   align-items: center;
 }
 
-.screen main .table-group .table .table-column {
+.screen main .chart-group .views .view-column {
   width: 100%;
   height: 10%;
   position: relative;
@@ -118,11 +118,11 @@ body {
   align-items: center;
 }
 
-.screen main .table-group .js-table-2 .table-column {
+.screen main .chart-group .js-views-2 .view-column {
   height: 30%;
 }
 
-.screen main .table-group .table .table-column .title {
+.screen main .chart-group .views .view-column .title {
   position: absolute;
   top: 0px;
   left: -5%;
@@ -130,7 +130,7 @@ body {
   text-align: center;
 }
 
-.screen main .table-group .table .table-column .arrow {
+.screen main .chart-group .views .view-column .arrow {
   position: absolute;
   top: 40px;
   left: 0%;
@@ -142,15 +142,15 @@ body {
   white-space: nowrap;
 }
 
-.screen main .table-group .table .table-column .arrow:hover {
+.screen main .chart-group .views .view-column .arrow:hover {
   transform: scale(3, 3);
 }
 
-.screen main .table-group .table .table-column .arrow:hover ~ .arrow {
+.screen main .chart-group .views .view-column .arrow:hover ~ .arrow {
   transform: scale(0, 0);
 }
 
-.screen main .table-group .table .table-column .numbers {
+.screen main .chart-group .views .view-column .numbers {
   width: 100%;
   height: 30%;
   display: flex;
@@ -161,7 +161,7 @@ body {
   text-align: center;
 }
 
-.screen main .table-group .table .table-column .grades {
+.screen main .chart-group .views .view-column .grades {
   width: 100%;
   height: 30%;
   display: flex;
@@ -170,7 +170,7 @@ body {
   align-items: center;
 }
 
-.screen main .table-group .table .table-column .grades .grade-row {
+.screen main .chart-group .views .view-column .grades .grade-row {
   width: 100%;
   height: 100%;
   font-size: 20px;
@@ -178,7 +178,7 @@ body {
   outline: 1px solid black;
 }
 
-.screen main .table-group .table .change-history {
+.screen main .chart-group .views .change-history {
   width: 100%;
   height: 5%;
   display: flex;
@@ -188,7 +188,7 @@ body {
   margin-top: 50px;
 }
 
-.screen main .table-group .table .change-history .btn {
+.screen main .chart-group .views .change-history .btn {
   width: 70px;
   height: 30px;
   font-size: 20px;

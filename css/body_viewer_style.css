@@ -2,7 +2,7 @@
 
 @import "base_style.css";
 
-.screen main .table-group .table .table-column {
+.screen main .chart-group .views .view-column {
   height: 100%;
 }
 

@@ -31,8 +31,8 @@ class BodyViewerManager {
     this.inputs.push(document.querySelector(".js-input-upper-arm"));
     this.inputs.push(document.querySelector(".js-input-thigh"));
 
-    // 테이블
-    this.tables = document.querySelectorAll(".js-table");
+    // 뷰들
+    this.views = document.querySelectorAll(".js-views");
 
     // 추가 버튼
     this.addBtn = document.querySelector(".js-add-btn");
@@ -95,7 +95,7 @@ class BodyViewerManager {
   // 히스토리를 보여줌
   showHistory = () => {
     if (this.userSelect.selectedIndex == 0) {
-      this.hideTables();
+      this.hideViews();
       return;
     }
 
@@ -193,9 +193,9 @@ class BodyViewerManager {
           waistValues[waistValues.length - 1],
           hipsValues[hipsValues.length - 1]
         );
-        this.showTables();
+        this.showViews();
       } else {
-        this.hideTables();
+        this.hideViews();
       }
     }
   };
@@ -217,12 +217,12 @@ class BodyViewerManager {
 
     if (this.userSelectOptions[1].selected === true) {
       this.setFemaleModel();
-      this.showTables();
+      this.showViews();
     } else if (this.userSelectOptions[2].selected === true) {
       this.setMaleModel();
-      this.showTables();
+      this.showViews();
     } else {
-      this.hideTables();
+      this.hideViews();
     }
   };
 
@@ -242,17 +242,17 @@ class BodyViewerManager {
     }
   };
 
-  // 테이블들을 보여줌
-  showTables = () => {
-    this.tables.forEach((table) => {
-      table.classList.remove("js-hide");
+  // 뷰들을 보여줌
+  showViews = () => {
+    this.views.forEach((view) => {
+      view.classList.remove("js-hide");
     });
   };
 
-  // 테이블들을 숨김
-  hideTables = () => {
-    this.tables.forEach((table) => {
-      table.classList.add("js-hide");
+  // 뷰들을 숨김
+  hideViews = () => {
+    this.views.forEach((view) => {
+      view.classList.add("js-hide");
     });
   };
 

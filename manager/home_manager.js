@@ -54,9 +54,9 @@ class HomeManager {
     this.inputs.push(document.querySelector(".js-input-visceralFat"));
     this.inputs.push(document.querySelector(".js-input-calorie"));
 
-    // 테이블들
-    this.table1 = document.querySelector(".js-table-1");
-    this.table2 = document.querySelector(".js-table-2");
+    // 뷰들
+    this.views1 = document.querySelector(".js-views-1");
+    this.views2 = document.querySelector(".js-views-2");
 
     // 화살표들
     this.arrows = [];
@@ -705,10 +705,10 @@ class HomeManager {
   handleTypeChangeBtn1 = (event) => {
     event.preventDefault();
 
-    this.table1.classList.toggle("js-hide");
-    this.table2.classList.toggle("js-hide");
+    this.views1.classList.toggle("js-hide");
+    this.views2.classList.toggle("js-hide");
 
-    if (this.table1.classList.contains("js-hide")) {
+    if (this.views1.classList.contains("js-hide")) {
       this.typeChangeBtn1.value = "🥕";
     } else {
       this.typeChangeBtn1.value = "📊";
