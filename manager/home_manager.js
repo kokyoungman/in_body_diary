@@ -530,7 +530,7 @@ class HomeManager {
         date.getDate()
       );
 
-      const weightLabels = [];
+      const labels = [];
       const weightValues = [];
       const weightKgs = [];
       const worldWeightGradeValues = [0, 18.5, 25, 30, 35, 40, 45];
@@ -574,9 +574,9 @@ class HomeManager {
             0 <= itemIndex
           ) {
             if (itemIndex == 0) {
-              if (remainDay == 0) weightLabels.unshift("오늘");
+              if (remainDay == 0) labels.unshift("오늘");
               else
-                weightLabels.unshift(
+                labels.unshift(
                   this.baseManager.getRemainDateText(targetDate, nowDate)
                 );
 
@@ -592,14 +592,14 @@ class HomeManager {
       });
 
       this.worldWeightChart.change(
-        weightLabels,
+        labels,
         weightValues,
         weightKgs,
         worldWeightGradeValues,
         worldWeightGradeKgs
       );
       this.koreaWeightChart.change(
-        weightLabels,
+        labels,
         weightValues,
         weightKgs,
         koreaWeightGradeValues,

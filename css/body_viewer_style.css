@@ -24,9 +24,6 @@
 }
 
 /* 차트 */
-#js-chart .c3-legend-item text {
-  font-size: 20px;
-}
 #js-chart .tick text tspan {
   font-size: 15px;
 }

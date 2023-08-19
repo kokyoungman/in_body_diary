@@ -5,7 +5,12 @@ class BodyViewerManager {
     this.baseManager = new BaseManager();
 
     // 차트
-    this.bodyViewerChart = new BodyViewerChart();
+    this.bodyViewerChart1 = new BodyViewerChart("#js-chart-1");
+    this.bodyViewerChart2 = new BodyViewerChart("#js-chart-2");
+    this.bodyViewerChart3 = new BodyViewerChart("#js-chart-3");
+    this.bodyViewerChart4 = new BodyViewerChart("#js-chart-4");
+    this.bodyViewerChart5 = new BodyViewerChart("#js-chart-5");
+    this.bodyViewerChart6 = new BodyViewerChart("#js-chart-6");
 
     // 유저
     this.userHeight;
@@ -55,7 +60,7 @@ class BodyViewerManager {
     this.DATAS_LS = "body_viewer_datas_";
 
     // 보여줄 데이터 갯수
-    this.MAX_VIEW_DATA_COUNT = 10;
+    this.MAX_VIEW_DATA_COUNT = 5;
     this.viewDataStartIndex = 0;
     this.viewDataCount = this.MAX_VIEW_DATA_COUNT;
 
@@ -122,7 +127,7 @@ class BodyViewerManager {
         date.getDate()
       );
 
-      const weightLabels = [];
+      const labels = [];
       const weightValues = [];
       const chestValues = [];
       const waistValues = [];
@@ -155,9 +160,9 @@ class BodyViewerManager {
             0 <= itemIndex
           ) {
             if (itemIndex == 0) {
-              if (remainDay == 0) weightLabels.unshift("오늘");
+              if (remainDay == 0) labels.unshift("오늘");
               else
-                weightLabels.unshift(
+                labels.unshift(
                   this.baseManager.getRemainDateText(targetDate, nowDate)
                 );
 
@@ -183,15 +188,12 @@ class BodyViewerManager {
         waistValues.length > 0 &&
         hipsValues.length > 0
       ) {
-        this.bodyViewerChart.change(
-          weightLabels,
-          weightValues,
-          chestValues,
-          waistValues,
-          hipsValues,
-          upperArmValues,
-          thighValues
-        );
+        this.bodyViewerChart1.change("몸무게", labels, weightValues);
+        this.bodyViewerChart2.change("가슴 둘레", labels, chestValues);
+        this.bodyViewerChart3.change("허리 둘레", labels, waistValues);
+        this.bodyViewerChart4.change("엉덩이 둘레", labels, hipsValues);
+        this.bodyViewerChart5.change("위 팔 둘레", labels, upperArmValues);
+        this.bodyViewerChart6.change("허벅지 둘레", labels, thighValues);
         this.showBodyModel(
           weightValues[weightValues.length - 1],
           chestValues[chestValues.length - 1],

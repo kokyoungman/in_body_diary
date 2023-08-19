@@ -1,55 +1,30 @@
 // 자바스크립트 프로젝트 구현 - 인바디 다이어리 (body_viewer_chart.js)
 
 class BodyViewerChart {
-  constructor() {
-    this.chartContext = document.querySelector("#js-chart");
+  constructor(selector) {
+    this.selector = selector;
+    this.chartContext = document.querySelector(this.selector);
   }
 
   // 재설정함
-  change = (
-    weightLabels,
-    weightValues,
-    chestValues,
-    waistValues,
-    hipsValues,
-    upperArmValues,
-    thighValues
-  ) => {
-    weightValues.unshift("몸무게");
-    chestValues.unshift("가슴 둘레");
-    waistValues.unshift("허리 둘레");
-    hipsValues.unshift("엉덩이 둘레");
-    upperArmValues.unshift("위 팔 둘레");
-    thighValues.unshift("허벅지 둘레");
+  change = (title, labels, values) => {
+    values.unshift("");
 
     const chart = c3.generate({
-      bindto: "#js-chart",
+      bindto: this.selector,
       size: {
         width: 500,
-        height: 700,
+        height: 100,
       },
       data: {
-        columns: [
-          weightValues,
-          chestValues,
-          waistValues,
-          hipsValues,
-          upperArmValues,
-          thighValues,
-        ],
+        columns: [values],
         type: "bar",
-        types: {
-          몸무게: "line",
-          "가슴 둘레": "line",
-          "허리 둘레": "line",
-          "엉덩이 둘레": "line",
-        },
       },
       axis: {
         rotated: true,
         x: {
           type: "category",
-          categories: weightLabels,
+          categories: labels,
           padding: {
             top: 0,
             bottom: 0,
@@ -75,7 +50,7 @@ class BodyViewerChart {
         show: false,
       },
       padding: {
-        bottom: 30,
+        bottom: 0,
       },
     });
   };
