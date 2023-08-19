@@ -197,6 +197,8 @@ class BodyViewerManager {
       } else {
         this.hideViews();
       }
+    } else {
+      this.hideViews();
     }
   };
 
@@ -217,12 +219,8 @@ class BodyViewerManager {
 
     if (this.userSelectOptions[1].selected === true) {
       this.setFemaleModel();
-      this.showViews();
     } else if (this.userSelectOptions[2].selected === true) {
       this.setMaleModel();
-      this.showViews();
-    } else {
-      this.hideViews();
     }
   };
 
