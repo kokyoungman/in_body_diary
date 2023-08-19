@@ -211,8 +211,7 @@ class BodyViewerManager {
     }
 
     if (this.userSelect.selectedIndex == 0) this.userBaseData.textContent = "";
-    else
-      this.userBaseData.textContent = `키 : ${this.userHeight} / 다리 : ${this.userInseam}`;
+    else this.userBaseData.textContent = `키 : ${this.userHeight}`;
 
     this.showUserBaseData();
     this.showHistory();
