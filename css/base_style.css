@@ -37,10 +37,6 @@ body {
     0px 1px 3px rgba(0, 0, 0, 0.08);
 }
 
-.screen .js-hide {
-  display: none;
-}
-
 /* 화면 상단 */
 .screen header {
   width: 100%;
@@ -116,6 +112,10 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+.screen main .chart-group .js-hide {
+  display: none;
 }
 
 .screen main .chart-group .js-views-2 .view-column {
