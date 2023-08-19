@@ -346,8 +346,13 @@ class HomeManager {
 
     if (saveDatas !== null) {
       parsedSaveDatas = JSON.parse(saveDatas);
-
       parsedSaveDatas.reverse();
+
+      if (this.viewDataStartIndex < 0) {
+        this.viewDataStartIndex = 0;
+      } else if (parsedSaveDatas.length <= this.viewDataStartIndex) {
+        this.viewDataStartIndex = parsedSaveDatas.length - 1;
+      }
 
       const date = new Date();
       const nowDate = new Date(
@@ -510,8 +515,13 @@ class HomeManager {
 
     if (saveDatas !== null) {
       parsedSaveDatas = JSON.parse(saveDatas);
-
       parsedSaveDatas.reverse();
+
+      if (this.viewDataStartIndex < 0) {
+        this.viewDataStartIndex = 0;
+      } else if (parsedSaveDatas.length <= this.viewDataStartIndex) {
+        this.viewDataStartIndex = parsedSaveDatas.length - 1;
+      }
 
       const date = new Date();
       const nowDate = new Date(
@@ -658,7 +668,7 @@ class HomeManager {
 
       this.viewDataStartIndex++;
 
-      if (this.viewDataStartIndex == parsedSaveDatas.length) {
+      if (parsedSaveDatas.length <= this.viewDataStartIndex) {
         this.viewDataStartIndex = parsedSaveDatas.length - 1;
       }
       this.showHistory();
