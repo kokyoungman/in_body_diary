@@ -2,8 +2,25 @@
 
 @import "base_style.css";
 
+/* 화면 메인 (입력 그룹) */
+.screen main .input-group .datas {
+  width: 70%;
+}
+
+/* 화면 메인 (차트 그룹) */
+.screen main .chart-group {
+  width: 40%;
+  background-color: green;
+}
+
 .screen main .chart-group .views .view-column {
   height: 100%;
+}
+
+/* 화면 메인 (그 외 그룹) */
+.screen main .other-group {
+  width: 25%;
+  background-color: red;
 }
 
 /* 차트 */

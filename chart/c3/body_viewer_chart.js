@@ -25,7 +25,7 @@ class BodyViewerChart {
     const chart = c3.generate({
       bindto: "#js-chart",
       size: {
-        width: 700,
+        width: 500,
         height: 700,
       },
       data: {
@@ -46,6 +46,7 @@ class BodyViewerChart {
         },
       },
       axis: {
+        rotated: true,
         x: {
           type: "category",
           categories: weightLabels,
@@ -66,6 +67,12 @@ class BodyViewerChart {
             right: 0,
           },
         },
+      },
+      tooltip: {
+        show: true,
+      },
+      legend: {
+        show: false,
       },
       padding: {
         bottom: 30,
