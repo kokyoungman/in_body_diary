@@ -595,6 +595,9 @@ class HomeManager {
         koreaWeightGradeValues,
         koreaWeightGradeKgs
       );
+    } else {
+      this.worldWeightChart.change([], [], [], [], []);
+      this.koreaWeightChart.change([], [], [], [], []);
     }
   };
 
