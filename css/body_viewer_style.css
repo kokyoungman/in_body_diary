@@ -7,8 +7,8 @@
   width: 70%;
 }
 
-/* 화면 메인 (차트 그룹) */
-.screen main .chart-group {
+/* 화면 메인 (차트 그룹1) */
+.screen main .chart-group-1 {
   width: 40%;
   background-color: green;
 }
@@ -17,8 +17,8 @@
   height: 100%;
 }
 
-/* 화면 메인 (그 외 그룹) */
-.screen main .other-group {
+/* 화면 메인 (차트 그룹2) */
+.screen main .chart-group-2 {
   width: 25%;
   background-color: red;
 }

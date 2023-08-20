@@ -192,12 +192,3 @@ body {
   height: 30px;
   font-size: 20px;
 }
-
-/* 화면 메인 (그 외 그룹) */
-.screen main .other-group {
-  height: 100%;
-}
-
-.screen main .other-group .js-hide {
-  display: none;
-}
