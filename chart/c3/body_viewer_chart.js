@@ -7,14 +7,14 @@ class BodyViewerChart {
   }
 
   // 재설정함
-  change = (title, labels, values) => {
-    values.unshift("");
+  change = (title, width, height, labels, values) => {
+    values.unshift(title);
 
     const chart = c3.generate({
       bindto: this.selector,
       size: {
-        width: 500,
-        height: 160,
+        width: width,
+        height: height,
       },
       data: {
         columns: [values],

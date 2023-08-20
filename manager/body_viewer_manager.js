@@ -188,12 +188,42 @@ class BodyViewerManager {
         waistValues.length > 0 &&
         hipsValues.length > 0
       ) {
-        this.bodyViewerChart1.change("몸무게", labels, weightValues);
-        this.bodyViewerChart2.change("가슴 둘레", labels, chestValues);
-        this.bodyViewerChart3.change("허리 둘레", labels, waistValues);
-        this.bodyViewerChart4.change("엉덩이 둘레", labels, hipsValues);
-        this.bodyViewerChart5.change("위 팔 둘레", labels, upperArmValues);
-        this.bodyViewerChart6.change("허벅지 둘레", labels, thighValues);
+        this.bodyViewerChart1.change("몸무게", 500, 160, labels, weightValues);
+        this.bodyViewerChart2.change(
+          "가슴 둘레",
+          500,
+          160,
+          labels,
+          chestValues
+        );
+        this.bodyViewerChart3.change(
+          "허리 둘레",
+          500,
+          160,
+          labels,
+          waistValues
+        );
+        this.bodyViewerChart4.change(
+          "엉덩이 둘레",
+          500,
+          160,
+          labels,
+          hipsValues
+        );
+        this.bodyViewerChart5.change(
+          "위 팔 둘레",
+          250,
+          160,
+          labels,
+          upperArmValues
+        );
+        this.bodyViewerChart6.change(
+          "허벅지 둘레",
+          250,
+          160,
+          labels,
+          thighValues
+        );
         this.showBodyModel(
           weightValues[weightValues.length - 1],
           chestValues[chestValues.length - 1],

@@ -7,17 +7,16 @@
   width: 70%;
 }
 
-/* 화면 메인 (차트 그룹1) */
+/* 화면 메인 (차트 그룹) */
+.screen main .chart-group .views .view-column {
+  height: 100%;
+}
+
 .screen main .chart-group-1 {
   width: 40%;
   background-color: green;
 }
 
-.screen main .chart-group .views .view-column {
-  height: 100%;
-}
-
-/* 화면 메인 (차트 그룹2) */
 .screen main .chart-group-2 {
   width: 25%;
   background-color: red;
