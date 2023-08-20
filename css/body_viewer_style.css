@@ -24,6 +24,6 @@
 }
 
 /* 차트 */
-#js-chart .tick text tspan {
-  font-size: 15px;
+.tick text tspan {
+  font-size: 10px;
 }

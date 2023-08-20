@@ -14,7 +14,7 @@ class BodyViewerChart {
       bindto: this.selector,
       size: {
         width: 500,
-        height: 100,
+        height: 160,
       },
       data: {
         columns: [values],
