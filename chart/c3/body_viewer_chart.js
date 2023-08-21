@@ -18,7 +18,16 @@ class BodyViewerChart {
       },
       data: {
         columns: [values],
+        labels: {
+          format: function (v, id, i, j) {
+            return "값 : " + v;
+          },
+        },
         type: "bar",
+        color: function (color, d) {
+          if (d.value < 20) return "red";
+          else return "green";
+        },
       },
       axis: {
         rotated: true,
