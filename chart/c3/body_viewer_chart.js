@@ -32,7 +32,7 @@ class BodyViewerChart {
             right: 0,
           },
           tick: {
-            miltiline: false,
+            multiline: false,
           },
         },
         y: {
