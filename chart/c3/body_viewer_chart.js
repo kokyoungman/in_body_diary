@@ -31,6 +31,9 @@ class BodyViewerChart {
             left: 0,
             right: 0,
           },
+          tick: {
+            miltiline: false,
+          },
         },
         y: {
           min: 0,

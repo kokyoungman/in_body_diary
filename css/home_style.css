@@ -6,3 +6,11 @@
 .screen main .chart-group {
   width: 65%;
 }
+
+.screen main .chart-group .js-views-1 .view-column {
+  height: 10%;
+}
+
+.screen main .chart-group .js-views-2 .view-column {
+  height: 30%;
+}

@@ -99,7 +99,7 @@ body {
   height: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
 }
 
@@ -115,10 +115,6 @@ body {
 
 .screen main .chart-group .js-hide {
   display: none;
-}
-
-.screen main .chart-group .js-views-2 .view-column {
-  height: 30%;
 }
 
 .screen main .chart-group .views .view-column .title {
