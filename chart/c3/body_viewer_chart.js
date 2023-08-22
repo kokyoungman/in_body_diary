@@ -9,9 +9,6 @@ class BodyViewerChart {
   // 재설정함
   change = (title, width, height, labels, values, inches = null) => {
     values.unshift(title);
-    if (inches != null) {
-      inches.unshift(title);
-    }
 
     const chart = c3.generate({
       bindto: this.selector,
@@ -24,7 +21,7 @@ class BodyViewerChart {
         labels: {
           format: function (v, id, i, j) {
             if (inches != null) {
-              return v + "cm : / " + inches[i] + "인치";
+              return v + "cm / " + inches[i] + "인치";
             } else {
               return v;
             }
@@ -32,8 +29,7 @@ class BodyViewerChart {
         },
         type: "bar",
         color: function (color, d) {
-          if (d.value < 20) return "red";
-          else return "green";
+          return "rgba(6, 176, 254, 0.3)";
         },
       },
       axis: {

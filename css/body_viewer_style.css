@@ -24,3 +24,9 @@
 .tick text tspan {
   font-size: 15px;
 }
+
+.c3-text {
+  font-size: 15px;
+  transform: translate(-105px);
+  fill: black !important;
+}
