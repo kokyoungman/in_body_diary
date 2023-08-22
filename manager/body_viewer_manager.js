@@ -129,6 +129,7 @@ class BodyViewerManager {
 
       const labels = [];
       const weightValues = [];
+      const weightInches = [];
       const chestValues = [];
       const waistValues = [];
       const hipsValues = [];
@@ -167,6 +168,9 @@ class BodyViewerManager {
                 );
 
               weightValues.unshift(parsedSaveDataValue);
+              weightInches.unshift(
+                this.baseManager.getInch(parsedSaveDataValue)
+              );
             } else if (itemIndex == 1) {
               chestValues.unshift(parsedSaveDataValue);
             } else if (itemIndex == 2) {
@@ -188,7 +192,14 @@ class BodyViewerManager {
         waistValues.length > 0 &&
         hipsValues.length > 0
       ) {
-        this.bodyViewerChart1.change("몸무게", 500, 160, labels, weightValues);
+        this.bodyViewerChart1.change(
+          "몸무게",
+          500,
+          160,
+          labels,
+          weightValues,
+          weightInches
+        );
         this.bodyViewerChart2.change(
           "가슴 둘레",
           500,
