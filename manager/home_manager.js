@@ -199,7 +199,7 @@ class HomeManager {
     this.typeChangeBtn2 = document.querySelector(".js-type-change-btn-2");
 
     // 모드 로컬 저장소
-    this.MODE_LS = "home_mode";
+    this.MODE_LS = "mode";
     this.DATAS_LS = "home_datas_";
 
     // 간격 값들
