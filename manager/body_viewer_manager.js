@@ -129,12 +129,16 @@ class BodyViewerManager {
 
       const labels = [];
       const weightValues = [];
-      const weightInches = [];
       const chestValues = [];
+      const chestInches = [];
       const waistValues = [];
+      const waistInches = [];
       const hipsValues = [];
+      const hipsInches = [];
       const upperArmValues = [];
+      const upperArmInches = [];
       const thighValues = [];
+      const thighInches = [];
 
       parsedSaveDatas.forEach((parsedSaveData, dayIndex) => {
         dayIndex -= this.viewDataStartIndex;
@@ -168,19 +172,29 @@ class BodyViewerManager {
                 );
 
               weightValues.unshift(parsedSaveDataValue);
-              weightInches.unshift(
-                this.baseManager.getInch(parsedSaveDataValue)
-              );
             } else if (itemIndex == 1) {
               chestValues.unshift(parsedSaveDataValue);
+              chestInches.unshift(
+                this.baseManager.getInch(parsedSaveDataValue)
+              );
             } else if (itemIndex == 2) {
               waistValues.unshift(parsedSaveDataValue);
+              waistInches.unshift(
+                this.baseManager.getInch(parsedSaveDataValue)
+              );
             } else if (itemIndex == 3) {
               hipsValues.unshift(parsedSaveDataValue);
+              hipsInches.unshift(this.baseManager.getInch(parsedSaveDataValue));
             } else if (itemIndex == 4) {
               upperArmValues.unshift(parsedSaveDataValue);
+              upperArmInches.unshift(
+                this.baseManager.getInch(parsedSaveDataValue)
+              );
             } else if (itemIndex == 5) {
               thighValues.unshift(parsedSaveDataValue);
+              thighInches.unshift(
+                this.baseManager.getInch(parsedSaveDataValue)
+              );
             }
           }
         });
@@ -192,48 +206,46 @@ class BodyViewerManager {
         waistValues.length > 0 &&
         hipsValues.length > 0
       ) {
-        this.bodyViewerChart1.change(
-          "몸무게",
-          500,
-          160,
-          labels,
-          weightValues,
-          weightInches
-        );
+        this.bodyViewerChart1.change("몸무게", 500, 160, labels, weightValues);
         this.bodyViewerChart2.change(
           "가슴 둘레",
           500,
           160,
           labels,
-          chestValues
+          chestValues,
+          chestInches
         );
         this.bodyViewerChart3.change(
           "허리 둘레",
           500,
           160,
           labels,
-          waistValues
+          waistValues,
+          waistInches
         );
         this.bodyViewerChart4.change(
           "엉덩이 둘레",
           500,
           160,
           labels,
-          hipsValues
+          hipsValues,
+          hipsInches
         );
         this.bodyViewerChart5.change(
           "위 팔 둘레",
           250,
           160,
           labels,
-          upperArmValues
+          upperArmValues,
+          upperArmInches
         );
         this.bodyViewerChart6.change(
           "허벅지 둘레",
           250,
           160,
           labels,
-          thighValues
+          thighValues,
+          thighInches
         );
         this.showBodyModel(
           weightValues[weightValues.length - 1],
