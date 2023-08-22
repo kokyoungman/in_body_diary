@@ -27,6 +27,6 @@
 
 .c3-text {
   font-size: 15px;
-  transform: translate(-105px);
+  transform: translateX(-80px);
   fill: black !important;
 }
