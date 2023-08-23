@@ -209,6 +209,8 @@ class HomeManager {
     // 이전 버튼
     this.beforeBtn1 = document.querySelector(".js-before-btn-1");
     this.beforeBtn2 = document.querySelector(".js-before-btn-2");
+    this.beforeBtn2_1 = document.querySelector(".js-before-btn-2-1");
+    this.beforeBtn2_2 = document.querySelector(".js-before-btn-2-2");
 
     // 모드 변경 버튼
     this.modeChangeBtn1 = document.querySelector(".js-mode-change-btn-1");
