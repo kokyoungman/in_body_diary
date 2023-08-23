@@ -125,6 +125,17 @@ body {
   text-align: center;
 }
 
+.screen main .chart-group .views .view-column .title .js-title-btn {
+  width: 50px;
+  height: 20px;
+  border: 1px rgba(6, 95, 212, 0.5) solid;
+  border-radius: 20px;
+  margin: 0px 20px;
+  background-color: white;
+  color: RGB(6, 95, 212);
+  font-size: 15px;
+}
+
 .screen main .chart-group .views .view-column .arrow {
   position: absolute;
   top: 40px;
