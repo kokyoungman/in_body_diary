@@ -735,8 +735,8 @@ class HomeManager {
       this.views2.classList.remove("js-hide");
     }
 
-    this.views2_1.classList.remove("js-hide");
-    this.views2_2.classList.remove("js-hide");
+    this.views2_1.classList.add("js-hide");
+    this.views2_2.classList.add("js-hide");
   };
   handleTypeChangeBtn2 = (event) => {
     event.preventDefault();
