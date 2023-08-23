@@ -57,6 +57,13 @@ class HomeManager {
     // 뷰들
     this.views1 = document.querySelector(".js-views-1");
     this.views2 = document.querySelector(".js-views-2");
+    this.views2_1 = document.querySelector(".js-views-2-1");
+    this.views2_2 = document.querySelector(".js-views-2-2");
+    this.views2_3 = document.querySelector(".js-views-2-3");
+    this.views2_4 = document.querySelector(".js-views-2-4");
+    this.views2_5 = document.querySelector(".js-views-2-5");
+    this.views2_6 = document.querySelector(".js-views-2-6");
+    this.views2_7 = document.querySelector(".js-views-2-7");
 
     // 화살표들
     this.arrows = [];
@@ -718,13 +725,16 @@ class HomeManager {
   handleTypeChangeBtn1 = (event) => {
     event.preventDefault();
 
-    this.views1.classList.toggle("js-hide");
-    this.views2.classList.toggle("js-hide");
-
     if (this.views1.classList.contains("js-hide")) {
       this.typeChangeBtn1.value = "🥕";
+
+      this.views1.classList.remove("js-hide");
+      this.views2.classList.add("js-hide");
     } else {
       this.typeChangeBtn1.value = "📊";
+
+      this.views1.classList.add("js-hide");
+      this.views2.classList.remove("js-hide");
     }
   };
   handleTypeChangeBtn2 = (event) => {
