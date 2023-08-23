@@ -14,3 +14,11 @@
 .screen main .chart-group .js-views-2 .view-column {
   height: 30%;
 }
+
+.screen main .chart-group .js-views-2-1 .view-column {
+  height: 70%;
+}
+
+.screen main .chart-group .js-views-2-2 .view-column {
+  height: 70%;
+}
