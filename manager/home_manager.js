@@ -266,8 +266,10 @@ class HomeManager {
 
     // 보여줄 데이터 갯수
     this.MAX_VIEW_DATA_COUNT = 5;
+    this.MAX_VIEW_DETAIL_DATA_COUNT = 30;
     this.viewDataStartIndex = 0;
     this.viewDataCount = this.MAX_VIEW_DATA_COUNT;
+    this.viewDetailDataCount = this.MAX_VIEW_DETAIL_DATA_COUNT;
 
     // 시작 항목 인덱스
     this.START_ITEM_INDEX = 4; // year, month, day, bmi를 제외하기 위해서 추가함
@@ -560,15 +562,15 @@ class HomeManager {
         date.getDate()
       );
 
-      // 일부 정보
-      const labels = [];
-      const weightValues = [];
-      const weightKgs = [];
+      // 간단 정보
+      const simpleLabels = [];
+      const simpleWeightValues = [];
+      const simpleWeightKgs = [];
 
-      // 전체 정보
-      const allLabels = [];
-      const allWeightValues = [];
-      const allWeightKgs = [];
+      // 세부 정보
+      const detailLabels = [];
+      const detailWeightValues = [];
+      const detailWeightKgs = [];
 
       const worldWeightGradeValues = [0, 18.5, 25, 30, 35, 40, 45];
       const worldWeightGradeKgs = [];
@@ -605,16 +607,16 @@ class HomeManager {
             this.viewDataCount
           );
 
-          // 일부 정보
+          // 간단 정보
           if (
             0 <= dayIndex &&
             dayIndex < this.viewDataCount &&
             0 <= itemIndex
           ) {
             if (itemIndex == 0) {
-              if (remainDay == 0) labels.unshift("오늘");
+              if (remainDay == 0) simpleLabels.unshift("오늘");
               else
-                labels.unshift(
+                simpleLabels.unshift(
                   this.baseManager.getRemainDateText(targetDate, nowDate)
                 );
 
@@ -622,17 +624,21 @@ class HomeManager {
                 this.userHeight,
                 parsedSaveDataValue
               );
-              weightValues.unshift(bmi);
-              weightKgs.unshift(parsedSaveDataValue);
+              simpleWeightValues.unshift(bmi);
+              simpleWeightKgs.unshift(parsedSaveDataValue);
             }
           }
 
-          // 전체 정보
-          if (true) {
+          // 세부 정보
+          if (
+            0 <= dayIndex &&
+            dayIndex < this.viewDetailDataCount &&
+            0 <= itemIndex
+          ) {
             if (itemIndex == 0) {
-              if (remainDay == 0) allLabels.unshift("오늘");
+              if (remainDay == 0) detailLabels.unshift("오늘");
               else
-                allLabels.unshift(
+                detailLabels.unshift(
                   this.baseManager.getRemainDateText(targetDate, nowDate)
                 );
 
@@ -640,38 +646,38 @@ class HomeManager {
                 this.userHeight,
                 parsedSaveDataValue
               );
-              allWeightValues.unshift(bmi);
-              allWeightKgs.unshift(parsedSaveDataValue);
+              detailWeightValues.unshift(bmi);
+              detailWeightKgs.unshift(parsedSaveDataValue);
             }
           }
         });
       });
 
       this.worldWeightChart.change(
-        labels,
-        weightValues,
-        weightKgs,
+        simpleLabels,
+        simpleWeightValues,
+        simpleWeightKgs,
         worldWeightGradeValues,
         worldWeightGradeKgs
       );
       this.koreaWeightChart.change(
-        labels,
-        weightValues,
-        weightKgs,
+        simpleLabels,
+        simpleWeightValues,
+        simpleWeightKgs,
         koreaWeightGradeValues,
         koreaWeightGradeKgs
       );
       this.worldWeightDetailChart.change(
-        allLabels,
-        allWeightValues,
-        allWeightKgs,
+        detailLabels,
+        detailWeightValues,
+        detailWeightKgs,
         worldWeightGradeValues,
         worldWeightGradeKgs
       );
       this.koreaWeightDetailChart.change(
-        allLabels,
-        allWeightValues,
-        allWeightKgs,
+        detailLabels,
+        detailWeightValues,
+        detailWeightKgs,
         koreaWeightGradeValues,
         koreaWeightGradeKgs
       );
