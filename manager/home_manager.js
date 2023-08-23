@@ -560,9 +560,16 @@ class HomeManager {
         date.getDate()
       );
 
+      // 일부 정보
       const labels = [];
       const weightValues = [];
       const weightKgs = [];
+
+      // 전체 정보
+      const allLabels = [];
+      const allWeightValues = [];
+      const allWeightKgs = [];
+
       const worldWeightGradeValues = [0, 18.5, 25, 30, 35, 40, 45];
       const worldWeightGradeKgs = [];
       const koreaWeightGradeValues = [0, 18.5, 23, 25, 30, 35, 45];
@@ -598,6 +605,7 @@ class HomeManager {
             this.viewDataCount
           );
 
+          // 일부 정보
           if (
             0 <= dayIndex &&
             dayIndex < this.viewDataCount &&
@@ -618,6 +626,24 @@ class HomeManager {
               weightKgs.unshift(parsedSaveDataValue);
             }
           }
+
+          // 전체 정보
+          if (true) {
+            if (itemIndex == 0) {
+              if (remainDay == 0) allLabels.unshift("오늘");
+              else
+                allLabels.unshift(
+                  this.baseManager.getRemainDateText(targetDate, nowDate)
+                );
+
+              const bmi = this.baseManager.getBmi(
+                this.userHeight,
+                parsedSaveDataValue
+              );
+              allWeightValues.unshift(bmi);
+              allWeightKgs.unshift(parsedSaveDataValue);
+            }
+          }
         });
       });
 
@@ -635,8 +661,20 @@ class HomeManager {
         koreaWeightGradeValues,
         koreaWeightGradeKgs
       );
-      this.worldWeightDetailChart.change([], [], [], [], []);
-      this.koreaWeightDetailChart.change([], [], [], [], []);
+      this.worldWeightDetailChart.change(
+        allLabels,
+        allWeightValues,
+        allWeightKgs,
+        worldWeightGradeValues,
+        worldWeightGradeKgs
+      );
+      this.koreaWeightDetailChart.change(
+        allLabels,
+        allWeightValues,
+        allWeightKgs,
+        koreaWeightGradeValues,
+        koreaWeightGradeKgs
+      );
     } else {
       this.worldWeightChart.change([], [], [], [], []);
       this.koreaWeightChart.change([], [], [], [], []);
