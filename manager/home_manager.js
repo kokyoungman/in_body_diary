@@ -217,6 +217,8 @@ class HomeManager {
     // 다음 버튼
     this.nextBtn1 = document.querySelector(".js-next-btn-1");
     this.nextBtn2 = document.querySelector(".js-next-btn-2");
+    this.nextBtn2_1 = document.querySelector(".js-next-btn-2-1");
+    this.nextBtn2_2 = document.querySelector(".js-next-btn-2-2");
 
     // 타입 변경 버튼
     this.typeChangeBtn1 = document.querySelector(".js-type-change-btn-1");
@@ -858,10 +860,14 @@ class HomeManager {
     this.addBtn.addEventListener("click", this.handleAddBtn);
     this.beforeBtn1.addEventListener("click", this.handleBeforeBtn);
     this.beforeBtn2.addEventListener("click", this.handleBeforeBtn);
+    this.beforeBtn2_1.addEventListener("click", this.handleBeforeBtn);
+    this.beforeBtn2_2.addEventListener("click", this.handleBeforeBtn);
     this.modeChangeBtn1.addEventListener("click", this.handleModeChangeBtn);
     this.modeChangeBtn2.addEventListener("click", this.handleModeChangeBtn);
     this.nextBtn1.addEventListener("click", this.handleNextBtn);
     this.nextBtn2.addEventListener("click", this.handleNextBtn);
+    this.nextBtn2_1.addEventListener("click", this.handleNextBtn);
+    this.nextBtn2_2.addEventListener("click", this.handleNextBtn);
 
     this.typeChangeBtn1.addEventListener("click", this.handleTypeChangeBtn1);
     this.typeChangeBtn2.addEventListener("click", this.handleTypeChangeBtn2);
