@@ -27,6 +27,28 @@ class HomeManager {
       [],
       []
     );
+    const worldDetailCanvasContext = document
+      .querySelector("#js-world-detail-chart-canvas")
+      .getContext("2d");
+    const koreaDetailCanvasContext = document
+      .querySelector("#js-korea-detail-chart-canvas")
+      .getContext("2d");
+    this.worldWeightDetailChart = new WeightChart(
+      worldDetailCanvasContext,
+      [],
+      [],
+      [],
+      [],
+      []
+    );
+    this.koreaWeightDetailChart = new WeightChart(
+      koreaDetailCanvasContext,
+      [],
+      [],
+      [],
+      [],
+      []
+    );
 
     // 유저
     this.userAge;
@@ -510,6 +532,8 @@ class HomeManager {
     if (this.userSelect.selectedIndex == 0) {
       this.worldWeightChart.change([], [], [], [], []);
       this.koreaWeightChart.change([], [], [], [], []);
+      this.worldWeightDetailChart.change([], [], [], [], []);
+      this.koreaWeightDetailChart.change([], [], [], [], []);
       return;
     }
 
@@ -611,9 +635,13 @@ class HomeManager {
         koreaWeightGradeValues,
         koreaWeightGradeKgs
       );
+      this.worldWeightDetailChart.change([], [], [], [], []);
+      this.koreaWeightDetailChart.change([], [], [], [], []);
     } else {
       this.worldWeightChart.change([], [], [], [], []);
       this.koreaWeightChart.change([], [], [], [], []);
+      this.worldWeightDetailChart.change([], [], [], [], []);
+      this.koreaWeightDetailChart.change([], [], [], [], []);
     }
   };
 
