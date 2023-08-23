@@ -32,7 +32,7 @@ body {
   align-items: center;
   overflow: hidden;
   border-radius: 20px;
-  padding: 50px 20px;
+  padding: 20px;
   box-shadow: 0px 4px 6px rgba(50, 50, 93, 0.11),
     0px 1px 3px rgba(0, 0, 0, 0.08);
 }
@@ -119,7 +119,7 @@ body {
 
 .screen main .chart-group .views .view-column .title {
   position: absolute;
-  top: 0px;
+  top: -3%;
   left: -5%;
   font-size: 20px;
   text-align: center;
