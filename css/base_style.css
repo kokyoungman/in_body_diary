@@ -125,7 +125,7 @@ body {
   text-align: center;
 }
 
-.screen main .chart-group .views .view-column .title .js-title-btn {
+.screen main .chart-group .views .view-column .title .title-btn {
   width: 50px;
   height: 20px;
   border: 1px rgba(6, 95, 212, 0.5) solid;
