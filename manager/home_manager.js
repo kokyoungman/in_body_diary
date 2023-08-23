@@ -59,11 +59,6 @@ class HomeManager {
     this.views2 = document.querySelector(".js-views-2");
     this.views2_1 = document.querySelector(".js-views-2-1");
     this.views2_2 = document.querySelector(".js-views-2-2");
-    this.views2_3 = document.querySelector(".js-views-2-3");
-    this.views2_4 = document.querySelector(".js-views-2-4");
-    this.views2_5 = document.querySelector(".js-views-2-5");
-    this.views2_6 = document.querySelector(".js-views-2-6");
-    this.views2_7 = document.querySelector(".js-views-2-7");
 
     // 화살표들
     this.arrows = [];
@@ -204,6 +199,12 @@ class HomeManager {
     // 타입 변경 버튼
     this.typeChangeBtn1 = document.querySelector(".js-type-change-btn-1");
     this.typeChangeBtn2 = document.querySelector(".js-type-change-btn-2");
+
+    // 더보기, 간단히 버튼
+    this.detailBtn1 = document.querySelector(".js-detail-btn-1");
+    this.detailBtn2 = document.querySelector(".js-detail-btn-2");
+    this.simpleBtn1 = document.querySelector(".js-simple-btn-1");
+    this.simpleBtn2 = document.querySelector(".js-simple-btn-2");
 
     // 모드 로컬 저장소
     this.MODE_LS = "mode";
@@ -736,11 +737,35 @@ class HomeManager {
       this.views1.classList.add("js-hide");
       this.views2.classList.remove("js-hide");
     }
+
+    this.views2_1.classList.remove("js-hide");
+    this.views2_2.classList.remove("js-hide");
   };
   handleTypeChangeBtn2 = (event) => {
     event.preventDefault();
 
     location.href = "./body_viewer.html";
+  };
+
+  // 더보기, 간단히 버튼을 누름
+  handleDetailBtn1 = (event) => {
+    event.preventDefault();
+
+    this.views1.classList.add("js-hide");
+    this.views2.classList.add("js-hide");
+
+    this.views2_1.classList.remove("js-hide");
+    this.views2_2.classList.add("js-hide");
+  };
+
+  handleDetailBtn2 = (event) => {
+    event.preventDefault();
+
+    this.views1.classList.add("js-hide");
+    this.views2.classList.add("js-hide");
+
+    this.views2_1.classList.add("js-hide");
+    this.views2_2.classList.remove("js-hide");
   };
 
   // 초기화함
@@ -762,5 +787,10 @@ class HomeManager {
 
     this.typeChangeBtn1.addEventListener("click", this.handleTypeChangeBtn1);
     this.typeChangeBtn2.addEventListener("click", this.handleTypeChangeBtn2);
+
+    this.typeDetailBtn1.addEventListener("click", this.handleDetailBtn1);
+    this.typeDetailBtn2.addEventListener("click", this.handleDetailBtn2);
+    this.typeSimpleBtn1.addEventListener("click", this.handleSimpleBtn1);
+    this.typeSimpleBtn2.addEventListener("click", this.handleSimpleBtn2);
   };
 }
