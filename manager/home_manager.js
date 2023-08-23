@@ -203,8 +203,7 @@ class HomeManager {
     // 더보기, 간단히 버튼
     this.detailBtn1 = document.querySelector(".js-detail-btn-1");
     this.detailBtn2 = document.querySelector(".js-detail-btn-2");
-    this.simpleBtn1 = document.querySelector(".js-simple-btn-1");
-    this.simpleBtn2 = document.querySelector(".js-simple-btn-2");
+    this.simpleBtn = document.querySelector(".js-simple-btn");
 
     // 모드 로컬 저장소
     this.MODE_LS = "mode";
@@ -764,6 +763,15 @@ class HomeManager {
     this.views2_1.classList.add("js-hide");
     this.views2_2.classList.remove("js-hide");
   };
+  handleSimpleBtn = (event) => {
+    event.preventDefault();
+
+    this.views1.classList.add("js-hide");
+    this.views2.classList.remove("js-hide");
+
+    this.views2_1.classList.add("js-hide");
+    this.views2_2.classList.add("js-hide");
+  };
 
   // 초기화함
   init = () => {
@@ -787,7 +795,6 @@ class HomeManager {
 
     this.detailBtn1.addEventListener("click", this.handleDetailBtn1);
     this.detailBtn2.addEventListener("click", this.handleDetailBtn2);
-    this.simpleBtn1.addEventListener("click", this.handleSimpleBtn1);
-    this.simpleBtn2.addEventListener("click", this.handleSimpleBtn2);
+    this.simpleBtn.addEventListener("click", this.handleSimpleBtn);
   };
 }
