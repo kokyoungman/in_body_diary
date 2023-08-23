@@ -20,6 +20,11 @@
   width: 22%;
 }
 
+.screen main .chart-group-1 .views,
+.screen main .chart-group-2 .views {
+  justify-content: flex-start;
+}
+
 /* 차트 */
 .tick text tspan {
   font-size: 15px;
