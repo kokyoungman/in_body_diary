@@ -338,7 +338,6 @@ class HomeManager {
     this.showHistory1();
     this.showHistory2();
   };
-
   showHistory1 = () => {
     this.arrows.forEach((partArrows) => {
       partArrows.forEach((partArrow) => {
@@ -507,7 +506,6 @@ class HomeManager {
       });
     }
   };
-
   showHistory2 = () => {
     if (this.userSelect.selectedIndex == 0) {
       this.worldWeightChart.change([], [], [], [], []);
@@ -757,7 +755,6 @@ class HomeManager {
     this.views2_1.classList.remove("js-hide");
     this.views2_2.classList.add("js-hide");
   };
-
   handleDetailBtn2 = (event) => {
     event.preventDefault();
 
@@ -788,9 +785,9 @@ class HomeManager {
     this.typeChangeBtn1.addEventListener("click", this.handleTypeChangeBtn1);
     this.typeChangeBtn2.addEventListener("click", this.handleTypeChangeBtn2);
 
-    this.typeDetailBtn1.addEventListener("click", this.handleDetailBtn1);
-    this.typeDetailBtn2.addEventListener("click", this.handleDetailBtn2);
-    this.typeSimpleBtn1.addEventListener("click", this.handleSimpleBtn1);
-    this.typeSimpleBtn2.addEventListener("click", this.handleSimpleBtn2);
+    this.detailBtn1.addEventListener("click", this.handleDetailBtn1);
+    this.detailBtn2.addEventListener("click", this.handleDetailBtn2);
+    this.simpleBtn1.addEventListener("click", this.handleSimpleBtn1);
+    this.simpleBtn2.addEventListener("click", this.handleSimpleBtn2);
   };
 }
