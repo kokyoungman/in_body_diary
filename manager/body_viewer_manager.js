@@ -265,9 +265,9 @@ class BodyViewerManager {
   // 유저를 변경함
   handleChangeUser = () => {
     if (this.userSelectOptions[1].selected === true) {
-      this.initUser(155, 80);
+      this.initUser(155, 69.1);
     } else if (this.userSelectOptions[2].selected === true) {
-      this.initUser(180, 80);
+      this.initUser(180, 82);
     }
 
     if (this.userSelect.selectedIndex == 0) this.userBaseData.textContent = "";
