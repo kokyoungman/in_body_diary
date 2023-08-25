@@ -165,7 +165,7 @@ class BaseManager {
 
   // 인치를 가져옴
   getInch = (cm) => {
-    const inch = cm * 2.54;
+    const inch = cm / 2.54;
     return inch.toFixed(1);
   };
 }
