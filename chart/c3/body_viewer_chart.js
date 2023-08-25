@@ -21,7 +21,7 @@ class BodyViewerChart {
         labels: {
           format: function (v, id, i, j) {
             if (inches != null) {
-              return v + "cm / " + inches[i] + "in";
+              return v + " / " + inches[i];
             } else {
               return v;
             }
