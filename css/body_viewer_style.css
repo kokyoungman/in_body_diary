@@ -4,34 +4,34 @@
 
 /* 화면 메인 (입력 그룹) */
 .screen main .input-group .datas {
-  width: 70%;
+	width: 70%;
 }
 
 /* 화면 메인 (차트 그룹) */
 .screen main .chart-group .views .view-column {
-  height: 22%;
+	height: 22%;
 }
 
 .screen main .chart-group-1 {
-  width: 40%;
+	width: 40%;
 }
 
 .screen main .chart-group-2 {
-  width: 22%;
+	width: 22%;
 }
 
 .screen main .chart-group-1 .views,
 .screen main .chart-group-2 .views {
-  justify-content: flex-start;
+	justify-content: flex-start;
 }
 
 /* 차트 */
 .tick text tspan {
-  font-size: 15px;
+	font-size: 15px;
 }
 
 .c3-text {
-  font-size: 15px;
-  transform: translateX(-60px);
-  fill: black !important;
+	font-size: 15px;
+	transform: translateX(-60px);
+	fill: black !important;
 }

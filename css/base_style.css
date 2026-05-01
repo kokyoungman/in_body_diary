@@ -5,197 +5,198 @@
 @import "reset.css";
 
 * {
-  box-sizing: border-box;
-  color: #020202;
-  font-family: "Hi Melody", cursive;
-  font-size: 30px;
+	box-sizing: border-box;
+	color: #020202;
+	font-family: "Hi Melody", cursive;
+	font-size: 30px;
 }
 
 body {
-  width: 100%;
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 20px;
-  background-color: white;
+	width: 100%;
+	height: 100vh;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	padding: 20px;
+	background-color: white;
 }
 
 /* 화면 */
 .screen {
-  width: 1440px;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
-  overflow: hidden;
-  border-radius: 20px;
-  padding: 20px;
-  box-shadow: 0px 4px 6px rgba(50, 50, 93, 0.11),
-    0px 1px 3px rgba(0, 0, 0, 0.08);
+	width: 1440px;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: center;
+	overflow: hidden;
+	border-radius: 20px;
+	padding: 20px;
+	box-shadow:
+		0px 4px 6px rgba(50, 50, 93, 0.11),
+		0px 1px 3px rgba(0, 0, 0, 0.08);
 }
 
 /* 화면 상단 */
 .screen header {
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  align-items: center;
+	width: 100%;
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-start;
+	align-items: center;
 }
 
 /* 화면 메인 */
 .screen main {
-  width: 95%;
-  height: 100%;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
+	width: 95%;
+	height: 100%;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
 }
 
 /* 화면 메인 (입력 그룹) */
 .screen main .input-group {
-  width: 35%;
-  height: 85%;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
+	width: 35%;
+	height: 85%;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: center;
 }
 
 .screen main .input-group .base-data {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
 }
 
 .screen main .input-group .datas {
-  width: 50%;
+	width: 50%;
 }
 
 .screen main .input-group .datas .data-column {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  margin: 10px;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+	margin: 10px;
 }
 
 .screen main .input-group .datas .data-column .data-name {
-  width: 50%;
+	width: 50%;
 }
 
 /* 화면 메인 (차트 그룹) */
 .screen main .chart-group {
-  height: 100%;
+	height: 100%;
 }
 
 .screen main .chart-group .views {
-  width: 95%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
+	width: 95%;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: center;
 }
 
 .screen main .chart-group .views .view-column {
-  width: 100%;
-  height: 10%;
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+	width: 100%;
+	height: 10%;
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
 }
 
 .screen main .chart-group .js-hide {
-  display: none;
+	display: none;
 }
 
 .screen main .chart-group .views .view-column .title {
-  position: absolute;
-  top: -3%;
-  left: -5%;
-  font-size: 20px;
-  text-align: center;
+	position: absolute;
+	top: -3%;
+	left: -5%;
+	font-size: 20px;
+	text-align: center;
 }
 
 .screen main .chart-group .views .view-column .title .title-btn {
-  width: 50px;
-  height: 20px;
-  border: 1px rgba(6, 95, 212, 0.5) solid;
-  border-radius: 20px;
-  margin: 0px 20px;
-  background-color: white;
-  color: RGB(6, 95, 212);
-  font-size: 15px;
+	width: 50px;
+	height: 20px;
+	border: 1px rgba(6, 95, 212, 0.5) solid;
+	border-radius: 20px;
+	margin: 0px 20px;
+	background-color: white;
+	color: RGB(6, 95, 212);
+	font-size: 15px;
 }
 
 .screen main .chart-group .views .view-column .arrow {
-  position: absolute;
-  top: 40px;
-  left: 0%;
-  border-radius: 5px;
-  color: red;
-  font-size: 20px;
-  font-weight: 700;
-  text-align: center;
-  white-space: nowrap;
+	position: absolute;
+	top: 40px;
+	left: 0%;
+	border-radius: 5px;
+	color: red;
+	font-size: 20px;
+	font-weight: 700;
+	text-align: center;
+	white-space: nowrap;
 }
 
 .screen main .chart-group .views .view-column .arrow:hover {
-  transform: scale(3, 3);
+	transform: scale(3, 3);
 }
 
 .screen main .chart-group .views .view-column .arrow:hover ~ .arrow {
-  transform: scale(0, 0);
+	transform: scale(0, 0);
 }
 
 .screen main .chart-group .views .view-column .numbers {
-  width: 100%;
-  height: 30%;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  font-size: 20px;
-  text-align: center;
+	width: 100%;
+	height: 30%;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+	font-size: 20px;
+	text-align: center;
 }
 
 .screen main .chart-group .views .view-column .grades {
-  width: 100%;
-  height: 30%;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
+	width: 100%;
+	height: 30%;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
 }
 
 .screen main .chart-group .views .view-column .grades .grade-row {
-  width: 100%;
-  height: 100%;
-  font-size: 20px;
-  text-align: center;
-  outline: 1px solid black;
+	width: 100%;
+	height: 100%;
+	font-size: 20px;
+	text-align: center;
+	outline: 1px solid black;
 }
 
 .screen main .chart-group .views .change-history {
-  width: 100%;
-  height: 5%;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  align-items: center;
-  margin-top: 50px;
+	width: 100%;
+	height: 5%;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+	align-items: center;
+	margin-top: 50px;
 }
 
 .screen main .chart-group .views .change-history .btn {
-  width: 70px;
-  height: 30px;
-  font-size: 20px;
+	width: 70px;
+	height: 30px;
+	font-size: 20px;
 }
